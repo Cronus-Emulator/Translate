@@ -1,0 +1,50 @@
+//===============================================================\\
+//                _____                                          ||
+//               /  __ \                                         ||
+//               | /  \/_ __ ___  _ __  _   _ ___                ||
+//               | |   | '__/ _ \| '_ \| | | / __|               ||
+//               | \__/\ | | (_) | | | | |_| \__ \               ||
+//                \____/_|  \___/|_| |_|\__,_|___/               ||
+//                     Scripts                                   ||
+//===============================================================||
+// = Nome do NPC:                                                ||
+// - rachel.txt                                                  ||
+//===============================================================||
+// = Criação:                                                    ||
+// - eA/Herc/Cronus                                              ||
+//===============================================================||
+// = Versão:                                                     ||
+// - 1.0                                                         ||
+//===============================================================||
+// = Alterações:                                                 ||
+// - Tradução [Wolf]                                             ||
+//===============================================================||
+// = Descrição:                                                  ||
+// - Aeroplano de Rachel                                         ||
+//===============================================================//
+
+ra_fild12,295,208,0	script	toairplane#rachel	WARPNPC,1,1,{
+	end;
+OnTouch:
+	mes "Para usar o aeroplano, você precisará pagar uma taxa de 1,200 zenys ou possuir um Bilhete para o Aeroplano.";
+	mes "Gostaria de utilizar nossos serviços?";
+	next;
+	if (select("Sim:Não") == 1) {
+		if (countitem(7311) > 0) {
+			delitem 7311,1; //Bilhete para Aeroplano
+			warp "airplane_01",245,60;
+			end;
+		}
+		if (Zeny >= 1200) {
+			Zeny -= 1200;
+			warp "airplane_01",245,60;
+			end;
+		}
+		mes "Desculpe, mas você não possui o zeny necessário.";
+		mes "Lembre-se, você precisa possuir o Bilhete para o Aeroplano, ou possuir a taxa de embarque equivalente a 1,200 zenys.";
+		close;
+	}
+	mes "Obrigado, e volte novamente.";
+	close;
+}
+

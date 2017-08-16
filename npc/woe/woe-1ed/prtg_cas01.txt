@@ -1,0 +1,150 @@
+//===============================================================\\
+//                _____                                          ||
+//               /  __ \                                         ||
+//               | /  \/_ __ ___  _ __  _   _ ___                ||
+//               | |   | '__/ _ \| '_ \| | | / __|               ||
+//               | \__/\ | | (_) | | | | |_| \__ \               ||
+//                \____/_|  \___/|_| |_|\__,_|___/               ||
+//                     Scripts                                   ||
+//===============================================================||
+// = Criação:                                                    ||
+// - eA/Herc/Cronus                                              ||
+//===============================================================||
+// = Versão:                                                     ||
+// - 1.4                                                         ||
+//===============================================================||
+// = Alterações:                                                 ||
+// - Cabeçalho [SlexFire], [Spell Master]                        ||
+// - Tradução [Spell Master]                                     ||
+// - Revisão em busca de erros [Spell Master]                    ||
+//===============================================================||
+// = Descrição:                                                  ||
+// -  Scripts referentes ao 1º Castelo de Prontera               ||
+//===============================================================||
+// = Observações:                                                ||
+// - Arquivo revisado, não foram encontrados erros               ||
+//===============================================================//
+
+//===============================================================
+// Bandeiras (Porta dos Castelos)
+//===============================================================
+-	script	Kriemhild#1::OutsideFlagsPR1	GUILD_FLAG,{
+
+	.@GID = getcastledata("prtg_cas01",1);
+
+	if (.@GID == 0) {
+		mes "[Decreto de Rune-Midgard ]";
+		mes " ";
+		mes "1. Pela ordenança do Divino Reino de Rune-Midgad, declaramos que não há nenhum mestre formal deste castelo.";
+		mes " ";
+		mes "2. Para quem puder superar todas provações e destruír o Emperium.";
+		mes "O rei vai reconhecer esse como proprietário do castelo.";
+		close;
+	}
+	if (getcharid(2) == .@GID) {
+		mes "[ Voz Sussurrando ]";
+		mes "Aos bravos...";
+		mes "Deseja retornar ao seu palácio de honra?";
+		next;
+		if(select("Retornar ao Castelo.:Sair.") == 1) {
+			close2;
+			if (getcharid(2) == getcastledata("prtg_cas01",1)) {
+				warp "prtg_cas01",96,173;
+				end;
+			}
+			end;
+		}
+		close;
+	}
+	mes "[Decreto de Rune-Midgard ]";
+	mes " ";
+	mes "1. Pela ordenança do Divino Reino de Rune-Midgard que este lugar é de posse privada do Clã:";
+	mes "^ff0000"+getguildname(.@GID)+"^000000.";
+	mes " ";
+	mes "2. O mestre deste castelo ^ff0000"+getguildname(.@GID)+"^000000 é ^ff0000"+getguildmaster(.@GID)+"^000000.";
+	mes "Se há alguém que se opõe a isso.";
+	mes "Prove sua força e honra com uma lâmina de aço em sua mão.";
+	close;
+
+OnRecvCastlePt01:
+	flagemblem getcastledata("prtg_cas01",1);
+	end;
+}
+
+prt_gld,131,60,6	duplicate(OutsideFlagsPR1)	Kriemhild#1-2	GUILD_FLAG
+prt_gld,138,68,6	duplicate(OutsideFlagsPR1)	Kriemhild#2	GUILD_FLAG
+prt_gld,138,60,6	duplicate(OutsideFlagsPR1)	Kriemhild#3	GUILD_FLAG
+prt_gld,135,60,6	duplicate(OutsideFlagsPR1)	Kriemhild#4	GUILD_FLAG
+
+//===============================================================
+// Bandeiras (Dentro dos Castelos)
+//===============================================================
+-	script	Kriemhild#5::InsideFlagsPR1	GUILD_FLAG,{
+	end;
+
+OnRecvCastlePt01:
+	flagemblem getcastledata("prtg_cas01",1);
+	end;
+}
+
+prtg_cas01,58,56,4	duplicate(InsideFlagsPR1)	Kriemhild#5-2	GUILD_FLAG
+prtg_cas01,64,56,4	duplicate(InsideFlagsPR1)	Kriemhild#6	GUILD_FLAG
+prtg_cas01,76,32,4	duplicate(InsideFlagsPR1)	Kriemhild#7	GUILD_FLAG
+prtg_cas01,84,32,4	duplicate(InsideFlagsPR1)	Kriemhild#8	GUILD_FLAG
+prtg_cas01,94,39,4	duplicate(InsideFlagsPR1)	Kriemhild#9	GUILD_FLAG
+prtg_cas01,94,24,4	duplicate(InsideFlagsPR1)	Kriemhild#10	GUILD_FLAG
+prtg_cas01,73,14,4	duplicate(InsideFlagsPR1)	Kriemhild#11	GUILD_FLAG
+prtg_cas01,73,6,4	duplicate(InsideFlagsPR1)	Kriemhild#12	GUILD_FLAG
+prtg_cas01,55,46,4	duplicate(InsideFlagsPR1)	Kriemhild#13	GUILD_FLAG
+prtg_cas01,45,46,4	duplicate(InsideFlagsPR1)	Kriemhild#14	GUILD_FLAG
+
+//===============================================================
+// Bandeiras (Cidades)
+//===============================================================
+prontera,155,190,4	duplicate(InsideFlagsPR1)	Kriemhild#15	GUILD_FLAG
+
+//===============================================================
+// Funcionária Kafra
+//===============================================================
+prtg_cas01,96,173,0	duplicate(guildkafra)	Funcionária Kafra#prtg_cas01	4_F_KAFRA1
+
+//===============================================================
+// Gerente
+//===============================================================
+prtg_cas01,112,181,0	duplicate(cm)	Ahvray#prtg_cas01	1_M_JOBTESTER
+
+//===============================================================
+// Saída da Sala do Tesouro
+//===============================================================
+prtg_cas01,15,208,0	script	#Lever_PR01	HIDDEN_NPC,{
+
+	mes " ";
+	mes "Há uma alavanca pequena. Puxar isto?";
+	next;
+	if(select("Puxar.:Não Puxar.") == 1) {
+		close2;
+		warp "prtg_cas01",112,183;
+		end;
+	}
+	close;
+}
+
+//===============================================================
+// Entrada para o Calabouço
+//===============================================================
+prtg_cas01,94,200,0	duplicate(gdlever)	#prtg_cas01	HIDDEN_NPC
+
+//===============================================================
+// Sala do Tesouro
+//===============================================================
+prtg_cas01,11,208,0	duplicate(Gld_Trea_Spawn)	Treasure#prtg_cas01	-1
+
+//===============================================================
+// Gerenciamento
+//===============================================================
+prtg_cas01,197,197,0	duplicate(Gld_Agit_Manager)	Agit#prtg_cas01	-1
+
+//===============================================================
+// Guardiões
+//===============================================================
+prtg_cas01,112,181,0	duplicate(Gld_Guard_Template)	Guardião#prtg_cas01	-1

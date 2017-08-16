@@ -1,0 +1,34 @@
+//===============================================================\\
+//                _____                                          ||
+//               /  __ \                                         ||
+//               | /  \/_ __ ___  _ __  _   _ ___                ||
+//               | |   | '__/ _ \| '_ \| | | / __|               ||
+//               | \__/\ | | (_) | | | | |_| \__ \               ||
+//                \____/_|  \___/|_| |_|\__,_|___/               ||
+//                     Scripts                                   ||
+//===============================================================||
+// = Mapflag: noloot.                                            ||
+// = Versão: 1.0                                                 ||
+//===============================================================||
+// = Alterações:                                                 ||
+// - Orientação no cabeçaho [Spell Master]                       ||
+//===============================================================||
+// = Descrição:                                                  ||
+// - Mapas onde monstros não derrubam itens quando derrotados    ||
+//===============================================================||
+// = Nota:                                                       ||
+// "noloot" é a combinação de 2 flags "nomobloot" e "nomvploot"  ||
+//===============================================================//
+
+//hunte	mapflag	noloot
+//job_knt	mapflag	noloot
+//job_prist	mapflag	noloot
+//job_wiz	mapflag	noloot
+//job_cru	mapflag	noloot
+//monk_test	mapflag	noloot
+//in_rogue	mapflag	noloot
+//job_sage	mapflag	noloot
+//job_soul	mapflag	noloot
+//job_star	mapflag	noloot
+//que_ng	mapflag	noloot
+//job_thief1	mapflag	noloot

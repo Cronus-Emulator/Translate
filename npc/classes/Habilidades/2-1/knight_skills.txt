@@ -1,0 +1,359 @@
+//===============================================================\\
+//                _____                                          ||
+//               /  __ \                                         ||
+//               | /  \/_ __ ___  _ __  _   _ ___                ||
+//               | |   | '__/ _ \| '_ \| | | / __|               ||
+//               | \__/\ | | (_) | | | | |_| \__ \               ||
+//                \____/_|  \___/|_| |_|\__,_|___/               ||
+//                     Scripts                                   ||
+//===============================================================||
+// = Versão: 1.8                                                 ||
+//===============================================================||
+// = Alterações:                                                 ||
+// - Cabeçalho [SlexFire]                                        ||
+// - Tradução [Spell Master]                                     ||
+//===============================================================||
+// = Descrição:                                                  ||
+// - Quest de habilidade para Cavaleiro.                         ||
+// - KN_CHARGEATK: Avanço Ofensivo                               ||
+//===============================================================//
+
+prt_in,85,99,3	script	Cavaleiro#kabuto	4_M_JOB_KNIGHT2,{
+	if (BaseJob == Job_Knight) {
+		if (KNGT_SK == 10) {
+			mes "[Essofeit]";
+			mes "Ah, deve ser ótimo ser um Cavaleiro aventureiro neste mundo.";
+			mes "Você deve ter encontrado todo tipo de monstros perigosos e inimigos terríveis, certo?";
+			next;
+			mes "[Essofeit]";
+			mes "Eu quase chego a invejar todas as grandes experiências que você deve ter.";
+			mes "Qualquer dia, você terá que me contar suas histórias de bravura.";
+			close;
+		}
+		if (KNGT_SK == 9 && getskilllv("KN_CHARGEATK") == 0) {
+			mes "[Essofeit]";
+			mes "Ah, eu percebi que você fez um tremendo progresso em sua busca pela força.";
+			mes "Transcendência não é um feito qualquer, e é uma grande honra atingir a posição de Lorde.";
+			next;
+			mes "[Essofeit]";
+			mes "No entanto, estou ciente da desvantagem de ter a memória apagada.";
+			mes "Portanto, creio que você esteja aqui para aprender a habilidade Avanço Ofensivo mais uma vez.";
+			mes "Será um prazer te ensinar novamente.";
+			next;
+			mes "[Essofeit]";
+			mes "Avanço Ofensivo é uma habilidade ativa que consome 40 SP para atingir um alvo.";
+			mes "Quanto mais longe do alvo você estiver, maior será o dano causado e o tempo que levará para causar o dano.";
+			next;
+			mes "[Essofeit]";
+			mes "Durante esse tempo, você ficará imobilizado.";
+			mes "Portanto, o custo de um dano maior será sofrer um risco maior.";
+			mes "Por enquanto, é melhor você praticar essa habilidade por sua conta.";
+			KNGT_SK = 10;
+			skill "KN_CHARGEATK",1,0;
+			next;
+			mes "[Essofeit]";
+			mes "Boa sorte em suas aventuras, Lorde.";
+			mes "Estou certo de que você fará bom uso do Avanço Ofensivo e trará orgulho para a Cavalaria de Prontera.";
+			close;
+		}
+		if (KNGT_SK == 9) {
+			mes "[Essofeit]";
+			mes "Ah, deve ser ótimo ser um Cavaleiro aventureiro neste mundo.";
+			mes "Você deve ter encontrado todo tipo de monstros perigosos e inimigos terríveis, certo?";
+			next;
+			mes "[Essofeit]";
+			mes "Eu quase chego a invejar todas as grandes experiências que você deve ter.";
+			mes "Qualquer dia, você terá que me contar suas histórias de bravura.";
+			close;
+		}
+		if (KNGT_SK == 8) {
+			mes "[Essofeit]";
+			mes "Eu nomeei esta habilidade de, Avanço Ofensivo.";
+			mes "Não é um nome elegante, mas é simples e direto o suficiente para que você entenda como funciona.";
+			mes "Agora, irei ensiná-la à você...";
+			next;
+			mes "[Essofeit]";
+			mes "Avanço Ofensivo é uma habilidade ativa que consome 40 SP para atingir um alvo.";
+			mes "Quanto mais longe do alvo você estiver, maior será o dano causado e o tempo que levará para causar o dano.";
+			next;
+			mes "[Essofeit]";
+			mes "Durante esse tempo, você ficará imobilizado.";
+			mes "Portanto, o custo de um dano maior será sofrer um risco maior.";
+			mes "Por enquanto, é melhor você praticar essa habilidade por sua conta.";
+			KNGT_SK = 9;
+			skill "KN_CHARGEATK",1,0;
+			next;
+			mes "[Essofeit]";
+			mes "Eu espero que você faça um bom uso da habilidade Avanço Ofensivo.";
+			mes "Assim como você, eu farei meu melhor para trazer honra para a Cavalaria, com minha força e coragem!";
+			close;
+		}
+		if (KNGT_SK == 7 && countitem(530) > 4 && countitem(748) > 2) {
+			mes "[Essofeit]";
+			mes "A idéia de honra parece estar perdida entre os Cavaleiros de hoje.";
+			mes "Eles não apreciam mais o significado da palavra \"bravura\", nem a nobre busca pela força...";
+			next;
+			mes "[Essofeit]";
+			mes "No meu tempo, os Cavaleiros eram fortes o bastante para conseguir pelo menos 5 Bengalas Doces e 3 Rosas Eternas.";
+			mes "Apenas caçando sozinhos!";
+			mes "Mas os Cavaleiros hoje em dia ficaram moles...";
+			next;
+			if (select("Dar a ele os itens:Cancelar") == 1) {
+				mes "["+strcharinfo(0)+"]";
+				mes "Ainda há Cavaleiros por aí que acreditam em arriscar suas vidas com honra para atingir a verdadeira força...";
+				next;
+				mes "[Essofeit]";
+				mes "Você...";
+				mes "Você realmente entende.";
+				mes "Sabe o verdadeiro valor do esforço.";
+				mes "Me deixa feliz ver que ainda existe um verdadeiro Cavaleiro como você.";
+				next;
+				mes "[Essofeit]";
+				mes "Hahaha, finalmente eu encontrei alguém que posso chamar de companheiro.";
+				mes "Se você ainda não notou somos os últimos de uma raça em extinção, amigo.";
+				mes "Mas ainda há esperança para os Cavaleiros...";
+				next;
+				mes "[Essofeit]";
+				mes "Está decidido, então.";
+				mes "Enquanto vivermos, a Cavalaria não irá morrer!";
+				mes "Graças a você, voltei a ter fé na Cavalaria.";
+				next;
+				mes "[Essofeit]";
+				mes "Como reconhecimento a um verdadeiro Cavaleiro como você.";
+				mes "Vou lhe ensinar uma habilidade especial que tenho pesquisado recentemente.";
+				mes "Por que não volta depois que eu tiver terminado os preparativos?";
+				delitem 530,5; //Candy_Striper
+				delitem 748,3; //Witherless_Rose
+				KNGT_SK = 8;
+				close;
+			}
+			mes "[Essofeit]";
+			mes "É uma vergonha...";
+			mes "A maioria dos recrutas da Cavalaria de Prontera está mais interessada em suas pensões do que em sua honra!";
+			close;
+		}
+		if (KNGT_SK == 7) {
+			mes "[Essofeit]";
+			mes "Talvez eu esteja romanceando o passado, mas não concordo com toda essa burocracia que ando vendo na Cavalaria de Prontera.";
+			next;
+			mes "[Essofeit]";
+			mes "Embora eu deva admitir que era bem mais feliz quando precisávamos da honra.";
+			mes "Hoje em dia parece que qualquer um pode ser um cavaleiro.";
+			mes "Err, sem ofensa...";
+			close;
+		}
+		if (KNGT_SK == 6) {
+			mes "[Essofeit]";
+			mes "Então, você viu os Cavaleiros da 7a. Divisão como eles realmente são, não é?";
+			mes "Como um colega Cavaleiro, você deve entender meu desapontamento.";
+			next;
+			mes "[Essofeit]";
+			mes "É tão desanimador...";
+			mes "Não sei mais por que somos Cavaleiros nem para que estamos treinando.";
+			mes "Quando eu tinha a sua idade, eu queria arriscar minha vida e atingir a verdadeira força.";
+			next;
+			mes "[Essofeit]";
+			mes "Mas... Acho que você não quer ouvir um velho contar histórias.";
+			mes "Todas as grandes batalhas, o glorioso respeito forjado entre rivais...";
+			mes "Tudo isso é coisa do passado.";
+			next;
+			KNGT_SK = 7;
+			mes "[Essofeit]";
+			mes "Talvez seja melhor eu esquecer esses meus ideais antiquados.";
+			mes "Acho que os tempos mudaram, e a cavalaria como eu conhecia pode estar morta.";
+			close;
+		}
+		if (KNGT_SK == 1) {
+			mes "[Essofeit]";
+			mes "Hmm, por que não dá uma olhada na 7a. Divisão e vê, você mesmo, a atitude de meus colegas?";
+			mes "Você verá o Grande Mestre Maroujje treinando os recrutas lá fora.";
+			close;
+		}
+		if (KNGT_SK == 0) {
+			mes "[Essofeit]";
+			mes "Saudações.";
+			mes "Sou Essofeit Lageiya da 7a. Divisão da Cavalaria de Prontera.";
+			mes "Como honrado cavaleiro que guarda os princípios da honra e da bravura, estou ao seu dispor.";
+			next;
+			mes "[Essofeit]";
+			mes "Posso perguntar de qual divisão você veio?";
+			mes "Ah, você é um Cavaleiro que recebeu permissão real para viajar como quiser.";
+			mes "Deve ser ótimo, ter essa liberdade.";
+			next;
+			mes "[Essofeit]";
+			mes "Infelizmente, a Divisão da qual faço parte é burocrática demais.";
+			mes "Acho que meus colegas estão mais preocupados com suas pensões do que com sua bravura, ou em defender os fracos.";
+			next;
+			mes "[Essofeit]";
+			mes "Mesmo que quiséssemos ser mais ativos, há um excesso de regras que dificultam o bem que poderíamos fazer.";
+			mes "Com o tempo a situação foi ficando cada vez pior.";
+			mes "Mas não confie apenas no que digo...";
+			next;
+			mes "[Essofeit]";
+			mes "Talvez seja melhor visitar a 7a. Divisão você mesmo e falar com os outros Cavaleiros em treinamento.";
+			mes "Espero que você possa ver o que eu já vejo há muito tempo...";
+			KNGT_SK = 1;
+			close;
+		}
+	}
+	mes "[Essofeit]";
+	mes "Saudações.";
+	mes "Eu sou Essofeit Lageiya, da 7a. Divisão da Cavalaria de Prontera.";
+	mes "Como honrado Cavaleiro que guarda os princípios da honra e da bravura, estou ao seu dispor.";
+	next;
+	mes "[Essofeit]";
+	mes "Eu só queria que os outros da minha divisão apreciassem meus ideais.";
+	mes "O verdadeiro valor do esforço convertido em sangue, suor e lágrimas.";
+	mes "Eles podem ser meus colegas, mas acho difícil confiar neles.";
+	close;
+}
+
+prontera,69,351,0	script	#tour	HIDDEN_NPC,5,5,{
+//OnTouch2:
+OnTouch:
+	if (KNGT_SK > 2)
+		end;
+	if (KNGT_SK <= 2) {
+		mes "[?]";
+		mes "Kiiiiiiai.!";
+		mes "Yaaaaaaaaap!";
+		mes "Hoo! Haa! Haiyah!";
+		next;
+		mes "[?]";
+		mes "Si-Aiyah!";
+		mes "Rowr rowr rowr";
+		mes "GrrrrrrrraaAAHH!";
+		next;
+		mes "^3355FFEsses cavaleiros parecem estar passando por um treinamento muito cansativo e difícil.";
+		mes "Mas quando você escuta com um pouco mais de atenção, seus gritos parecem um pouco dramatizados.^000000";
+		if (KNGT_SK == 1) KNGT_SK = 2;
+		close;
+	}
+	mes "^3355FFEsse grupo de Cavaleiros parece estar passando por um treinamento muito difícil.";
+	mes "A julgar pelo tom de lamento de seus gritos de batalha.^000000";
+	close;
+}
+
+prontera,72,352,7	script	Grande Mestre	4_M_JOB_KNIGHT1,{
+	mes "[Grande Mestre]";
+	if (KNGT_SK == 2 || KNGT_SK == 3) {
+		mes "Certo homens, vocês não têm que se esforçar tanto em seu treinamento.";
+		mes "Vocês têm que fazer isso todos os dias, então tratem de não se cansarem desnecessariamente.";
+		next;
+		mes "[Grande Mestre]";
+		mes "O mais importante é que vocês não acabem se machucando.";
+		mes "Vão com calma e tomem cuidado para não distenderem nenhum músculo.";
+		mes "Err, isso é uma ordem!";
+		if (KNGT_SK == 2) KNGT_SK = 3;
+		close;
+	}
+	mes "Ponham mais força nisso, homens!";
+	mes "Eu sei que o treinamento é difícil, mas tornará vocês melhores, mais rápidos e mais fortes!";
+	mes "A segurança de Prontera é responsabilidade de vocês, Cavaleiros!";
+	next;
+	mes "[Grande Mestre]";
+	mes "...";
+	mes "Ah, estou só brincando.";
+	mes "Vamos dar uma pausa, pessoal.";
+	close;
+}
+
+prontera,78,354,3	script	Cavaleiro#zabii	4_M_JOB_KNIGHT2,{
+	if (KNGT_SK == 3 || KNGT_SK == 4) {
+		mes "[Zabi]";
+		mes "Acho que somos mais funcionários públicos do que Cavaleiros de verdade.";
+		mes "Somos bem pagos, e não temos que fazer muita coisa além de fingir que estamos treinando.";
+		next;
+		mes "[Zabi]";
+		mes "Eu? Eu quero explorar o sistema o quanto puder.";
+		mes "Trabalhar aqui alguns anos, e depois passar o resto da vida com uma bela pensão.";
+		mes "É, isso vai ser ótimo.";
+		next;
+		mes "[Zabi]";
+		mes "Opa, opa, opa, o Grande Mestre está olhando para cá!";
+		mes "Pare";
+		mes "de falar comigo, eu vou gemer como se tivesse uma hérnia";
+		mes "Huuuuu-ÁÁ! HUAH! AI-YAH!";
+		if (KNGT_SK == 3) KNGT_SK = 4;
+		close;
+	}
+	mes "[Cavaleiro]";
+	mes "Huuuuu-ÁÁ!";
+	mes "HUAH! AI-YAH!";
+	mes "Ai, cara, mal consigo respirar com todo esse treinamento duro.";
+	mes "Ugh, isso tudo me tira as forças...";
+	close;
+}
+
+prontera,73,357,5	script	Cavaleiro#drake	4_M_JOB_KNIGHT2,{
+	if (KNGT_SK == 4 || KNGT_SK == 5) {
+		mes "[Gon]";
+		mes "O que é que vou fazer com meu próximo pagamento?";
+		mes "Ah, eu vou arrumar um belo colar para minha esposa.";
+		mes "Sei que ela vai adorar!";
+		next;
+		if (KNGT_SK == 4) KNGT_SK = 5;
+		mes "[Gon]";
+		mes "Vamos ver, quantos dias faltam para o pagamento?";
+		mes "Um, dois... Hmm.";
+		mes "Por algum motivo, a gente sempre acha que poderia vir mais cedo, sabe?";
+		close;
+	}
+	mes "[Cavaleiro]";
+	mes "Talvez eu não seja tão bom para lutar ou para defender os fracos.";
+	mes "Mas esta posição de Cavaleiro é um trabalho muito bonito.";
+	mes "Trabalhar aqui me permite economizar dinheiro para investir no futuro";
+	next;
+	mes "[Cavaleiro]";
+	mes "Talvez a gente nunca lute de verdade, mas pelo menos eu posso ter algum orgulho em ser um Cavaleiro.";
+	close;
+}
+
+prontera,78,357,3	script	Cavaleiro#sasword	4_M_JOB_KNIGHT2,{
+	mes "[Jiya]";
+	if (KNGT_SK == 5 || KNGT_SK == 6) {
+		mes "Cara, esta divisão da cavalaria não parece ter lá muito potencial.";
+		mes "A maioria de nós é de segunda categoria, exceto, talvez aquele cara, o Essofeit.";
+		next;
+		KNGT_SK = 6;
+		mes "[Jiya]";
+		mes "Quanto a mim, também não tenho muita ambição.";
+		mes "Enquanto eu fizer o que me mandam serei pago.";
+		mes "E enquanto eu for pago, estarei feliz.";
+		close;
+	}
+	mes "N-não fale comigo!";
+	mes "Tenho que... Conseguir...";
+	mes "Força para... T-terminar";
+	mes "Todo... Esse treinamento!";
+	mes "Certo, certo, c-concentrar...";
+	close;
+}
+
+prontera,66,358,5	script	Cavaleiro#gattack	4_M_JOB_KNIGHT1,{
+	mes "[Gatack]";
+	if (KNGT_SK == 7) {
+		mes "Espera, onde está Essofeit?";
+		mes "Ele não pode faltar no treinamento.";
+		mes "Mesmo tendo a distinção de ter matado vários ^FF0000Névoas^000000 e ^FF0000Obeaunes^000000 no tempo dele.";
+		next;
+		mes "[Gatack]";
+		mes "Putz, já cansei de ouvir ele falar da honra da cavalaria.";
+		mes "Essofeit insiste que todo Cavaleiro.";
+		mes "Até mesmo um novato, deveria conseguir 5 Bengalas Doces e 3 Rosas Eternas em uma caçada.";
+		next;
+		mes "[Gatack]";
+		mes "Diabos, eu odeio ficar ouvindo ele falar sobre suas grandes experiências combatendo monstros.";
+		mes "Mas agora, Essofeit só trabalha em pesquisas dentro do prédio, e quase não faz outra coisa...";
+		close;
+	}
+	mes "Cara, o treinamento de um Cavaleiro é muito difícil.";
+	mes "Eles não entendem que sou sensível demais para tanto esforço e exercício?";
+	next;
+	mes "[Gatack]";
+	mes "Ah, bem, se eu fosse derrotado em batalha.";
+	mes "Não ficaria muito surpreso, já que sou um dos caras mais fracos aqui.";
+	mes "Mas, quando isso acontecer, estarei muito ocupado, cuidando da boa aparência.";
+	close;
+}
+

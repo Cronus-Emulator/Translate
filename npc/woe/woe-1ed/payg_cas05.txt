@@ -1,0 +1,147 @@
+//===============================================================\\
+//                _____                                          ||
+//               /  __ \                                         ||
+//               | /  \/_ __ ___  _ __  _   _ ___                ||
+//               | |   | '__/ _ \| '_ \| | | / __|               ||
+//               | \__/\ | | (_) | | | | |_| \__ \               ||
+//                \____/_|  \___/|_| |_|\__,_|___/               ||
+//                     Scripts                                   ||
+//===============================================================||
+// = Criação:                                                    ||
+// - eA/Herc/Cronus                                              ||
+//===============================================================||
+// = Versão:                                                     ||
+// - 1.3                                                         ||
+//===============================================================||
+// = Alterações:                                                 ||
+// - Cabeçalho [SlexFire], [Spell Master]                        ||
+// - Tradução [Spell Master]                                     ||
+// - Revisão em busca de erros [Spell Master]                    ||
+//===============================================================||
+// = Descrição:                                                  ||
+// -  Scripts referentes ao 5º Castelo de Payon                  ||
+//===============================================================||
+// = Observações:                                                ||
+// - Arquivo revisado, não foram encontrados erros               ||
+//===============================================================//
+
+//===============================================================
+// Bandeiras (Porta dos Castelos)
+//===============================================================
+-	script	Bamboo Grove Hill#1::OutsideFlagsPA5	GUILD_FLAG,{
+
+	.@GID = getcastledata("payg_cas05",1);
+
+	if (.@GID == 0) {
+		mes "[Decreto de Rune-Midgard ]";
+		mes " ";
+		mes "1. Pela ordenança do Divino Reino de Rune-Midgad, declaramos que não há nenhum mestre formal deste castelo.";
+		mes " ";
+		mes "2. Para quem puder superar todas provações e destruír o Emperium.";
+		mes "O rei vai reconhecer esse como proprietário do castelo.";
+		close;
+	}
+	if (getcharid(2) == .@GID) {
+		mes "[ Voz Sussurrando ]";
+		mes "Aos bravos...";
+		mes "Deseja retornar ao seu palácio de honra?";
+		next;
+		if(select("Retornar ao Castelo.:Sair.") == 1) {
+			close2;
+			if (getcharid(2) == getcastledata("payg_cas05",1)) {
+					warp "payg_cas05",243,27;
+				end;
+			}
+			end;
+		}
+		close;
+	}
+	mes "[Decreto de Rune-Midgard ]";
+	mes " ";
+	mes "1. Pela ordenança do Divino Reino de Rune-Midgard que este lugar é de posse privada do Clã:";
+	mes "^ff0000"+getguildname(.@GID)+"^000000.";
+	mes " ";
+	mes "2. O mestre deste castelo ^ff0000"+getguildname(.@GID)+"^000000 é ^ff0000"+getguildmaster(.@GID)+"^000000.";
+	mes "Se há alguém que se opõe a isso.";
+	mes "Prove sua força e honra com uma lâmina de aço em sua mão.";
+	close;
+
+OnRecvCastlePy05:
+	flagemblem getcastledata("payg_cas05",1);
+	end;
+}
+
+pay_gld,208,268,4	duplicate(OutsideFlagsPA5)	Bamboo Grove Hill#1-2	GUILD_FLAG
+pay_gld,199,268,4	duplicate(OutsideFlagsPA5)	Bamboo Grove Hill#2	GUILD_FLAG
+pay_gld,190,277,3	duplicate(OutsideFlagsPA5)	Bamboo Grove Hill#3	GUILD_FLAG
+pay_gld,187,294,2	duplicate(OutsideFlagsPA5)	Bamboo Grove Hill#4	GUILD_FLAG
+
+//===============================================================
+// Bandeiras (Dentro dos Castelos)
+//===============================================================
+-	script	Bamboo Grove Hill#5::InsideFlagsPA5	GUILD_FLAG,{
+	end;
+
+OnRecvCastlePy05:
+	flagemblem getcastledata("payg_cas05",1);
+	end;
+}
+
+payg_cas05,32,249,4	duplicate(InsideFlagsPA5)	Bamboo Grove Hill#5-2	GUILD_FLAG
+payg_cas05,24,249,4	duplicate(InsideFlagsPA5)	Bamboo Grove Hill#6	GUILD_FLAG
+payg_cas05,62,271,0	duplicate(InsideFlagsPA5)	Bamboo Grove Hill#7	GUILD_FLAG
+payg_cas05,57,271,0	duplicate(InsideFlagsPA5)	Bamboo Grove Hill#8	GUILD_FLAG
+payg_cas05,55,252,2	duplicate(InsideFlagsPA5)	Bamboo Grove Hill#9	GUILD_FLAG
+payg_cas05,55,260,2	duplicate(InsideFlagsPA5)	Bamboo Grove Hill#10	GUILD_FLAG
+
+//===============================================================
+// Bandeiras (Cidades)
+//===============================================================
+payon,123,322,4	duplicate(InsideFlagsPA5)	Bamboo Grove Hill#11	GUILD_FLAG
+payon,166,161,3	duplicate(InsideFlagsPA5)	Bamboo Grove Hill#12	GUILD_FLAG
+
+//===============================================================
+// Funcionária Kafra
+//===============================================================
+payg_cas05,276,227,1	duplicate(guildkafra)	Funcionária Kafra#payg_cas05	4_F_KAFRA1
+
+//===============================================================
+// Gerente
+//===============================================================
+payg_cas05,277,249,3	duplicate(cm)	Nahzarf#payg_cas05	1_M_JOBTESTER
+
+//===============================================================
+// Saída da Sala do Tesouro
+//===============================================================
+payg_cas05,161,136,0	script	#lever_PA05	HIDDEN_NPC,{
+
+	mes " ";
+	mes "Há uma alavanca pequena. Puxar isto?";
+	next;
+	if(select("Puxar.:Não Puxar.") == 1) {
+		close2;
+		warp "payg_cas05",277,250;
+		end;
+	}
+	close;
+}
+
+//===============================================================
+// Entrada para o Calabouço
+//===============================================================
+payg_cas05,249,15,0	duplicate(gdlever)	#payg_cas05	HIDDEN_NPC
+
+//===============================================================
+// Sala do Tesouro
+//===============================================================
+payg_cas05,157,132,0	duplicate(Gld_Trea_Spawn)	Treasure#payg_cas05	-1
+
+//===============================================================
+// Gerenciamento
+//===============================================================
+payg_cas05,30,30,0	duplicate(Gld_Agit_Manager)	Agit#payg_cas05	-1
+
+//===============================================================
+// Guardiões
+//===============================================================
+payg_cas05,277,249,3	duplicate(Gld_Guard_Template)	Guardião#payg_cas05	-1

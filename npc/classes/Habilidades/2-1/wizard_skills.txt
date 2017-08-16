@@ -1,0 +1,354 @@
+//===============================================================\\
+//                _____                                          ||
+//               /  __ \                                         ||
+//               | /  \/_ __ ___  _ __  _   _ ___                ||
+//               | |   | '__/ _ \| '_ \| | | / __|               ||
+//               | \__/\ | | (_) | | | | |_| \__ \               ||
+//                \____/_|  \___/|_| |_|\__,_|___/               ||
+//                     Scripts                                   ||
+//===============================================================||
+// = Versão: 1.5                                                 ||
+//===============================================================||
+// = Alterações:                                                 ||
+// - Cabeçalho [SlexFire]                                        ||
+// - Tradução [Revisões Cronus]                                  ||
+// - Adaptação da tradução [Spell Master]                        ||
+//===============================================================||
+// = Descrição:                                                  ||
+// - Quest de habilidade para Bruxo.                             ||
+// - WZ_SIGHTBLASTER: Explosão Protetora.                        ||
+//===============================================================//
+
+gef_tower,115,36,4	script	Meow#q_wiz	4_CAT,{
+	if (BaseJob == Job_Wizard) {
+		if (WIZ_SK == 100) {
+			if (getskilllv("WZ_SIGHTBLASTER") == 0) {
+				mes "[Meow]";
+				mes "O quê...?! Você esqueceu a incrível habilidade que eu te ensinei?";
+				mes "Transcender não é desculpa para esquecer!";
+				mes "Certo, então você quer que eu te ensine, é?";
+				mes "Certo, aqui vai sua aula!";
+				next;
+				mes "^3355FF*BAM! BOOM! CRASH!*^000000";
+				specialeffect2 EF_SUI_EXPLOSION;
+				next;
+				mes "[Meow]";
+				mes "Não ouse ficar pretensioso, apenas porque você renasceu!";
+				mes "É melhor lembrar como fazer aquela habilidade antes que eu dê outro whupping em você!";
+				next;
+				mes "^3355FFVocê miraculosamente relembra a Explosão Protetora antes que Meow pudesse te espancar viciosamente de novo.";
+				specialeffect2 EF_ABSORBSPIRITS;
+				skill "WZ_SIGHTBLASTER",1,0;
+				next;
+				mes "[Meow]";
+				mes "Lembra agora?";
+				mes "Ótimo.";
+				mes "Agora eu vou voltar para minha soneca.";
+				mes "Mesmo se você pensar em me incomodar, vou fazer você se arrepender.";
+				mes "Lembre-se das minhas palavras!";
+				close;
+			}
+			else {
+				mes "[Meow]";
+				mes "Zzz... Zzz...";
+				mes "Catherine...";
+				mes "Eu vou fazer você pagar por me transformar num gato...";
+				mes "Eu vou... vou... Zzz...";
+				close;
+			}
+		}
+		else if (WIZ_SK == 0) {
+			mes "[Meow]";
+			mes "*Yaaawn~*";
+			mes "Tão cansado...";
+			mes "Hm? Você quer falar comigo?";
+			mes "Não me incomode se você não tem nada a dizer!";
+			next;
+			if (select("Um gato?:Agora eu estou com sono...") == 1) {
+				mes "[Meow]";
+				mes "Sim. Sim, Eu sou um gato.";
+				mes "No momento, de qualquer maneira.";
+				mes "Raios que Catherine!";
+				mes "Ela me transformou nessa forma quando eu peguei emprestado algumas gemas sem o consentimento.";
+				mes "Eu ia contar a ela!";
+				next;
+				mes "[Meow]";
+				mes "Uma vez que eu virar humano de novo e ganhar meus poderes.";
+				mes "Eu vou enlouquecer Catherine, você, todo mundo.";
+				mes "Vocês serão todos transformado em gatos!";
+				close;
+			}
+			mes "[Meow]";
+			mes "Hah! Sim...";
+			mes "Tirar uma soneca soa como a melhor ideia que eu já ouvi--oh.";
+			mes "Espere. Você é um bruxo, certo?";
+			mes "Eu estava muito sonolento, nem mesmo percebi.";
+			mes "Ah, isso é bom.";
+			next;
+			mes "[Meow]";
+			mes "Agora, devo ensinar bruxos essa nova habilidade em nome da Guilda dos Bruxos.";
+			mes "Apesar de realmente não querer, eu não tenho escolha.";
+			mes "Então o que você me diz?";
+			next;
+			if (select("Não, Estou muito sonolento...:Gostaria de aprender uma habilidade.") == 1) {
+				mes "[Meow]";
+				mes "^333333*Yaaaawn*^000000";
+				mes "Se você quiser aprender mais tarde, então volte aqui e me lembre sobre a habilidade.";
+				mes "Bom então, de volta a minha soneca...";
+				mes "Zzz... Zzz...";
+				close;
+			}
+			mes "[Meow]";
+			mes "Sério? Certo, certo.";
+			mes "Apenas para você saber.";
+			mes "Eu apenas ensino essa habilidade para que Catherine me transforme de volta na minha forma humana.";
+			mes "É muito humilhante ser um Gato!";
+			next;
+			mes "[Meow]";
+			mes "Espera aí, pensando bem sobre isso, aquela Cadela maria tem estado perto de Catherine por muito tempo.";
+			mes "Mas ela nunca retornou a sua forma humana.";
+			mes "N-não!";
+			mes "Eu não posso perder a esperança agora!";
+			next;
+			mes "[Meow]";
+			mes "Oh, vamos apenas esquecer disso.";
+			mes "Agora, você está ciente de que nós Bruxos temos ótimas magias de longo alcance.";
+			mes "Mas nós somos fracos em batalhas de curto alcance, certo?";
+			next;
+			mes "[Meow]";
+			mes "Essa nova habilidade que eu vou ensinar a você foi projetada para compensar a fraqueza da Classe dos Bruxos em combate de curto alcance.";
+			mes "Primeiro, você conjura a magia...";
+			next;
+			mes "[Meow]";
+			mes "Então, pela duração da habilidade, você ficará protegido por um escudo.";
+			mes "Que vai empurrar seus inimigos para trás vai ferir inimigos que se aproximarem de mais.";
+			mes "Isso não soa útil na hora de batalhar?";
+			next;
+			select("Eu posso empurrar meus inimigos para trás?");
+			mes "[Meow]";
+			mes "Claro que você pode, bem, uma vez que você aprender a habilidade.";
+			mes "Hmm, mas você precisa ter um boa compreensão em teoria de empurrões antes de aprender a habilidade.";
+			mes "Hmm, você pode precisar de uma explicação melhor...";
+			next;
+			mes "[Meow]";
+			mes "Sabe o quê? Cavaleiros são experiêntes em habilidades que empurram o inimigo para trás.";
+			mes "Então vá e encontre um que explique a teoria do empurrão para você lá em Prontera";
+			next;
+			mes "[Meow]";
+			mes "Vá em direção as 11 horas de Prontera no seu Mini-Mapa para achar o a Cavalaria de Prontera.";
+			mes "Alguem lá deve estar disposto a ensinar você mais sobre Habilidades que empurram...";
+			WIZ_SK = 1;
+			close;
+		}
+		else if (WIZ_SK == 1) {
+			mes "[Meow]";
+			mes "O que você ainda está fazendo aqui?";
+			mes "Eu não te falei para ir a Cavalaria de Prontera e pedir para alguem te ensinar sobre a teoria de empurrão?";
+			close;
+		}
+		else if (WIZ_SK == 2) {
+			mes "[Meow]";
+			mes "Hm? Muito bom, você aprendeu as noções básicas para empurrar inimigos.";
+			mes "Agora você está quase pronto para aprender a habilidade que devo ensinar a você.";
+			next;
+			mes "[Meow]";
+			mes "Eu não sou um Filantropista, então espero algumas mensalidades por todo meu esforço e minha instrução!";
+			mes "Mmm, o que seria bom para ser o meu pagamento?";
+			mes "Ah, Eu estou com poucas Pedras encantadas no momento.";
+			next;
+			mes "[Meow]";
+			mes "Vá e me traga";
+			mes "^FF000010 Cristais Azuis^000000,";
+			mes "^FF000010 Vidas Verdejantes^000000,";
+			mes "^FF000010 Sangues Escarlates^000000 and";
+			mes "^FF000010 Frescores do Vento^000000.";
+			next;
+			mes "[Meow]";
+			mes "Não é muita coisa, então não reclame e volte assim que você puder.";
+			mes "Enquanto você estiver fora daqui, eu vou tirar outra soneca.";
+			WIZ_SK = 3;
+			close;
+		}
+		else if (WIZ_SK == 3) {
+			if (countitem(991) < 10 || countitem(993) < 10 || countitem(990) < 10 || countitem(992) < 10) {
+				mes "[Meow]";
+				mes "^333333*Yaaaaaawn.*^000000 Hm?";
+				mes "C-como você ousa vir aqui sem tudo que eu pedi a você?!";
+				mes "Você esqueceu o quê trazer, não foi?";
+				mes "Grrrr...";
+				next;
+				mes "[Meow]";
+				mes "Eu disse para trazer";
+				mes "^ff000010 Crystais Azuis^000000,";
+				mes "^ff000010 Vidas Verdejantes^000000,";
+				mes "^ff000010 Sangues Escarlates^000000 and";
+				mes "^ff000010 Frescores do Vento^000000!";
+				next;
+				mes "[Meow]";
+				mes "Não esqueça dessa vez!";
+				mes "E nem mesmo pense em me acordar até você encontrar tudo que eu te pedi!";
+				close;
+			}
+			mes "[Meow]";
+			mes "*Yaaaawn.* O quê?";
+			mes "Ah, é você.";
+			mes "Então você me trouxe as pedras que eu pedi?";
+			mes "Mmm. Bom, deixe me ver se você trouxe todos...";
+			mes "Um, dois, três...";
+			next;
+			mes "[Meow]";
+			mes ".................";
+			mes "Eu não vou contar tudo isso.";
+			mes "Apenas me dê e, eu vou ensinar a habilidade para que eu possa voltar a dormir.";
+			next;
+			mes "[Meow]";
+			mes "Essa habilidade é chamada, \"^FF0000Explosão Protetora^000000\".";
+			mes "Bem legal, não?";
+			mes "É uma habilidade de atributo fogo que requer que você conjure Chama reveladora antes de poder ativa-la.";
+			mes "Agora tente.";
+			next;
+			specialeffect2 EF_SUI_EXPLOSION;
+			mes "^3355FF*BAM! BOOM!*^000000";
+			next;
+			mes "[Meow]";
+			mes "......";
+			mes "Huh. Não tão certo, mas não fpo ruim para uma primeira tentativa.";
+			mes "Lembre-se de desejar que o empurrão aconteca.";
+			mes "Ergh, vamos tentar isso mais uma vez, ok?";
+			next;
+			mes "[Meow]";
+			mes "Você tem que ter vontade.";
+			mes "Empurre!";
+			mes "Empurre com sua mente!";
+			mes "Bem, empurre as chamas criadas com Chama Reveledora com a sua mente.";
+			mes "Não é difícil!";
+			next;
+			mes "[Meow]";
+			mes "Finalmente...!";
+			mes "Você realmente aprendeu!";
+			mes "Isso deu muito trabalho, mas pelo menos nós acabamos aqui.";
+			specialeffect2 EF_ABSORBSPIRITS;
+			delitem 991,10; //Crystal_Blue
+			delitem 993,10; //Yellow_Live
+			delitem 990,10; //Boody_Red
+			delitem 992,10; //Wind_Of_Verdure
+			WIZ_SK = 100;
+			skill "WZ_SIGHTBLASTER",1,0;
+			next;
+			mes "[Meow]";
+			mes "Eu estou tão cansado de toda essa aula.";
+			mes "Eu acho que eu vou tirar uma tão merecida soneca agora.";
+			mes "Vá embora, e se você conhecer qualquer Bruxo mande eles virem aqui, eu acho.";
+			close;
+		}
+		else {
+			mes "[Meow]";
+			mes "Zzz... Zzz...";
+			mes "Catherine...";
+			mes "Eu vou fazer você se arrepender por me transformar num gato...";
+			mes "Eu vou... Vou... Zzz...";
+			close;
+		}
+	}
+	else {
+		mes "[Meow]";
+		mes "*Yaaawn.*";
+		mes "Muito sonolento...";
+		mes "Você quer falar comigo?";
+		mes "Não me incomode se você não tem nada para dizer!";
+		next;
+		if (select("Um gato?:Agora estou com sono, também...") == 1) {
+			mes "[Meow]";
+			mes "Sim. Sim...";
+			mes "Eu sou um gato no momento, de qualquer maneira.";
+			mes "Raios que Catherine!";
+			mes "Ela me transformou nessa forma quando eu peguei emprestado algumas gemas sem o consentimento.";
+			mes "Eu ia contar a ela!";
+			next;
+			mes "[Meow]";
+			mes "Uma vez que eu virar Humano de novo e ganhar meus poderes.";
+			mes "Eu vou enlouquecer Catherine, você, todo mundo.";
+			mes "Vocês serão todos transformado em gatos!";
+			close;
+		}
+		mes "[Meow]";
+		mes "Hah! Sim...";
+		mes "Tirar uma soneca soa como a melhor idéia que eu ja escutei hoje.";
+		mes "Hm. ^333333*Yaaawwn.*^000000";
+		mes "Aqui vamos, hora de dormir...";
+		mes "ZzzzzzzZZZzzz... ZzZzzzz...";
+		close;
+	}
+}
+
+prt_in,82,98,3	script	Simon Mayace#q_wiz	1_ETC_01,{
+	if (WIZ_SK == 1) {
+		mes "[Simon]";
+		mes "Ah, você deve ser um praticante muito habilidoso de magia.";
+		mes "Mmm, você deve ser um daqueles Bruxos.";
+		mes "Arquimagos?";
+		mes "Eu realmente não posso dizer a diferença.";
+		mes "Ah, como eu posso te ajudar?";
+		next;
+		if (select("Estou bem, obrigado.:Eu quero aprender sobre Empurrões.") == 1) {
+			mes "[Simon]";
+			mes "Estou surpreso que você escolheu praticar magia: a julgar pelo seu estilo.";
+			mes "Eu diria que você seria bem adequado para Empunhar uma espada.";
+			mes "Haha, mas essa é a opinião de um simples Cavaleiro.";
+			close;
+		}
+		mes "[Simon]";
+		mes "Espere, por que você está me pedindo para te ensinar uma técnica de empurrão?";
+		mes "Você pode se defender usando magias como Barreira de Fogo ou Lanças de Fogo muito mais efetivamente, certo?";
+		next;
+		select("Mas numa distância próxima...");
+		mes "[Simon]";
+		mes "Ah, eu vejo.";
+		mes "Sim, Bruxos não são muito efetivos em batalhas muito próximas.";
+		mes "Ok, eu posso ver por que você quer aprender algumas técnicas de Empurrões.";
+		mes "Certo, eu posso te ensinar o básico.";
+		next;
+		mes "[Simon]";
+		mes "Agora, todo aventureiro sabe os fundamentos do ataque.";
+		mes "Você bate, e então sua próxima ação, que é ou outro ataque, um desvio ou uma defesa.";
+		mes "Coisa simples, certo?";
+		next;
+		mes "[Simon]";
+		mes "Para empurrar um inimigo de volta, você deve atacar usando um golpe com força contínua.";
+		mes "Isso é tudo que precisa ser feito.";
+		mes "Agora, se você ataca a cabeça, a distância do empurrão vai ser curta.";
+		next;
+		mes "[Simon]";
+		mes "Se você atacar as pernas, seu inimigo vai cair em sua direção.";
+		mes "O melhor alvo para o ataque é o tronco já que permite mais controle do empurrão.";
+		next;
+		mes "[Simon]";
+		mes "Bem, Eu expliquei a técnica o melhor que eu pude.";
+		mes "Se concentre e pratique a teoria por conta própria, e você deverá ser capaz de fazer isso.";
+		mes "Boa^FFFFFF ^000000sorte em suas viagens, aventureiro.";
+		WIZ_SK = 2;
+		close;
+	}
+	else {
+		mes "[Simon]";
+		mes "Não cometa erros: espada é uma arte.";
+		mes "As técnicas podem parecer brutas a primeiro olhar.";
+		mes "Mas existe uma estratégia sutil que Cavaleiros entendem.";
+		close;
+	}
+}
+
+//============================================================
+// Old changelog
+//============================================================
+//= 1.0 for fully working skills only [Lupus]
+//= 1.1 Added more new skill quests for more classes [Lupus]
+//= Somehow eA engine doesn't let you keep learn't skill V_V'
+//= 1.2 Added to correct locations, correct NPC's, fixed
+//= some of the items required and made them into real
+//= quests. [Reddozen]
+//= 1.3 Fixed bugs and minor typos. Optimized [Lupus]
+//= 1.3a fixed an item ID typo, thx 2Spiritual Kid
+//= 1.3b Splitted into different files [DracoRPG]
+//= 1.3c Removed duplicates [Toms]
+//============================================================

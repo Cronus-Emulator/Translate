@@ -1,0 +1,1086 @@
+//===============================================================\\
+//                _____                                          ||
+//               /  __ \                                         ||
+//               | /  \/_ __ ___  _ __  _   _ ___                ||
+//               | |   | '__/ _ \| '_ \| | | / __|               ||
+//               | \__/\ | | (_) | | | | |_| \__ \               ||
+//                \____/_|  \___/|_| |_|\__,_|___/               ||
+//                     Scripts                                   ||
+//===============================================================||
+// = Nome do NPC:                                                ||
+// - quests_umbala.txt                                           ||
+//===============================================================||
+// = Criação:                                                    ||
+// - eA/Herc/Cronus                                              ||
+//===============================================================||
+// = Versão:                                                     ||
+// - 2.2a                                                        ||
+//===============================================================||
+// = Alterações:                                                 ||
+// - Tradução [Spell Master]                                     ||
+//===============================================================||
+// = Descrição:                                                  ||
+// - Quests em Umbala                                            ||
+//===============================================================//
+
+// Umbalian Language Quest :: um_trans
+//============================================================
+um_in,39,122,5	script	Chefe Utan	4_M_UMCHIEF,{
+	if (event_umbala == 0) {
+		mes "[Karkatan]";
+		mes "Huh huh, uma pessoa de Rune-Midgard.";
+		mes "Eu acho que essa é a sua primeira visita à minha vila, não é?";
+		next;
+		mes "[Karkatan]";
+		mes "Todo mundo de Rune-Midgard que eu conheci tem as mesmas expressões faciais que você está tendo quando vem aqui pela primeira vez.";
+		next;
+		mes "[Karkatan]";
+		mes "Talvez porque não dá para se comunicar com a gente usando a mesma língua, então eles não tem idéia de onde estão.";
+		mes "Sim, eu entendo...";
+		mes "Enfim, bem vindo a minha aldeia.";
+		next;
+		mes "[Karkatan]";
+		mes "Meu nome é Karkatan, e eu sou o chefe da tribo Utan.";
+		mes "Você deve está espantado como eu posso falar a sua língua.";
+		next;
+		mes "[Karkatan]";
+		mes "Eu aprendi a muito tempo atrás com um aventureiro de sua terra.";
+		mes "Foi a muito tempo atrás, e eu não sei o que aconteceu com ele...";
+		next;
+		mes "[Karkatan]";
+		mes "Enfim, eu aprendi muitas coisas sobre a cultura e a língua de Rune-Midgard.";
+		next;
+		mes "[Karkatan]";
+		mes "Algumas vezes, eu ensino a língua Utan, mas eu não dou a todo mundo esse privilégio.";
+		mes "Se pessoas erradas aprenderem a língua Utan, eles poderão trazer desgraça a nossa tribo.";
+		next;
+		mes "[Karkatan]";
+		mes "Antes de você poder aprender a língua Utan, primeiro aprendan a cultura Utan explorando a nossa aldeia.";
+		next;
+		mes "[Karkatan]";
+		mes "Embora você não seja capaz de se comunicar com o meu povo agora, tentar compreender nosso modo de vida através de observações";
+		next;
+		mes "[Karkatan]";
+		mes "Preste atenção nas roupas, na aparência e no estilo de vida da população local.";
+		mes "Quando você pensar que aprendeu o suficiênte da cultura Utan, volte e me mostre o que você aprendeu.";
+		event_umbala = 1;
+		close;
+	}
+	else if (event_umbala == 1) {
+		mes "[Karkatan]";
+		mes "Oh, é você de novo...";
+		mes "Você aprendeu sobre a cultura Utan?";
+		mes "Eu quero ouvir a sua opinião, assim como sua impressão.";
+		next;
+		mes "[Karkatan]";
+		mes "Existem ainda alguns aldeões que são muito ingênuos a população de Rune-Midgard.";
+		mes "Normalmente, eles temem encontros com o seu povo e se escondem.";
+		next;
+		mes "[Karkatan]";
+		mes "Então...";
+		mes "Posso te ajudar em alguma coisa?";
+		mes "Eu presumo que você não teve muitos problemas em visitar a aldeia, aldeia, mas parece que você tem algo a me pedir.";
+		next;
+		switch(select("Eu quero aprender a língua Utan.:Umbabah Umbabah?:Nada.")) {
+		case 1:
+			if (isequipped(2278) || isequipped(2297) || isequipped(2288) || isequipped(2292) || isequipped(5005) || isequipped(2281) || isequipped(5043)) {
+				mes "[Karkatan]";
+				mes "Hmmm... é uma máscara impressionante que você está usando.";
+				mes "Nós, Utans usamos máscaras para não exibir nossas expressões faciais.";
+				next;
+				mes "[Karkatan]";
+				mes "É por isso que usamos máscaras o tempo todo.";
+				mes "Nós acreditamos que a interação e o tratamento com as outras pessoas não devem depender de como a olhamos.";
+				next;
+				mes "[Karkatan]";
+				mes "Então.";
+				mes "Eu tenho certeza que você está qualificado para aprender a língua Utan.";
+				mes "Eu vou te ensinar como falar e ler em Utan apartir de agora.";
+				next;
+				mes "[Karkatan]";
+				mes "No entanto, eu preciso que você me traga itens para podermos proseguir com as lições.";
+				mes "Primeiro, precisamos de dois tipos diferentes de papel.";
+				mes "^3377FF10 Papel Amarelado^000000 e ^3377FF5 Pedaço de Papel^000000.";
+				next;
+				mes "[Karkatan]";
+				mes "Nós iremos precisar escrever também.";
+				mes "Vamos usar ^3377FF1 Tinta de Polvo^000000 e ^3377FF1 Plumas de Ave^000000.";
+				mes "Por favor traga esses itens, e eu vou ensinar quando você estiver pronto.";
+				event_umbala = 2;
+				close;
+			}
+			else {
+				mes "[Karkatan]";
+				mes "Não parece que você aprendeu a nossa cultura ainda.";
+				mes "Você não pode aprender uma outra língua se você não entender a cultura.";
+				next;
+				mes "[Karkatan]";
+				mes "Enquanto você tiver aquela expressão em sua face, Utans irão ficar intimidados...";
+				mes "Apenas não ficarão se você não mostrar sua face para os outros, pois somos muito vulneráveis a expressões faciais.";
+				next;
+				mes "[Karkatan]";
+				mes "Vá explorar a nossa vila mais um pouco.";
+				mes "Você poderá voltar assim que achar que estiver pronto.";
+				next;
+				mes "[Karkatan]";
+				mes "Qualquer coisa, o que você pensa sobre minha máscara?";
+				mes "É a tendência dos Utans...";
+				mes "Você não acha isso interessante?";
+				close;
+			}
+		case 2:
+			mes "[Karkatan]";
+			mes "Haha quando você não está prestando atenção no som, nada faz sentido.";
+			mes "A língua é um sistema de mútua para a comunicação de pensamentos e sentimentos";
+			next;
+			mes "[Karkatan]";
+			mes "Lamento dizer que parece que hoje em dia, não são todos os povos dispostos a aprender outras culturas.";
+			next;
+			mes "[Karkatan]";
+			mes "Eu vejo pessoas que desprezam ou ridicularizam outros que não os compreendêem.";
+			mes "É realmente triste que esse fanatismo ainda existe...";
+			next;
+			mes "[Karkatan]";
+			mes "Se você estiver interessado na língua Utan, tente entender nossa cultura melhor e volte quando estiver pronto.";
+			mes "Eu vou te ensinar os significados desses sons que você está ouvindo.";
+			close;
+		case 3:
+			mes "[Karkatan]";
+			mes "Algumas vezes é bom para passear sem propósito.";
+			mes "Mas é melhor definir uma meta para uma viagem se você quiser aprender alguma coisa fora do seu comum.";
+			close;
+		}
+	}
+	else if (event_umbala == 2) {
+		if ((countitem(7151) > 9) && (countitem(7111) > 4) && (countitem(1024) > 0) && (countitem(916) > 0)) {
+			mes "[Karkatan]";
+			mes "Certo, eu acho que nós estamos prontos para ir.";
+			mes "Vamos começar as lições.";
+			mes "Espero que você se comunique melhor com os Utans quando as lições tiverem sido completas.";
+			next;
+			mes "[Karkatan]";
+			mes "..............";
+			next;
+			mes "[Karkatan]";
+			mes "..............";
+			mes ".....................";
+			next;
+			mes "[Karkatan]";
+			mes "..............";
+			mes ".....................";
+			mes "............................";
+			next;
+			mes "[Karkatan]";
+			mes "Certo, é isso.";
+			mes "Apenas esqueça como você se sentiu quando viu os Utans pela primeira vez antes de ter aprendido a língua Utan.";
+			mes "Agora vá tentar falar com os Utans.";
+			mes "Conversação é um importante método para entender os outros.";
+			delitem 7151,10; //Oil_Paper
+			delitem 7111,5; //Smooth_Paper
+			delitem 1024,1; //Chinese_Ink
+			delitem 916,1; //Feather_Of_Birds
+			event_umbala = 3;
+			next;
+			mes "[Karkatan]";
+			mes "Ok, se você tiver qualquer negócio em nossa vila, fique a vontade para falar comigo.";
+			mes "Eu vou tentar te ajudar no que eu puder.";
+			close;
+		}
+		else {
+			mes "[Karkatan]";
+			mes "Eu acho que você não está pronto ainda...";
+			mes "Você se esqueceu dos itens que você precisa?";
+			mes "Eu vou te falar de novo, então por favor traga-me e então começaremos a lição.";
+			next;
+			mes "[Karkatan]";
+			mes "^3377FF10 Papel Amarelado^000000,";
+			mes "^3377FF5 Pedaço de Papel^000000,";
+			mes "^3377FF1 Tinta de Polvo^000000,";
+			mes "^3377FF1 Plumas de Ave^000000.";
+			mes "Quando você trouxer todos os, itens, eu irei te ensinar a língua Utan.";
+			close;
+		}
+	}
+	else if (event_umbala >= 3) {
+		if (event_umbala == 4) {
+			mes "[Karkatan]";
+			mes "Puchuchartan deve ter mandado você aqui.";
+			mes "Eu preciso verificar se você está ou não qualificado para o pedido de ajuda dela...";
+			mes "Nós, Utan não queremos para ajudar as pessoas do mal";
+			next;
+			mes "[Karkatan]";
+			mes "Hmmmm....";
+			mes "Seria bom ter uma máscara que é feita em Rune-Midgard...";
+			next;
+			mes "[Karkatan]";
+			mes "Eu gostaria de ter ^3377FF1 Máscara Feliz^000000.";
+			mes "Para os Utans, receber uma máscara de presente é considerada uma honra.";
+			mes "Talvez Puchuchartan quer que você mostre respeito perante a nossa aldeia.";
+			event_umbala = 5;
+			close;
+		}
+		else if (event_umbala == 5) {
+			if (countitem(2278) > 0) {
+				mes "[Karkatan]";
+				mes "Oh, você a trouxe!";
+				mes "Sim, eu sempre quis ter essa máscara!";
+				mes "Isso é uma verdadeira honra.";
+				mes "Obrigado, aventureiro de Rune-Midgard.";
+				next;
+				mes "[Karkatan]";
+				mes "Eu vou dizer a Puchuchartan que eu confirmei sua qualificação.";
+				mes "Vá falar com ela.";
+				mes "Embora eu não esteja certo que da ajuda que ela possa te dar.";
+				mes "Eu espero que ela possa retribuir o seu favor.";
+				delitem 2278,1; //Mr_Smile
+				event_umbala = 6;
+				close;
+			}
+			else {
+				mes "[Karkatan]";
+				mes "Eu te disse o que você precisa?";
+				mes "^3377FF1 Máscara Feliz^000000?";
+				mes "Por favor, traga-me como prova de sua eficiência, assim como o senso de sua honra.";
+				close;
+			}
+		}
+		else {
+			mes "[Karkatan]";
+			mes "Como está indo?";
+			mes "Gostaria de poder orientá-lo ao redor da aldeia, mas não posso ignorar meu dever, como chefe da tribo";
+			next;
+			mes "[Karkatan]";
+			mes "Comandar uma tribo não é tão fácil quanto parece.";
+			mes "Você deve entender se você estivesse no meu lugar.";
+			mes "No entanto, eu espero que você aprecie sua estada na nossa aldeia.";
+			close;
+		}
+	}
+}
+
+// Create Essence/Dismantle Stone Quest :: um_npc
+//============================================================
+um_in,44,71,2	script	Utan Shaman	4_F_UMOLDWOMAN,{
+	if (checkweight(908,600) == 0) {
+		mes "^3355FFEspere um segundo!";
+		mes "No momento você carrega muitos itens.";
+		mes "Por favor vá ao armazém da kafra e guarde alguns itens.^000000";
+		close;
+	}
+	switch(event_umbala) {
+	default:
+		mes "[??????????]";
+		mes "Umbah umbah umbabah Utan umbah";
+		mes "Umbah mookala umbabah..";
+		mes "Umbabahumbah umbabah";
+		mes "Umbabah umbaba umbaumbah umbah";
+		mes "Hum umbah umbah.";
+		close2;
+		warp "umbala",217,186;
+		end;
+	case 3:
+		mes "[Puchuchartan]";
+		mes "Eu não esperava que mais Rune-Midgardianos iriam encontrar a minha aldeia.";
+		mes "Tenho medo de que a Mãe Terra pode ser causado devido a este sofrimento ...";
+		next;
+		mes "[Puchuchartan]";
+		mes "Vocês, Rune-Midgardianos são de uma tribo do mal...";
+		mes "Sempre realizando seus objetivos, com meios maus ou injusto, nunca hesitando em estragar a propriedade dos outros para chegar ao que vocês querem.";
+		next;
+		mes "[Puchuchartan]";
+		mes "Eu estou preucupado com continuar o contato com os outros estranhos sem que afete nosso futuro...";
+		next;
+		mes "[Puchuchartan]";
+		mes "Ninguém de Rune-Midgard visitou sem algum interesse e eu não acho que você seja excessão";
+		next;
+		mes "[Puchuchartan]";
+		mes "Eu só uso o meu poder para a serviço da minha tribo, e não para ajudar a estranhos.";
+		mes "Se você realmente precisa da minha ajuda, vai pedir a permissão do chefe";
+		next;
+		mes "[Puchuchartan]";
+		mes "Além disso, eu não aprovo estranhos falando com a minha tribo mais do que o necessário...";
+		mes "Nós queremos viver uma vida pacífica, então não nos perturbe.,";
+		event_umbala = 4;
+		close;
+	case 4:
+	case 5:
+		mes "[Puchuchartan]";
+		mes "Eu já te falei para pegar a aprovação do chefe.";
+		mes "Existe também a questão de cuidar de meus próprios negócios.";
+		next;
+		mes "[Puchuchartan]";
+		mes "Eu sei que você tem passado por muitas dificuldades para chegar aqui, mas você tem que sair agora.";
+		close;
+		close;
+	case 6:
+		mes "[Puchuchartan]";
+		mes "Eu ouvi dizer que o chefe deu a sua aprovação...";
+		next;
+		mes "[Puchuchartan]";
+		mes "Então venha e fale comigo quando você pensar em que eu posso te ajudar.";
+		event_umbala = 7;
+		close;
+	case 7:
+		mes "[Putsuchiritan]";
+		mes "Eu não sei se o meu talento será útil para você, mas eu vou ajudá-lo mesmo assim.";
+		next;
+		mes "[Putsuchiritan]";
+		mes "Eu posso criar essencias elementais de objetos naturais, ou desfazer pedras elementais e seus componentes";
+		mes "O que você gostaria de fazer?";
+	}
+	next;
+	mes "[Puchuchartan]";
+	mes "Rune-Midgardian, que pediu a minha ajuda...";
+	mes "No entanto eu não estou certo se você realmente precisa dos meus poderes, eu vou tentar ajudar.";
+	next;
+	if (checkweight(1101,10) == 0) {
+		mes "[Puchuchartan]";
+		mes "Espere--!";
+		mes "Algo em sua posse está pertubando a paz em minha mente.";
+		mes "Não deveria ser assim...";
+		next;
+		mes "[Puchuchartan]";
+		mes "Vá e deixa algumas coisa para trás, e apenas traga os itens que você realmente precise.";
+		next;
+		mes "[Puchuchartan]";
+		mes "Se você se recusar a fazê-lo, eu não posso fazer nada por você.";
+		mes "Esteja pronto e depois volte e fale comigo";
+		close;
+	}
+	mes "[Puchuchartan]";
+	mes "Agora, o que você gostaria de fazer?";
+	mes "Meu poder perminte criar pedras comuns em pedras encantadas e divir pedras encantadas.";
+	next;
+	switch (select("Criar pedra encantada:Divida uma pura pedra encantada:Sair.")) {
+	case 1:
+		mes "[Puchuchartan]";
+		mes "Você gostaria de fazer uma pedra encantada?";
+		mes "Qual propriedade você gostaria que eu criasse?";
+		mes "Terra, Água, Fogo, Vento...";
+		mes "...escolha uma.";
+		next;
+		switch (select("Terra:Água:Fogo:Terra")) {
+		case 1:
+			.@consume = 947; //Horn
+			.@amount = 15;
+			.@success = 993; //Yellow_Live
+			break;
+		case 2:
+			.@consume = 946; //Snail's_Shell
+			.@amount = 20;
+			.@success = 991; //Crystal_Blue
+			break;
+		case 3:
+			.@consume = 904; //Scorpion's_Tail
+			.@amount = 20;
+			.@success = 990; //Boody_Red
+			break;
+		case 4:
+			.@consume = 1013; //Colorful_Shell
+			.@amount = 25;
+			.@success = 992; //Wind_Of_Verdure
+			break;
+		}
+		if (countitem(.@consume) >= .@amount) {
+			mes "[Puchuchartan]";
+			mes "Eu vou tentar completar o poder secreto dos objetos naturais em ordem para criar as pedras encantadas.";
+			mes "Escolha um número de '1' à '9.'";
+			mes "Se você quizer cancelar esse pedido, digite '0.'";
+			next;
+			while(1) {
+				input .@input,0,10;
+				if (.@input == 0) {
+					mes "[Puchuchartan]";
+					mes "Entendo.";
+					mes "É você quem manda.";
+					mes "Volte quando precisar..";
+					close;
+				}
+				else if (.@input > 9) {
+					mes "[Puchuchartan]";
+					mes "Lembre-se que o número tem que ser de 1 à 9.";
+					next;
+				}
+				else {
+					break;
+				}
+			}
+			mes "[Puchuchartan]";
+			switch(.@success) {
+			case 990:
+				mes "Eu estou pondo estes caldas em uma"; break;
+			case 991:
+				mes "Eu estou pondo estas Casco em uma"; break;
+			case 992:
+				mes "Eu estou pondo estas Casco em uma"; break;
+			case 993:
+				mes "Eu estou pondo estes Chifres em uma"; break;
+			}
+			mes "panela fervente, e lançando um encantamento sagrado.";
+			mes "Lembre-se do número que você colocou.";
+			next;
+			mes "[Puchuchartan]";
+			mes "Amba Omba Zatumba! Umba! Ti!";
+			mes "Umputaun Eulukaba! Umba! Ha!";
+			mes "Julu Humba Rulala! Umba! La!";
+			mes "Datuha Ombabalaka! Umba! Si!";
+			mes "Sunutaba Abulumba! Umba! Si!";
+			next;
+			if (rand(1,10) == 1) {
+				mes "[Puchuchartan]";
+				mes "Eu acho que meu poder não é suficiente.";
+				mes "O Poder natural que eu fiz com minha magia perdeu o foco e se espalhou...";
+				delitem .@consume,.@amount;
+				getitem 910,1; //Garlet
+				next;
+				mes "[Puchuchartan]";
+				mes "Parece que os espíritos da natureza não estão em harmonia nesse momento.";
+				mes "No entanto, se você voltar mais tarde, eu irei tentar te ajudar.";
+				mes "Claro que, essa tentativa vai ter a mesma possibilidade de falhar.";
+				close;
+			}
+			else {
+				mes "[Puchuchartan]";
+				mes "Aqui está a pedra encantada que você queria ter.";
+				mes "Eu a criei com muito esforço, então faça um bom uso dela.";
+				delitem .@consume,.@amount;
+				getitem .@success,1;
+				close;
+			}
+		}
+		else {
+			mes "[Puchuchartan]";
+			switch (.@success) {
+			case 990:
+				mes "Propriedade de fogo...";
+				mes "Eu vou precisar de objetos naturais que são relacionados ao espírito do fogo.";
+				next;
+				mes "[Puchuchartan]";
+				mes "Escorpiões que resistem ao ardente calor do deserto são cheios de energia de fogo.";
+				mes "Eu preciso de ^3377FF20 Caudas de Escorpião^000000.";
+				break;
+			case 991:
+				mes "Propriedade de água...";
+				mes "Eu vou precisar de objetos naturais que são relacionados ao espírito de água.";
+				next;
+				mes "[Puchuchartan]";
+				mes "Ambernites ...";
+				mes "O espírito da água está contida na sua concha protetora...";
+				mes "Eu preciso de ^3377FF20 Casco de Caramujo.^000000";
+				break;
+			case 992:
+				mes "Propriedade de vento...";
+				mes "Eu vou precisar de objetos naturais que são relacionados ao espírito do vento.";
+				next;
+				mes "[Puchuchartan]";
+				mes "Percevejos ...";
+				mes "O besouro que voa até o céu tem o espírito do vento.";
+				mes "Eu preciso de ^3377FF25 Casco Arco-Íris^000000.";
+				break;
+			case 993:
+				mes "Propriedade de terra...";
+				mes "Eu vou precisar de objetos naturais que são relacionados ao espírito da terra.";
+				next;
+				mes "[Puchuchartan]";
+				mes "Besouros-chifre...";
+				mes "Que vivem na floresta, são preenchidos com os espíritos da terra e madeira...";
+				mes "Eu preciso de ^3377FF15 Chifre^000000.";
+				break;
+			}
+			mes "[Puchuchartan]";
+			mes "É tudo que eu preciso...";
+			mes "Volte quando estiver pronto.";
+			mes "Estarei aqui.";
+			close;
+		}
+	case 2:
+		mes "[Puchuchartan]";
+		mes "Você gostaria de dividir a pedra encantadas em partes?";
+		mes "Qual propriedade você gostaria de dividir?";
+		mes "Terra, Água, Fogo, Vento... ";
+		mes "Escolha um.";
+		next;
+		switch(select("Terra:Água:Fogo:Vento")) {
+		case 1:
+			.@divide = 997; //Great_Nature
+			break;
+		case 2:
+			.@divide = 995; //Mistic_Frozen
+			break;
+		case 3:
+			.@divide = 994; //Flame_Heart
+			break;
+		case 4:
+			.@divide = 996; //Rough_Wind
+			break;
+		}
+		mes "[Puchuchartan]";
+		mes "Por favor, coloque o número de pedras encantadas que você gostaria de dividir.";
+		mes "Eu só posso dividir até 10 de cada vez.";
+		next;
+		input .@input,0,11;
+		if ((.@input > 0) && (.@input < 11)) {
+			if (countitem(.@divide) >= .@input) {
+				if (checkweight(908,(.@input * 30)) == 0) {
+					mes "[Puchuchartan]";
+					mes "Você está carregando muitos itens nesse momento.";
+					mes "Ponha algumas coisas no armazém da Kafra, e depois volte e fale comigo, ok?";
+					close;
+				}
+				mes "[Puchuchartan]";
+				mes "Eu vou tentar tentar reverter essas pedras encantadas para a sua forma original.";
+				mes "Digite um número de 1 à 9, ou introduza 0 se você decidir cancelar.";
+				next;
+				while(1) {
+					input .@input2,0,10;
+					if (.@input2 == 0) {
+						mes "[Puchuchartan]";
+						mes "Você quer cancelar?";
+						mes "Bem, se você mudar de idéia, fique à vontade para pedir minha ajuda a qualquer momento.";
+						close;
+					}
+					else if (.@input2 > 9) {
+						mes "[Puchuchartan]";
+						mes "Hm? Você tem que colocar um número de 1 à 9.";
+						next;
+					}
+					else {
+						break;
+					}
+				}
+				mes "[Puchuchartan]";
+				mes "Agora eu vou introduzir as palavras sagradas.";
+				mes "Lembre-se do número que você colocou.";
+				next;
+				mes "[Puchuchartan]";
+				mes "Umba Umba Kalapum! Umba! Ta!";
+				mes "Lukura Ukulele Um! Umba! Ka!";
+				mes "Abulaka Tabulakan! Umba! La!";
+				mes "Ombaludu Zan Kunu! Umba! Ku!";
+				mes "Kum Tum Lakulakun! Umba! Ha!";
+				next;
+				mes "[Puchuchartan]";
+				mes "Aqui está a pedra que você queria ter.";
+				mes "Eu a criei com muito esforço, então faça um bom uso dela.";
+				while(1) {
+					if (.@sha_man == .@input) {
+						break;
+					}
+					else {
+						.@shaman_max += rand(6,10);
+						++.@sha_man;
+					}
+				}
+				switch(.@divide) {
+				case 994:
+					getitem 990,.@shaman_max; //Boody_Red
+					break;
+				case 995:
+					getitem 991,.@shaman_max; //Crystal_Blue
+					break;
+				case 996:
+					getitem 992,.@shaman_max; //Wind_Of_Verdure
+					break;
+				case 997:
+					getitem 993,.@shaman_max; //Yellow_Live
+				}
+				delitem .@divide,.@input;
+				close;
+			}
+			else {
+				mes "[Puchuchartan]";
+				mes "Então, você que deseja ter uma pedra";
+				switch(.@divide) {
+				case 994:
+					mes "bruta de Fogo? Então eu preciso que";
+					mes "você me traga "+input_want+" pedra de fogo pura.";
+					break;
+				case 995:
+					mes "bruta de Água? Então eu preciso que";
+					mes "você me traga "+input_want+" pedra de água pura.";
+					break;
+				case 996:
+					mes "bruta de Vento? Então eu preciso que";
+					mes "você me traga "+input_want+" pedra de vento pura.";
+					break;
+				case 997:
+					mes "bruta de Terra? Então eu preciso que";
+					mes "você me traga "+.@input+" pedra de terra pura.";
+					break;
+				}
+				mes "^3377FF"+.@input+" "+getitemname(.@divide)+"^000000.";
+				next;
+				mes "[Puchuchartan]";
+				mes "É tudo que eu preciso...";
+				mes "Volte quando estiver pronto.";
+				mes "Estarei sempre aqui.";
+				close;
+			}
+		}
+		else {
+			mes "[Puchuchartan]";
+			mes "Hm? Você precisa colocar um número de 1 à 10.";
+			close;
+		}
+	case 3:
+		mes "[Puchuchartan]";
+		mes "Entendo.";
+		mes "Que seja.";
+		mes "Volte quando precisar.";
+		close;
+	}
+}
+
+umbala,221,193,1	script	#Skulldoor	HIDDEN_NPC,{
+	if (event_umbala >= 7) {
+		warp "um_in",32,71;
+		end;
+	}
+	else {
+		mes "^3355FFO crânio humano preocupante trava o lado da porta.";
+		mes "A porta está trancado com aperto, por isso você não pode entrar.";
+		mes "Você olha pela fechadura e pode ver alguém que se desloca no interior da sala.^000000";
+		next;
+		if (select("Examinar o crânio.:Sair.") == 1) {
+			mes "^ 3355FFVocê ve que o olho do crânio estão vazios";
+			mes "Engraçado...";
+			mes "Parece que pedras poderia caber perfeitamente dentro deles. ^000000";
+			next;
+			mes "^3355FFVocê vê o olho esquerdo do crânio.";
+			mes "O que você quer fazer?^000000";
+			next;
+			switch(select("Deixar como está.:Inserir gema azul.:Inserir gema amarela.:Inserir gema vermelha.")) {
+			case 1:
+				mes "^3355FFVocê deixou o crânio quieto.^000000";
+				next;
+				break;
+			case 2:
+				.@insert = 717;
+				break;
+			case 3:
+				.@insert = 715;
+				break;
+			case 4:
+				.@insert = 716;
+				break;
+			}
+			if (.@insert) {
+				if (countitem(.@insert) > 0) {
+					mes "^3355FFVocê inserio a "+getitemname(.@insert)+" no olho do crânio.^000000";
+					next;
+					mes "^3355FFA pedra rolou até a boca do crânio.^000000";
+					++.@skulldoor;
+					switch (.@insert) {
+					case 715: .@skull = 2; break;
+					case 716: .@skull = 3; break;
+					case 717: .@skull = 1; break;
+					}
+					delitem .@insert,1;
+					getitem .@insert,1;
+					next;
+				}
+				else {
+					mes "^3355FFVocê esqueceu de carregar a "+getitemname(.@insert)+" com você.";
+					mes "Então você não pôde fazer o que você queria.^000000";
+					next;
+				}
+			}
+			mes "^3355FFVocê vê o olho direito do crânio.";
+			mes "O que você quer fazer?^000000";
+			next;
+			switch(select("Deixar como está.:Inserir gema azul.:Inserir gema amarela.:Inserir gema vermelha.")) {
+			case 1:
+				mes "^3355FFVocê deixou o crânio quieto.^000000";
+				next;
+				break;
+			case 2:
+				.@insert2 = 717;
+				break;
+			case 3:
+				.@insert2 = 715;
+				break;
+			case 4:
+				.@insert2 = 716;
+				break;
+			}
+			if (.@insert2) {
+				if (countitem(.@insert2) > 0) {
+					mes "^3355FFVocê inseriu a "+getitemname(.@insert2)+" dentro do olho do crânio.^000000";
+					next;
+					mes "^3355FFA pedra rolou até a boca do crânio.^000000";
+					if (.@insert2 == .@insert) {
+						.@skulldoor += 1;
+					}
+					else {
+						.@skulldoor += 2;
+					}
+					delitem .@insert2,1;
+					getitem .@insert2,1;
+					next;
+				}
+				else {
+					mes "^3355FFVocê esqueceu de carregar a "+getitemname(.@insert)+" com você.";
+					mes "Então você não pôde fazer o que você queria.^000000";
+					next;
+				}
+			}
+			mes "^3355FF..............................^000000";
+			next;
+			mes "^3355FF..............................";
+			mes "..............................^000000";
+			next;
+			mes "^3355FF..............................";
+			mes "..............................";
+			mes "..............................^000000";
+			next;
+			switch(.@skulldoor) {
+			case 3:
+				if (rand(1,4) != 1) {
+					.@skullopen = 1;
+				}
+				break;
+			case 2:
+				if (rand(1,2) == 2) {
+					.@skullopen = 1;
+				}
+				break;
+			case 1:
+				if (rand(1,4) == 1) {
+					.@skullopen = 1;
+				}
+				break;
+			default:
+				break;
+			}
+			if (.@skullopen == 0) {
+				mes "^3355FFNada aconteceu.";
+				mes "Você tem a sensação de que o crânio sorri para você. Mas...";
+				mes "É provavelmente apenas um truque da luz.^000000";
+				close;
+			}
+			else {
+				mes "^3355FFDerrepente, um som vem a partir do olho e da boca do crânio e a porta é aberta.";
+				mes "Antes de conhecer, você caminha no interior, como se fosse guiado por uma força invisível...^000000";
+				close2;
+				warp "um_in",32,71;
+				end;
+			}
+		}
+		mes "^ 3355FFVocê decidiu passar pela porta.";
+		mes "Parece que ela é difícil demais de abrir.^000000";
+		close;
+	}
+}
+
+// Umbala Domestic Dispute Quest :: um_npc_ryu
+//============================================================
+um_in,139,48,5	script	Phrenetan	4_F_UMWOMAN,{
+	if (event_umbala >= 3) {
+		mes "[Phrenetan]";
+		mes "Estou farta e cansada do meu marido!";
+		mes "É como se ele flertasse com cada mulher da aldeia!";
+		next;
+		mes "[Phrenetan]";
+		mes "Se eu ver ele flertando com outra mulher de novo, eu juro...";
+		mes "Vou lhe mostrar o inferno!";
+		close;
+	}
+	if (BaseJob == Job_Novice && Upper != 2) {
+		mes "[Phrenetan]";
+		mes "Umba~ umbaumbah!";
+		mes "Umbah woomumum!";
+		mes "Umbah woomum umbabah!";
+		close;
+	}
+	if (um_wind <= 3 && (MISC_QUEST & 32768) == 0) {
+		if (um_wind) um_wind = 1;
+		emotion e_an;
+		mes "[Phrenetan]";
+		mes "Umbaumbah wooga wooga";
+		mes "Umbaumbabah babababah!";
+		mes "Umbaum!";
+		next;
+		emotion e_oh;
+		mes "[Phrenetan]";
+		mes "Umbah umbaumba umbah";
+		mes "Umbabababah wooga woo!";
+		mes "Wooga wooga umbabah umbaum!";
+		next;
+		emotion e_go;
+		close;
+	}
+	else if (um_wind == 6 || MISC_QUEST & 32768) {
+		emotion e_an;
+		mes "[Phrenetan]";
+		mes "Umbabah! Umbaumbah.....";
+		mes "Umbaum Umbaum Wooga wooga!";
+		mes "Wooga umumum woombababap!!!!!";
+		next;
+		emotion e_swt;
+		close;
+	}
+	end;
+}
+
+um_in,144,45,5	script	Umpokoriohtan	4_M_UMSOLDIER,{
+	if (event_umbala >= 3) {
+		if(rand(1,3) == 2) {
+			mes "[Umpokoriohtan]";
+			mes "Ei.";
+			mes "Não importa a esposa...";
+			mes "Por mais que eu ame ela, eu sei minhas obrigações?";
+			next;
+			mes "[Umpokoriohtan]";
+			mes "Se um homem tem muitas, ele deve dividir o seu amor igualmente entre todas.";
+			next;
+			mes "[Umpokoriohtan]";
+			mes "Se as mão de um homem são boas para curar, ele tem de usar essas mãos para ajudar a gente viver.";
+			next;
+			mes "[Umpokoriohtan]";
+			mes "Se um homem tiver o dom de cantar, ele tem o dever de cantar as músicas que gostamos.";
+			next;
+			mes "[Umpokoriohtan]";
+			mes "Mas se sweet lovin' é dourada, então...";
+			mes "Eu tenho o toque de Midas.";
+			next;
+			mes "[Umpokoriohtan]";
+			mes "Ooh...!";
+			mes "...........";
+			mes "Minhas costas--!";
+			mes "Acalme-se, pessoa, seu turno começa em 1 minuto.";
+			emotion e_rock,0,"Phrenetan";
+			emotion e_swt;
+			close;
+		}
+		else {
+			mes "[Umpokoriohtan]";
+			mes "Cara ... algumas vezes a minha mulher pode ser brava e às vezes demasiado grosseira, talvez mesmo mágoa.";
+			mes "Mas é legal, só significa que ela 'tem fogo'.";
+			next;
+			mes "[Umpokoriohtan]";
+			mes "Mas algum dia, ela irá aprender que eu tenho que dividir o coração de minhas outras esposas.";
+			mes "Que realmente precisam de um toque de amor, entende?";
+			mes "É a minha obrigação.";
+			next;
+			mes "[Umpokoriohtan]";
+			mes "Wainatan, Bertztan, Chabimatan...";
+			mes "Essas mulheres lindas estão esperando há um boooom tempo.";
+			mes "Não se preucupe, sou um grande homem.";
+			next;
+			mes "[Umpokoriohtan]";
+			mes "OOOH~! Phrenetan!";
+			mes "Amor, porque ficou brava?";
+			mes "Não me bata??";
+			mes "Eu não queria te ofender.";
+			emotion e_omg,0,"Phrenetan";
+			emotion e_wah;
+			close;
+		}
+	}
+	emotion e_heh;
+	mes "[Umpokoriohtan]";
+	mes "Umbaumbah...........";
+	mes "Umbahwooga woogawoo!";
+	mes "Umbah umumbabah umbawoo gaga.";
+	next;
+	emotion e_an;
+	close;
+
+OnInit:
+	disablenpc "Umpokoriohtan";
+	end;
+}
+
+um_in,101,73,3	script	Wainatan	4_F_UMWOMAN,{
+	if (event_umbala >= 3) {
+		mes "[Wainatan]";
+		mes "Estou enjoado e cansada deste homem que sempre aparece à noite e e transforma minha vida em um inferno...";
+		next;
+		mes "[Wainatan]";
+		mes "'Operador liso que recebe o trabalho feito?'";
+		mes "Oh Meu Deus...!";
+		mes "Eu odeio-o com uma paixão!";
+		mes "Desejo que Umpokoriohtan seja caia morto.";
+		close;
+	}
+	if (um_wind == 1) {
+		if (gettime(3) > 18) {
+			um_wind = 2;
+			emotion e_an;
+			mes "[Wainatan]";
+			mes "Umbaumbah umgagaga.";
+			mes "Umbaumbawoogawoo gababah.";
+			mes "Umbahumbabah gawoo.";
+			next;
+			emotion e_oh;
+			mes "[Wainatan]";
+			mes "Wooga wooga woogagagah";
+			mes "Wogagagah woogagagah";
+			mes "Gawoo gawoo gah.";
+			close;
+		}
+		else {
+			mes "[Wainatan]";
+			mes "Umbabah! Umbaumbah wooga";
+			mes "Woogawooga umbawooga umum.";
+			mes "Umbabababababababababah.";
+			close;
+		}
+	}
+	else {
+		mes "[Wainatan]";
+		mes "Umbaumbah umbaumbah umbah";
+		mes "Wooga wooga woogawooga wooga";
+		mes "Umumumum umumumum umum.";
+		close;
+	}
+}
+
+um_in,94,123,5	script	Bertztan	4_F_UMWOMAN,{
+	if (event_umbala >= 3) {
+		mes "[Bertztan]";
+		mes "...* Glup * O tarado Umpo-o de novo!";
+		mes "Eu disse a ele que não gosto dele, mas ele simplesmente não escuta!";
+		mes "Gostaria...";
+		mes "Gostaria que ele simplesmente desaparecesse!";
+		close;
+	}
+	if (um_wind == 2) {
+		if (gettime(3) > 18) {
+			um_wind = 3;
+			emotion e_an;
+			mes "[Bertztan]";
+			mes "Umbaumbah umgagaga.";
+			mes "Umbaumbawoogawoo gababah.";
+			mes "Umbahumbabah gawoo.";
+			next;
+			emotion e_oh;
+			mes "[Bertztan]";
+			mes "Wooga umbar umbar umbah!";
+			mes "Umbar woogagaga woo! Woo! Woo!";
+			mes "Wooga~ wooga~ Woo woo woo umbar.";
+			close;
+		}
+		else {
+			mes "[Bertztan]";
+			mes "Umbar woogaumbarumbah um!";
+			mes "Um~ wooga wooga umbarum.";
+			mes "Umbah...wooum.";
+			close;
+		}
+	}
+	else {
+		mes "[Bertztan]";
+		mes "Umbar wooga umbar umbah um!";
+		mes "Um~ woogawooga umbar um.";
+		mes "Umbah...wooum.";
+		close;
+	}
+}
+
+umbala,145,217,3	script	Chabimatan	4_F_UMWOMAN,{
+	if (event_umbala >= 3) {
+		mes "[Chabimatan]";
+		mes "...*Sigh* Umpokoriohtan parece ser para casar.";
+		mes "Eu não tenho idéia porque ele ainda flerta com outras mulheres.";
+		mes "Talvez ele não seja maduro, ou seja irresponsável...";
+		next;
+		mes "[Chabimatan]";
+		mes "Bem, independente do que ele seja, ele certamente não é romântico.";
+		mes "Essas cantadas dele poderiam ser melhor, talvez até algumas mais limpas.";
+		close;
+	}
+	if (um_wind == 3) {
+		if (gettime(3) > 18) {
+			um_wind = 4;
+			emotion e_an;
+			mes "[Chabimatan]";
+			mes "Umbabah umbarbar woogawooga um";
+			mes "Umbabah umbarbar woogawooga umbah";
+			mes "Umumum! Wooga!";
+			next;
+			emotion e_oh;
+			mes "[Chabimatan]";
+			mes "Umbabah~~~~~~~";
+			mes "Woogawooga umbar umbar woo!";
+			mes "Wooga umbar woogawoogagah.";
+			enablenpc "Umpokoriohtan";
+			enablenpc "#!@#$%";
+			close;
+		}
+		else {
+			mes "[Chabimatan]";
+			mes "Umbabah~~~~~~~";
+			mes "Woogawooga umbar umbar woo";
+			mes "woo woo! Nook nook~";
+			mes "Wooga umbar wooga umbar";
+			mes "wooga woogagah.";
+			close;
+		}
+	}
+	else {
+		mes "[Chabimatan]";
+		mes "Umbabah~~~~~~~";
+		mes "Woogawooga umbar umbar";
+		mes "woo woo woo nook nook.";
+		mes "Wooga umbar wooga umbar";
+		mes "wooga woogagah.";
+		close;
+	}
+}
+
+um_in,141,46,0	script	#!@#$%	-1,8,8,{
+OnInit:
+	disablenpc "#!@#$%";
+	end;
+
+OnTouch:
+	if (um_wind == 4) {
+		um_wind = 5;
+		mes "^3355FFQuando você entra na casa você acaba de testemunhar Phrenetan batendo em um cara impiedosamente.^000000";
+		next;
+		emotion e_an;
+		mes "[Phrenetan]";
+		mes "Umbaumbaumbaumbah!";
+		mes "Umbaumbahumbah!!";
+		mes "Umbaumbahumbah!!!!!!";
+		next;
+		mes "^3355FFVocê foi expulso da casa por Phrenetan.^000000";
+		next;
+		enablenpc "#unpc";
+		disablenpc "#!@#$%";
+		warp "umbala",94,181;
+	}
+	end;
+}
+
+umbala,94,181,0	script	#unpc	-1,1,1,{
+OnInit:
+	disablenpc "#unpc";
+	end;
+
+OnTouch:
+	if (um_wind == 5) {
+		mes "^3355FFVocê percebe o que acontece assim que foi expulso da casa.";
+		mes "Você vê a folha sobre o terreno perto de onde você está em pé.^000000";
+		next;
+		if (select("Pegar.:Não pegar.") == 1) {
+			close2;
+			um_wind = 0;
+			MISC_QUEST |= 32768;
+			getitem 610,1; //Leaf_Of_Yggdrasil
+			disablenpc "#unpc";
+			end;
+		}
+		um_wind = 0;
+		MISC_QUEST |= 32768;
+		mes "["+strcharinfo(0)+"]";
+		mes "Eu não devo pegar o que pertence a outra pessoa.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "Sim, eu sou uma pessoa boa.";
+		close2;
+		disablenpc "#unpc";
+	}
+	end;
+}

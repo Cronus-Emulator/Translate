@@ -1,0 +1,62 @@
+//===============================================================\\
+//                _____                                          ||
+//               /  __ \                                         ||
+//               | /  \/_ __ ___  _ __  _   _ ___                ||
+//               | |   | '__/ _ \| '_ \| | | / __|               ||
+//               | \__/\ | | (_) | | | | |_| \__ \               ||
+//                \____/_|  \___/|_| |_|\__,_|___/               ||
+//	                   Scripts                                   ||
+//===============================================================||
+// = Nome do NPC:                                                ||
+// - agit_start_se.txt                                           ||
+//===============================================================||
+// = Criação:                                                    ||
+// - eA/Herc/Cronus                                              ||
+//===============================================================||
+// = Versão:                                                     ||
+// - 1.0                                                         ||
+//===============================================================||
+// = Alterações:                                                 ||
+// - Cabeçalho e pequenos ajustes [SlexFire]                     ||
+// - Observações [Spell Master]                                  ||
+//===============================================================||
+// = Descrição:                                                  ||
+// - Inicia e termina a GDE Segunda Edição                       ||
+//===============================================================||
+// = Observações:                                                ||
+// - Consultar a documentação para maiores informações sobre     ||
+// - como usar o "gettime".                                      ||
+//===============================================================//
+
+// WoE Começar/Terminar
+//============================================================
+-	script	Agit2_Event	-1,{
+	end;
+
+OnClock1800:	//Inicia na terça(2), quinta(4) (18:00)
+OnClock2000:	//Termina na terça(2), quinta(4) (20:00)
+OnClock2100:	//Inicia no sábado(6) (21:00)
+OnClock2300:	//Termina no sábado(6) (23:00)
+
+OnAgitInit2:
+	// Iniciando a verificação do tempo
+	if((gettime(4)==2) && (gettime(3)>=18 && gettime(3)<21) ||
+	   (gettime(4)==4) && (gettime(3)>=18 && gettime(3)<21) ||
+	   (gettime(4)==6) && (gettime(3)>=22 && gettime(3)<23)) {
+		if (!agitcheck2()) {
+			agitstart2;
+		}
+		end;
+	}
+
+	// Fim da verificação do tempo
+	if ((gettime(4)==2) && (gettime(3)==21) ||
+	    (gettime(4)==4) && (gettime(3)==21) ||
+	    (gettime(4)==6) && (gettime(3)==23)) {
+		if (agitcheck2()) {
+			agitend2;
+		}
+		end;
+	}
+	end;
+}

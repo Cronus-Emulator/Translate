@@ -1,0 +1,507 @@
+//===============================================================\\
+//                _____                                          ||
+//               /  __ \                                         ||
+//               | /  \/_ __ ___  _ __  _   _ ___                ||
+//               | |   | '__/ _ \| '_ \| | | / __|               ||
+//               | \__/\ | | (_) | | | | |_| \__ \               ||
+//                \____/_|  \___/|_| |_|\__,_|___/               ||
+//                     Scripts                                   ||
+//===============================================================||
+// = Versão: 1.6                                                 ||
+//===============================================================||
+// = Alterações:                                                 ||
+// - Cabeçalho [SlexFire]                                        ||
+// - Tradução [Orion], [Spell Master]                            ||
+// - Correção e adaptação da tradução [Spell Master]             ||
+//===============================================================||
+// = Descrição:                                                  ||
+// - Quest de habilidade para Ferreiro                           ||
+// - BS_UNFAIRLYTRICK: Venda Duvidosa                            ||
+// - BS_GREED: Ganância                                          ||
+//===============================================================//
+
+geffen,178,72,3	script	Akkie#qsk_bs	4_F_JOB_BLACKSMITH,{
+	if (BaseJob == Job_Blacksmith) {
+		if (BLACK_SK == 7 && getskilllv("BS_UNFAIRLYTRICK") == 0) {
+			mes "[Akkie]";
+			mes "Eu vejo que você transcendeu desde a última vez que nos encontramos...";
+			mes "Você deve ter esquecido tudo o que eu te ensinei.";
+			mes "Bem, deixe-me lhe ensinar de novo.";
+			next;
+			mes "[Akkie]";
+			mes "Na verdade, deixe-me refrescar sua memória com este zeny falso que fizemos da última vez.";
+			mes "Se lembra de como executar Venda Duvidosa?";
+			mes "Você deve ser capaz de utilizá-la agora...";
+			BLACK_SK = 8;
+			skill "BS_UNFAIRLYTRICK",1,0;
+			close;
+		}
+		else if (BLACK_SK == 8) {
+			mes "[Akkie]";
+			mes "Olá novamente.";
+			mes "Como tem sido ser um ferreiro?";
+			mes "De qualquer forma, foi muito bom ver que você voltou para falar comigo.";
+			next;
+			mes "[Akkie]";
+			mes "Pode ser um pouco chato ensinar Venda Duvidosa para Ferreiros e Mestres Ferreiros.";
+			mes "Mas alguém da nossa guilda tem que fazer esse trabalho.";
+			mes "Enfim, adeus e tome cuidado em suas viagens, ok?";
+			close;
+		}
+		if (JobLevel > 29) {
+			if (BLACK_SK == 0) {
+				mes "[Akkie]";
+				mes "Olá.";
+				mes "Não é um dia maravilhoso hoje?";
+				mes "É perfeito para a caça!";
+				next;
+				mes "[Akkie]";
+				mes "Hum, deixe-me apresentar-me.";
+				mes "Eu sou Akkie, uma representante da Guilda dos Ferreiros que foi despachada para ensinar a Venda Duvidosa.";
+				mes "Uma habilidade dos Ferreiros e Mestres Ferreiros.";
+				next;
+				mes "[Akkie]";
+				mes "Essa habilidade permite que você reduza a quantidade de zeny gasto para lançar Mammonita em 10%.";
+				mes "Esta habilidade passiva pode ser conveniente para você, "+strcharinfo(0)+".";
+				next;
+				mes "[Akkie]";
+				mes "Embora seja nova nisso, gostaria de ensinar a você Venda Duvidosa.";
+				next;
+				if (select("Certo.:Não, obrigado.") == 1) {
+					mes "["+strcharinfo(0)+"]";
+					mes "Claro. Vou tentar aprender esta nova habilidade.";
+					mes "Quem sabe?";
+					mes "Pode ser realmente útil.";
+					next;
+					mes "[Akkie]";
+					mes "Ah, isso é ótimo!";
+					mes "Você não vai se arrepender!";
+					mes "Agora, deixe-me explicar como esta habilidade funciona.";
+					mes "Hum, agora onde eu coloquei - Ah.";
+					mes "Deixe-me ler essas diretrizes.";
+					next;
+					mes "[Akkie]";
+					mes "Utilizando Venda Duvidosa, podemos reduzir o custo de zenny da Mammonita em 10% por forjamento.";
+					mes "Desde que seja usada contra os inimigos, podemos falsificar muitos zennys.";
+					next;
+					mes "[Akkie]";
+					mes "Agora, eu preciso de você para trazer alguns materiais para que eu possa demonstrar a criação de zeny falsificado.";
+					mes "Por favor me traga 1 Aço, 5 Carvão, 1 Martelo de Ferro e... e...";
+					next;
+					mes "[Akkie]";
+					mes "Hum, você me daria um minuto para olhar no manual?";
+					mes "Eu sinto muito por iss, isso...";
+					mes "^333333Eu pensei que tinha destacado isso no manual.";
+					mes "Onde está?^000000";
+					next;
+					mes "[Akkie]";
+					mes "Oh! Ah, eu achei!";
+					mes "M-me deixe começar tudo de novo. Uh...";
+					next;
+					mes "["+strcharinfo(0)+"]";
+					mes "............";
+					next;
+					mes "[Akkie]";
+					mes "^0000FF1 Aço^000000,";
+					mes "^0000FF5 Carvão^000000,";
+					mes "^0000FF1 Martelo de Ferro^000000,";
+					mes "^0000FF500 zeny^000000 e";
+					mes "^0000FF1 Detrimindexta^000000. Será que";
+					mes "você trazer, por favor?";
+					next;
+					mes "["+strcharinfo(0)+"]";
+					mes "Claro, claro.";
+					mes "Mas você é realmente capaz de ensinar-me essa habilidade?";
+					mes "Quero dizer...";
+					next;
+					mes "[Akkie]";
+					mes "Ah, não, eu sabia que isso ia acontecer!";
+					mes "Quer dizer...";
+					mes "Eu tenho trabalhado aqui por 3 meses.";
+					mes "Basta trazer os materiais e vou provar que você pode aprender f-facilmente!";
+					next;
+					mes "[Akkie]";
+					mes "Você tem que confiar em mim!";
+					mes "Você não vai se decepcionar, eu prometo!";
+					mes "Esta habilidade é tão útil!";
+					mes "Então, só me traga os materiais, ok?";
+					BLACK_SK = 1;
+					close;
+				}
+				mes "[Akkie]";
+				mes "Qu-que?! Mas por que não?";
+				mes "E-eu não sou boa o suficiente para você?";
+				mes "Por favor, eu prometo fazer o meu melhor para lhe ensinar.";
+				mes "Além disso, eu tenho que cumprir a minha cota para a Guilda...";
+				close;
+			}
+			else if (BLACK_SK == 1) {
+				if (countitem(999) > 0 && countitem(1003) > 4 && countitem(971) > 0 && countitem(613) > 0) {
+					if (Zeny >= 500) {
+						mes "[Akkie]";
+						mes "Oh, você voltou.";
+						mes "Agora deixe-me ver se você trouxe tudo que precisa para fazer zeny falso para que eu possa ensinar";
+						mes "Venda Duvidosa.";
+						next;
+						mes "[Akkie]";
+						mes "Bom trabalho, parece que você tem o que precisamos.";
+						mes "Muito bem, agora aguarde enquanto eu preparo esses materiais para forjar, ok?";
+						delitem 1003,5; //Coal
+						delitem 999,1; //Steel
+						delitem 971,1; //Detrimindexta
+						delitem 613,1; //Iron_Hammer
+						Zeny -= 500;
+						BLACK_SK = 2;
+						close;
+					}
+					else {
+						mes "[Akkie]";
+						mes "Hmm, você tem todos os materiais para o forjamento, mas eu ainda preciso de 500 zeny.";
+						mes "Precisamos de zeny para copiar, ou não será possível fazer um zeny falso que convença.";
+						close;
+					}
+				}
+				else {
+					mes "[Akkie]";
+					mes "Oh, você voltou.";
+					mes "Agora deixe-me ver se você trouxe tudo que preciso para fazer zeny falso para que eu possa ensinar Venda Duvidosa.";
+					next;
+					mes "[Akkie]";
+					mes "Hmm, ainda esta faltando algumas coisas.";
+					mes "Deixe-me dizer o que você precisa me trazer mais uma vez para que possamos começar a treinar imediatamente.";
+					next;
+					mes "[Akkie]";
+					mes "^0000FF1 Aço^000000,";
+					mes "^0000FF5 Carvão^000000,";
+					mes "^0000FF1 Martelo de Ferro^000000,";
+					mes "^0000FF500 zeny^000000 e";
+					mes "^0000FF1 Detrimindexta^000000.";
+					mes "Não se esqueça, ok?";
+					close;
+				}
+			}
+			else if (BLACK_SK == 2) {
+				mes "[Akkie]";
+				mes "A-ah! você voltou mais cedo do que";
+				mes "Pensei...";
+				mes "Hmm... Como posso lhe-dizer isso?";
+				next;
+				mes "["+strcharinfo(0)+"]";
+				mes "...";
+				mes "......";
+				mes ".........";
+				next;
+				mes "[Akkie]";
+				mes "Sinto muito!";
+				mes "Eu errei alguma coisa enquanto estava fazendo uma amostra falsa!";
+				mes "Eu sinto muito, por favor, n-não me denuncie para o Ferreiro da Guilda!";
+				mes "Me dê mais uma chance!";
+				next;
+				mes "[Akkie]";
+				mes "Eu prometo que da próxima vez, não vou me atrapalhar!";
+				mes "Tudo que eu preciso é 1 Aço e mais 3 Carvões!";
+				mes "Por favor, n-não fique com raiva de mim, foi apenas um acidente!";
+				next;
+				mes "["+strcharinfo(0)+"]";
+				mes "Ok, ok...";
+				mes "Tem certeza de que é";
+				mes "tudo que você precisa?";
+				next;
+				mes "[Akkie]";
+				mes "Sim, sim!";
+				mes "Oh, obrigada por ser tão generoso!";
+				mes "Apenas me traga";
+				mes "^FF00001 Aço^000000";
+				mes "^FF00003 Carvões^000000";
+				mes "Então nós vamos tentar de novo!";
+				BLACK_SK = 3;
+				close;
+			}
+			else if (BLACK_SK == 3) {
+				if (countitem(999) > 0 && countitem(1003) > 2) {
+					mes "[Akkie]";
+					mes "Oh, muito obrigado por trazer esses materiais.";
+					mes "Tudo bem, eu vou tentar trabalhar duro para ter sucesso agora.";
+					mes "Apenas me dê um minuto para se preparar...";
+					delitem 999,1; //Steel
+					delitem 1003,3; //Coal
+					BLACK_SK = 4;
+					close;
+				}
+				else {
+					mes "[Akkie]";
+					mes "Tudo o que eu preciso é de 1 Aço e 3 Carvões.";
+					mes "Então eu serei capaz de ensinar-lhe a habilidade Venda Duvidosa.";
+					close;
+				}
+			}
+			else if (BLACK_SK == 4) {
+				mes "[Akkie]";
+				mes "......";
+				mes ".........";
+				mes "............";
+				next;
+				mes "["+strcharinfo(0)+"]";
+				mes "...?";
+				next;
+				mes "["+strcharinfo(0)+"]";
+				mes "Oh não...";
+				mes "O que será... você...";
+				mes "Aconteceu alguma coisa?";
+				next;
+				mes "[Akkie]";
+				mes "*Sniff*";
+				mes "Eu q-quebrei o Martelo de Ferro que você me deu!";
+				mes "N-Não posso terminar o forjamento sem um!";
+				next;
+				mes "["+strcharinfo(0)+"]";
+				mes "Eu acho que deveria realmente lhe trazer um novo ^FF0000Martelo de Ferro^000000.";
+				mes "Ou então nunca vou aprender esta habilidade!";
+				BLACK_SK = 5;
+				close;
+			}
+			else if (BLACK_SK == 5) {
+				if (countitem(613) > 0) {
+					mes "[Akkie]";
+					mes "^333333*Sniff*^000000";
+					mes "Você r-realmente trouxe esse Martelo de Ferro para mim?";
+					mes "Ob-obrigada por ser tão paciente com meus estragos...";
+					next;
+					mes "[Akkie]";
+					mes "Ok,";
+					mes "Me dê um momento?";
+					mes "Eu vou tentar mais uma vez.";
+					delitem 613,1; //Iron_Hammer
+					BLACK_SK = 6;
+					close;
+				}
+				else {
+					mes "[Akkie]";
+					mes "Waah.! Eu não posso acreditar, quebrei o Martelo de Ferro!";
+					mes "Você poderia por favor me trazer outro para que eu possa terminar esse zeny falso e ensinar Venda Duvidosa?";
+					close;
+				}
+			}
+			else if (BLACK_SK == 6) {
+				mes "[Akkie]";
+				mes "Oh, você voltou!";
+				mes "Yaaaay, Eu finalmente consegui!";
+				mes "Acabei fazendo uma amostra de zeny falso e até mesmo já testei com a Mammonita!";
+				next;
+				mes "[Akkie]";
+				mes "Ah, antes de aprender a minha habilidade, eu tenho que dizer que o meu colega, Goodman.";
+				mes "Pode ensinar-lhe outra habilidade adicional conhecida como Ganância.";
+				mes "Então você pode conversar ele mais tarde.";
+				next;
+				mes "[Akkie]";
+				mes "Ok, a primeira parte da aprendizagem de Venda Duvidosa foi fazer esse zeny falso.";
+				mes "Veja isso... Não é fácil?";
+				mes "Claro, você só pode usar isso para batalhar e reduzir o custo de zeny da Mammonita...";
+				BLACK_SK = 7;
+				skill "BS_UNFAIRLYTRICK",1,0;
+				next;
+				mes "[Akkie]";
+				mes "Além disso, 90% dos custos da Mammonita tem que ser zeny real ou a habilidade começará a perder a eficácia.";
+				mes "Bem, isso é tudo.";
+				mes "Agora você pode usar Venda Duvidosa!";
+				next;
+				mes "[Akkie]";
+				mes "Obrigado mais uma vez por compreender os meus erros.";
+				mes "Eu sei que deve ter sido muito irritante.";
+				mes "De qualquer forma, espero que esta habilidade seja realmente útil para você.";
+				mes "Apareça de novo algum dia, ok?";
+				close;
+			}
+			else {
+				if (rand(1,2) == 1) {
+					mes "[Akkie]";
+					mes "Ah, você não falou com Goodman em Geffen ainda?";
+					mes "Ele é o representante da Guilda dos Ferreiros que ensina a habilidade Ganância.";
+					next;
+					mes "[Akkie]";
+					mes "Se você leva a sério forja, a habilidade Ganância pode ser muito conveniente.";
+					mes "Embora eu tenha que dizer que o nome habilidade é um pouco....";
+					mes "Hmm... Parece muito ruim .";
+					close;
+				}
+				else {
+					mes "[Akkie]";
+					mes "Oi de novo.";
+					mes "Como estão as forjas?";
+					mes "De qualquer forma, foi realmente bom você vir e falar comigo.";
+					next;
+					mes "[Akkie]";
+					mes "Pode ser um pouco chato ensinar Venda Duvidosa para os ferreiros e mestres ferreiros.";
+					mes "Mas alguém da nossa guilda tem que fazer esse trabalho.";
+					mes "Enfim, adeus tome cuidado em suas viagens, ok?";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Akkie]";
+			if (Upper == 1) {
+				mes "Olá, "+strcharinfo(0)+"!";
+				mes "Eu estou aqui em nome da Guilda dos Ferreiros para lhe ensinar uma nova habilidade.";
+				mes "No entanto, O seu nível de classe é um pouco baixo para eu ensinar-lhe alguma coisa...";
+				next;
+				mes "[Akkie]";
+				mes "Mas pratique um pouco mais e depois que se qualificar, estarei aqui.";
+				mes "Adeus e boa sorte.";
+			}
+			else {
+				mes "Olá, eu sou de Akkie";
+				mes "da Guilda dos Ferreiros.";
+				mes "Estou aqui para ensinar essa nova habilidade a todos os Ferreiros e Mestres Ferreiros interessados.";
+				mes "Mas parece que seu nível de classe é um pouco baixo...";
+				next;
+				mes "[Akkie]";
+				mes "Sinto muito "+strcharinfo(0)+"...";
+				mes "Mas você vai se qualificar para aprender a habilidade depois que aumentar o seu nível de classe.";
+				mes "Nesse meio tempo continue treinando, ok?";
+			}
+			close;
+		}
+	}
+	else {
+		mes "[Akkie]";
+		mes "Ah, hoje parece um dia perfeito para forjar.";
+		mes "Me sinto como se estivesse atrás de uma bela cachoeira, obtendo alguns materiais de alta qualidade, e apenas tendo que martelar coisas.";
+		close;
+	}
+}
+
+geffen,172,52,1	script	Goodman#qsk_bs	4_M_DWARF,{
+	if (BaseJob == Job_Blacksmith) {
+		if (BLACK_SK2 == 2 && Upper == 1 && getskilllv("BS_GREED") == 0) {
+			mes "[Goodman]";
+			mes "Ah, eu vejo que você";
+			mes "transcendeu. Alegra-me";
+			mes "ver Ferreiros e Mestres";
+			mes "Ferreiros tornando-se";
+			mes "melhores.";
+			next;
+			mes "[Goodman]";
+			mes "Hm? Você esqueceu a habilidade Ganância?";
+			mes "Você deve lembrar de como usá-la agora só de olhar para mim.";
+			mes "Já deve ter se lembrando de como usar essa habilidade.";
+			skill "BS_GREED",1,0;
+			BLACK_SK2 = 3;
+			close;
+		}
+		else if (BLACK_SK2 == 3) {
+			mes "[Goodman]";
+			mes "Como é a sua forja e técnica?";
+			mes "Quando estiver cansado, viajar pode ser uma boa oportunidade de relaxar, pensar, e coletar materiais.";
+			close;
+		}
+		else {
+			if (BLACK_SK2 == 0) {
+				mes "[Goodman]";
+				mes "Sou um Mestre Ferreiro habilidoso enviado da Guilda dos Ferreiros.";
+				mes "Todo o mundo me chama Goodman.";
+				if (Upper == 1)
+					mes "Você é Mestre Ferreiro, não é?";
+				else
+					mes "Você é um Ferreiro, não é?";
+				mes "Pffft, pergunta retórica.";
+				next;
+				mes "[Goodman]";
+				mes "Boas notícias.";
+				mes "Eu sou o encarregado de ensinar a habilidade.";
+				mes "Desenvolvida pela Gulda dos Ferreiros e Mercadores chamada ^FF0000Ganância^000000.";
+				mes "Você pode optar por aprender ou não, mas eu recomendo que você aprenda.";
+				next;
+				mes "[Goodman]";
+				mes "Se você quiser, eu posso começar a ensinar-lhe a habilidade Ganância agora.";
+				mes "Então, o que que você diz, garoto?";
+				next;
+				if (select("Claro!:Talvez mais tarde.") == 1) {
+					mes "[Goodman]";
+					mes "Heh! Boa escolha. Agora,";
+					mes "a habilidade Ganância automaticamente";
+					mes "pega todos os itens de uma";
+					mes "área de células 5*5 ao seu redor.";
+					mes "^FFFFFFÉ útil para pegar pedaços de materiais derrubatos por monstros^000000.";
+					next;
+					mes "[Goodman]";
+					mes "Preciso te testar e ver se você está apto para aprender essa habilidade.";
+					mes "Vá encher o seu inventário até que encha e não consiga colocar mais nada nele.";
+					next;
+					mes "[Goodman]";
+					mes "Quando você terminar essa tarefa, volte e fale comigo.";
+					mes "Certo, então boa sorte .";
+					BLACK_SK2 = 1;
+					close;
+				}
+				mes "[Goodman]";
+				mes "É bom estar ocupado com outras coisas.";
+				mes "Mas lembre-se que o tempo é uma mercadoria, e você deve sempre gastá-lo fazendo o máximo de coisas de valor.";
+				mes "Entendeu?";
+				close;
+			}
+			else if (BLACK_SK2 == 1) {
+				if (MaxWeight - Weight < 5000) {
+					mes "[Goodman]";
+					mes "Já voltou, hein?";
+					mes "Tudo bem, deixe-me ver as coisas que você está carregando.";
+					mes "Vamos ver... ^FFFFFFInventário, inventário...^000000";
+					next;
+					mes "[Goodman]";
+					mes "Bom trabalho!";
+					mes "Você conseguiu.";
+					mes "Percebe que o tempo que gastou e a experiência que adquiriu em reunir esses itens vale mais a pena do que compra-los por zeny?";
+					next;
+					mes "[Goodman]";
+					if (Upper == 1)
+						mes "Eu acredito que Mestres Ferreiros";
+					else
+						mes "Acredito que Ferreiros devem em primeiro lugar ser artesãos.";
+					mes "Ser rico e famoso é apenas uma consequência.";
+					if (Upper == 1)
+						mes "Mestres Ferreiros honrosos sabem do valor do artesanato...";
+					else
+						mes "Ferreiros honrosos sabem do valor do artesanato...";
+					next;
+					if (Upper == 1) {
+						mes "[Goodman]";
+						mes "Agora, se você se importar muito em quanto um item vale em termos de zeny.";
+						mes "Saiba que agora você será capaz de pega-los mais facilmente.";
+						mes "Olhe-me fazendo isso.";
+						mes "Agora você pode fazer também.";
+						next;
+					}
+					mes "[Goodman]";
+					mes "A habilidade que você aprendeu é chamada Ganância.";
+					mes "Mas espero que você use-a de uma maneira diferente do que é seu nome.";
+					mes "Não se esqueça disso, e espero que você possa criar verdadeiras obras-primas.";
+					skill "BS_GREED",1,0;
+					BLACK_SK2 = 2;
+					close;
+				}
+				else {
+					mes "[Goodman]";
+					mes "Hm. Você voltou cedo.";
+					mes "Você não fez o que eu te mandei fazer!";
+					mes "^FFFFFFOuça novamente com atenção.^000000";
+					next;
+					mes "[Goodman]";
+					mes "Vá encher o seu inventário até que ele encha e não caiba mais nada nele.";
+					mes "Quando terminar volte e fale comigo.";
+					close;
+				}
+			}
+			else {
+				mes "[Goodman]";
+				mes "Como tem sido utilizar a habilidade Ganância?";
+				mes "Esperamos que esteja lhe ajudando a forjar seu bens com maior qualidade para ajudar todos os seus companheiros.";
+				close;
+			}
+		}
+	}
+	mes "[Goodman]";
+	mes "Eu quero explorar as montanhas para procurar itens raros e interessantes que possa usar na forja.";
+	mes "Para mim, esse é o maior prazer de ser um ferreiro.";
+	close;
+}
+

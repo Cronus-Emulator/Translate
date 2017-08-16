@@ -1,0 +1,1059 @@
+//===============================================================\\
+//                _____                                          ||
+//               /  __ \                                         ||
+//               | /  \/_ __ ___  _ __  _   _ ___                ||
+//               | |   | '__/ _ \| '_ \| | | / __|               ||
+//               | \__/\ | | (_) | | | | |_| \__ \               ||
+//                \____/_|  \___/|_| |_|\__,_|___/               ||
+//                     Scripts                                   ||
+//===============================================================||
+// = Versão: 1.8                                                 ||
+//===============================================================||
+// = Alterações:                                                 ||
+// - Cabeçalho [SlexFire]                                        ||
+// - Tradução [Spell Master]                                     ||
+// - Padronizado na injeção da habilidade trocando o ID 1005 por ||
+// RG_CLOSECONFINE [Spell Master]                                ||
+//===============================================================||
+// = Descrição:                                                  ||
+// - Quest de habilidade para Arruaceiro                         ||
+// - RG_CLOSECONFINE: Confinamento.                              ||
+//===============================================================//
+
+in_rogue,359,177,0	script	#killershow01	-1,{
+OnInit:
+	disablenpc "#killershow01";
+	end;
+
+OnEnable:
+	enablenpc "#killershow01";
+	initnpctimer;
+	end;
+
+OnDisable:
+	stopnpctimer;
+	disablenpc "#killershow01";
+	end;
+
+OnTimer1000:
+	enablenpc "Assassino#Rogueguild";
+	end;
+
+OnTimer120000:
+	disablenpc "Assassino#Rogueguild";
+	end;
+
+OnTimer150000:
+	disablenpc "Assassino#Rogueguild";
+	disablenpc "#killershow01";
+	end;
+}
+
+in_rogue,357,174,2	script	Assassino#Rogueguild	4_M_GEF_SOLDIER,1,1,{
+OnInit:
+	disablenpc "Assassino#Rogueguild";
+	end;
+
+OnTouch:
+	if (ROG_SK == 10) {
+		specialeffect2 EF_CHANGECOLD;
+		specialeffect EF_CHANGEWIND;
+		specialeffect2 EF_LIGHTSPHERE;
+		ROG_SK = 11;
+		mes "[Killer]";
+		mes "O-que você";
+		mes "tem comigo?!";
+		mes "N-não posso... Mover!";
+		next;
+		mes "[Haijara Greg]";
+		mes "Hã? Eu não esperava que você fosse capaz de lançar o Confinamento tão cedo!";
+		mes "Incrível, realmente incrível!";
+		mes "Agora, essa é uma boa chance para você dominar a habilidade...";
+		next;
+		mes "[Haijara Greg]";
+		mes "Agora preste atenção.";
+		mes "Eu preciso que você pratique prevendo a intenção de movimento do seu oponente, o Matador.";
+		mes "Você deve ser capaz de ver o caminho que ele planeja mudar por causa de sua aura.";
+		next;
+		mes "[Haijara Greg]";
+		mes "Se ele planeja se mover para a esquerda, sua aura será branca.";
+		mes "Se ele pretende se mover para a direita, será amarela.";
+		mes "Se ele pretende ir para trás, será vermelho.";
+		next;
+		setarray .@Effects[1],EF_CHANGECOLD,EF_CHANGEWIND,EF_CHANGEEARTH;
+		for(.@lim_1 = 0; .@lim_1<10; ++.@lim_1) {
+			.@move_1 = rand(1,3);
+			specialeffect .@Effects[.@move_1];
+			if (select("Bloqueá-lo pela esquerda:Bloquá-lo pela direita:Bloqueá-lo por trás") == .@move_1) {
+				mes "^3355FFO assassino permanece inabilitado de se mover e aparenta estar incrivelmente confuso!";
+				mes "Ótimo, você está usando a habilidade Confinamento perfeitamente!^000000";
+				specialeffect EF_POTION1;
+				specialeffect2 EF_POTION7;
+			}
+			else {
+				mes "^3355FFEspere...!";
+				mes "Por alguma razão, você sente que essa não é a direção que o assassino está se movendo.";
+				mes "Você se corrige naturalmente.^000000";
+			}
+			next;
+		}
+		mes "^3355FFVocê conseguiu com sucesso recuperar a inestimável habilidade do livro escrito pelo lendário Chae Takbae.^000000";
+		close2;
+		disablenpc "Assassino#Rogueguild";
+		donpcevent "#killershow01::OnDisable";
+		end;
+	}
+	else if (ROG_SK == 11) {
+		mes "[Assassino]";
+		mes "Grrrrr...";
+		mes "A-ainda...";
+		mes "N-não posso me... Mover!";
+		close2;
+		disablenpc "Assassino#Rogueguild";
+		donpcevent "#killershow01::OnDisable";
+		end;
+	}
+	end;
+}
+
+in_rogue,355,179,0	script	Haijara Greg#rogueguild	1_ETC_01,{
+	if (BaseJob == Job_Rogue) {
+		if (ROG_SK == 12 && Upper == 1) {
+			mes "[Haijara Greg]";
+			mes "Hum?";
+			mes "Ah, a amnesia é resultado da transcedência não é?";
+			mes "Então eu vou te ensinar a habilidade Confinamento novamente.";
+			specialeffect2 EF_LIGHTSPHERE;
+			//skill 1005,1,0; // Correção [Spell Master]
+			skill "RG_CLOSECONFINE",1,0; // Correção [Spell Master]
+			ROG_SK = 13;
+			close;
+		}
+		else if (ROG_SK == 13 && Upper == 1) {
+			mes "[Haijara Greg]";
+			mes "Um Desordeiro, hã?";
+			mes "Certifique-se de que você irá usar suas habilidades contra inimigos málignos que merecem ser perseguidos.";
+			mes "E o melhor boa sorte para você, aventureiro.";
+			close;
+		}
+		else {
+			if (ROG_SK < 1) {
+				mes "[Haijara Greg]";
+				mes "C-como você encontrou neste lugar?";
+				mes "Eu pensei que esta sala de pânico era impenetrável, até mesmo para Arruaceiros!";
+				next;
+				mes "[Haijara Greg]";
+				mes "Isso não é bom!";
+				mes "Será somente uma questão de tempo antes de me encontrarem...";
+				close;
+			}
+			else if (ROG_SK == 1) {
+				mes "[Haijara Greg]";
+				mes "Qu-quem é você, e como você chegou até aqui?";
+				mes "Identifique-se!";
+				next;
+				if (select("Não quero dizer!:Me dê um tempo!") == 1) {
+					mes "[Haijara Greg]";
+					mes "Não...?";
+					mes "Então por que você veio?";
+					mes "Não é por acaso que você me encontrou.";
+					next;
+					if (select("Eu vim para ajudá-lo.:Não estava procurando por você.") == 1) {
+						mes "[Haijara Greg]";
+						mes "Hum... Bem, eu suponho que posso confiar em um companheiro nessa situação.";
+						mes "Honra entre ladrões.";
+						mes "Certo. Você já ouviu falar da lenda de Chae Takbae?";
+						next;
+						if (select("Não:Sim") == 1) {
+							mes "[Haijara Greg]";
+							mes "100 anos atrás, Chae Takbae foi a primeira pessoa a transcender os limites.";
+							mes "Ele também foi a pessoa a escolher um caminho diferente.";
+							mes "Não seguiu a ordem da classe que lhe foi ordenado.";
+							next;
+							mes "[Haijara Greg]";
+							mes "Ele era originalmente um Monge, mas depois de transcender, ele decidiu se tornar um Desordeiro.";
+							mes "Retendo seu conhecimento Monge e suas habilidades de raíz, ele se adaptou para fins de Arruaceiro.";
+							next;
+							mes "[Haijara Greg]";
+							mes "Chae Takbae registrou os fundamentos para essa nova habilidade Arruaceira em um livro que eu tive sorte de conseguir.";
+							mes "Mas assim que eu o consegui, as chantagens começaram...";
+							next;
+							mes "[Haijara Greg]";
+							mes "Há pessoas más que irão utilizar qualquer coisa para tentar tomar o livro de mim.";
+							mes "Eu posso entender, já que meus filhos e eu temos aprendido novas habilidades por meio dos ensinamentos de Takbae.";
+							next;
+							mes "[Haijara Greg]";
+							mes "No entanto, eu estou correndo contra o tempo e os homens vão inevitavelmente me encontrar.";
+							mes "Você pode me salvar, eu e meus filhos?";
+							next;
+							if (select("Claro!:Desculpe, não posso.") == 1) {
+								mes "[Haijara Greg]";
+								mes "Ah, muito obrigado!";
+								mes "Ouça, não posso arriscar e ser encontrado.";
+								mes "Você poderia entregar esta carta para meu filho mais novo, ^FF0000Louis Greg^000000?";
+								mes "Rápido, não temos muito tempo a perder!";
+								ROG_SK = 2;
+								close;
+							}
+							mes "[Haijara Greg]";
+							mes "Eu... eu compreendo.";
+							mes "Mas por favor entenda, se não for você, quem poderá verdadeiramente me ajudar?";
+							close;
+						}
+						mes "[Haijara Greg]";
+						mes "Então agora você sabe o valor do livro de habilidades escritas que eu possuo.";
+						mes "No entanto, estou sendo perseguido por homens que farão qualquer coisa para conseguí-lo.";
+						mes "Você poderia por favor me ajudar?";
+						next;
+						if (select("Claro!:Desculpe, não posso.") == 1) {
+							mes "[Haijara Greg]";
+							mes "Ah, muito obrigado!";
+							mes "Ouça, não posso arriscar e ser encontrado.";
+							mes "Você poderia entregar esta carta para meu filho mais novo, ^FF0000Louis Greg^000000?";
+							mes "Rápido, não temos muito tempo a perder!";
+							ROG_SK = 2;
+							close;
+						}
+						mes "[Haijara Greg]";
+						mes "Eu... eu compreendo.";
+						mes "Mas por favor entenda, se não for você, quem poderá verdadeiramente me ajudar?";
+						close;
+					}
+					mes "[Haijara Greg]";
+					mes "Hum...?";
+					mes "Isso parece improvável, mas acho melhor eu te dar algo como pagamento.";
+					mes "Bem, eu espero que você possa encontrar o seu destino.";
+					close;
+				}
+				mes "[Haijara Greg]";
+				mes "Eu compreendo.";
+				mes "Que asssim seja.";
+				mes "Eu vou te mostrar a habilidade que cobiça tanto...";
+				mes "^FF0000Confinamento^000000!";
+				specialeffect EF_CHANGECOLD;
+				specialeffect2 EF_CHANGEWIND;
+				next;
+				mes "[Haijara Greg]";
+				mes "Puxa. Agora você está desamparado, permita-me fazer isso:";
+				mes "^FF0000Apunhalar^000000!";
+				specialeffect2 EF_COMBOATTACK5;
+				percentheal -95,0;
+				next;
+				mes "[Haijara Greg]";
+				mes "Agora saia daqui.";
+				mes "Nunca mais quero ver a sua face na minha frente novamente.";
+				mes "E apenas fique feliz por que eu não matei você!";
+				ROG_SK = 1;
+				close;
+			}
+			else if (ROG_SK == 2) {
+				mes "[Haijara Greg]";
+				mes "Nós estamos ficando sem tempo...";
+				mes "Por favor, entregue esta carta para meu filho mais novo, ^FF0000Louis^000000, assim que você puder!";
+				mes "Você pode encontrá-lo na Guilda de Arruaceiros próximo a ^FF0000Hollgrehenn Júnior^000000.";
+				close;
+			}
+			else if (ROG_SK == 3) {
+				mes "[Haijara Greg]";
+				mes "Louis foi enviado para encontrar ^FF0000Thor^000000?";
+				mes "Ele está na Guilda de Arruaceiros próximo a ^FF0000Hermanthorn Jr.^000000, não é?";
+				mes "Sinto muito que você tenha que visitar meus filhos um por um...";
+				mes "Eu sei que é impraticável.";
+				close;
+			}
+			else if (ROG_SK == 4) {
+				mes "[Haijara Greg]";
+				mes "Ah, procure por ^FF0000Jay^000000, certo?";
+				mes "Ele está próximo a ^FF0000Antonio Jr.^000000 aqui na Guilda dos Arruaceiros.";
+				mes "Ou ao leste, ele geralmente está por lá.";
+				close;
+			}
+			else if (ROG_SK == 5) {
+				mes "[Haijara Greg]";
+				mes "Ah, você voltou!";
+				mes "E você trouxe a carta de Jay.";
+				mes "Bom, deixe-me ler o que ele tem a dizer...";
+				ROG_SK = 6;
+				next;
+				mes "[Haijara Greg]";
+				mes "Ah, grandes notícias!";
+				mes "Ele contatou a Guilda dos Arqueiros para solicitar uma proteção extra e para alertar seus guardiões.";
+				mes "Eu posso finallmente relaxar por um pequeno tempo justo agora.";
+				mes "Ninguém mexe com os Arruaceiros.";
+				next;
+				mes "[Haijara Greg]";
+				mes "Muito obrigado pela sua ajuda.";
+				mes "Eu teria que ficar me escondendo para sempre se não fosse por você.";
+				mes "Quando voltar, deixe-me oferecer para você uma chance de aprender a habilidade secreta de Chae Takbae.";
+				next;
+				mes "[Haijara Greg]";
+				mes "Por favor fale com ^FF0000Thor^000000 e diga-lhe que eu dei permição para você aprender a habilidade que eu ensinei a todos os meus filhos.";
+				mes "Ele irá ouví-lo tenho certeza.";
+				close;
+			}
+			else if (ROG_SK == 6) {
+				mes "[Haijara Greg]";
+				mes "Por favor, peça a Thor para que ele te ensine a habilidade Arruaceira de Chae Takbae's.";
+				mes "Entenda que eu não posso te ensinar essa habilidade aqui nesta sala secreta.";
+				close;
+			}
+			else if (ROG_SK == 7) {
+				mes "[Haijara Greg]";
+				mes "Hum...? Você não deveria estar no meio do treinamento para obter a habilidade?";
+				mes "Por favor fale com Thor e complete seu treinamento. ";
+				close;
+			}
+			else if (ROG_SK == 8) {
+				mes "[Haijara Greg]";
+				mes "Você já completou o treinamento?";
+				mes "Ah, isso é completamente excepcional.";
+				mes "No entanto, você deve falar primeiro com Thor...";
+				close;
+			}
+			else if (ROG_SK == 9) {
+				mes "[Haijara Greg]";
+				mes "Ah, você voltou!";
+				mes "Eu ouvi dizer que você completou o treinamento e está pronto para ouvir as explicações sobre a Haboçodade Confinamento.";
+				next;
+				mes "[Haijara Greg]";
+				mes "O que é...?!";
+				mes "Pare! P-por favor, pare ai!";
+				mes "Nós não podemos deixar que roube o livro!";
+				specialeffect EF_COMBOATTACK5;
+				donpcevent "Assassino#Rogueguild::OnEnable";
+				ROG_SK = 10;
+				close;
+			}
+			else if (ROG_SK == 10) {
+				mes "[Haijara Greg]";
+				mes "Aquele homem roubou o livro da habilidade Confinamento!";
+				mes "Por favor!";
+				mes "Não deixe ele fugir!";
+				mes "O livro é precioso!";
+				donpcevent "#killershow01::OnEnable";
+				close;
+			}
+			else if (ROG_SK == 11) {
+				donpcevent "Assassino#Rogueguild::OnDisable";
+				donpcevent "#killershow01::OnDisable";
+				mes "^3355FFVocê retornou com o livro da habilidade escrito por Chae Takbae para Haijara.^000000";
+				next;
+				mes "[Haijara Greg]";
+				mes "Muito obrigado por sua ajuda.";
+				mes "Agora, se você quiser eu posso ensinar mais detalhes e informações sobre o Confinamento,";
+				mes "Eu posso falar mais sobre a habilidade caso queira.";
+				next;
+				if (select("Sim, por favor.:Não, obrigado.") == 1) {
+					mes "[Haijara Greg]";
+					mes "Como você deve saber, o Confinamento imobiliza o inimigo que esteja próximo a você.";
+					mes "Porém, existe algumas questões sobre seu uso em jogadores ou monstros.";
+					next;
+					mes "[Haijara Greg]";
+					mes "Agora, o Confinamento é similar a habilidade de Monge, Dilema.";
+					mes "Mas só inibe o inimigo de se movimentar, não impede a possibilidade de ataque.";
+					next;
+					mes "[Haijara Greg]";
+					mes "Com a exceção do Recuar, que pudermos usar apenas uma vez durante a duração do Confinamento.";
+					mes "Nós podemos usar qualquer habilidade durante o status Confinamento.";
+					next;
+					mes "[Haijara Greg]";
+					mes "Inimigos afetados pelo Confinamento podem escapar usando Asa de Mosca, Asa de Borboleta.";
+					mes "Ou teleportando ou utilizando habilidades de Esconderijo.";
+					mes "No entanto, o Esconderijo só estará ativo durante a WoE.";
+					next;
+					mes "[Haijara Greg]";
+					mes "Portanto, Confinamento pode ser uma habilidade muito útil durante A Guerra do Emperium.";
+					mes "Contanto que o alvo não use a habilidade Esconderijo para fugir.";
+					next;
+					mes "[Haijara Greg]";
+					mes "Com exceção de monstros Chefe, Confinamento permite imobilizar monstros durante 10 segundos.";
+					mes "Dando a Arruaceiros novas possibilidades de caçar em grupo.";
+					next;
+					mes "[Haijara Greg]";
+					mes "Bem, isso é tudo que posso dizer sobre o Confinamento.";
+					mes "Espero que você possa aprender mais sobre ela através da prática dessa habilidade.";
+					mes "Que você se torne uma lenda tão grande como Chae Takbae é.";
+					ROG_SK = 12;
+					//skill 1005,1,0; // Correção [Spell Master]
+					skill "RG_CLOSECONFINE",1,0; // Correção [Spell Master]
+					specialeffect2 EF_LIGHTSPHERE;
+					close;
+				}
+				mes "[Haijara Greg]";
+				mes "Certo então...";
+				mes "Espero que você possa aprender mais sobre o Confinamento através da prática.";
+				mes "Boa sorte, e obrigado novamente por sua ajuda.";
+				ROG_SK = 12;
+				//skill 1005,1,0; // Correção [Spell Master]
+				skill "RG_CLOSECONFINE",1,0; // Correção [Spell Master]
+				specialeffect2 EF_LIGHTSPHERE;
+				close;
+			}
+			mes "[Haijara Greg]";
+			mes "Obrigado por me ajudar a proteger este precioso livro de habilidade.";
+			mes "Espero que da próxima vez que nos encontrarmos, possamos ser companheiros no campo de batalha...";
+			close;
+		}
+	}
+	else {
+		mes "[Haijara Greg]";
+		mes "C-como você me encontrou neste lugar?";
+		mes "Eu pensei que esta sala fosse impenetrável, até mesmo para Arruaceiros!";
+		next;
+		mes "[Haijara Greg]";
+		mes "Isso não é bom!";
+		mes "Será somente uma questão de tempo para me encontrarem...";
+		next;
+		mes "[Haijara Greg]";
+		mes "Por favor...";
+		mes "Encontre um Desordeiro ou um Arruaceiro em que eu possa confiar e que também que possa me ajudar!";
+		mes "Eu não tenho mais tempo a perder...";
+		close;
+	}
+}
+
+in_rogue,152,29,0	script	Louis Greg#rogueguild	4_M_02,{
+	if (BaseJob == Job_Rogue || Class == Job_Thief_High) {
+		if (ROG_SK < 1) {
+			mes "[Louis Greg]";
+			mes "Meu pai...";
+			mes "Simplesmente sumiu!";
+			mes "Ele ensinou a mim e aos meus irmãos a nova habilidade.";
+			mes "Mas ultimamente ele começou a criar paranóias por algum motivo...";
+			next;
+			mes "[Louis Greg]";
+			mes "Talvez ele tenha se escondido?";
+			mes "Eu sei que há uma sala do secreta dentro da Guilda de Arruaceiros, mas eu não sei onde ela se localiza.";
+			mes "Espero que tudo esteja bem...";
+			ROG_SK = 1;
+			close;
+		}
+		else if (ROG_SK == 1) {
+			mes "[Louis Greg]";
+			mes "Meu pai alertou que pessoas poderiam vir depois de nós se eles aprenderam sobre a nova habilidade que estavam aprendendo.";
+			mes "Talvez ele se escondeu em na Sala do Pânico da Guilda de Arruaceiros...";
+			close;
+		}
+		else if (ROG_SK == 2) {
+			mes "[Louis Greg]";
+			mes "O que é isto...?";
+			mes "Uma carta do meu pai?";
+			mes "Nossa, ele deve estar bem!";
+			mes "Rápido, deixe-me ler rapidamente!";
+			ROG_SK = 3;
+			next;
+			mes "[Louis Greg]";
+			mes "Ah não, ele pode estar seguro por enquanto, mas meu pai está sendo caçado por pessoas perigosas?";
+			mes "Meu irmão Thor irá querer saber disso.";
+			mes "Deixe-me escrever uma carta rapidamente...";
+			next;
+			mes "[Louis Greg]";
+			mes "Eu sei que não estou em posição para pedir favores, mas acho que meu pai deve confiar em você.";
+			mes "Por favor, você poderia entregar minha carta para meu irmão mais velho, Thor?";
+			next;
+			mes "[Louis Greg]";
+			mes "Você poderá encontrar Thor próximo a Hermanthorn Jr. dentro da Guilda de Arruaceiros.";
+			mes "Eu realmente ficarei grato se você puder ajudar minha família.";
+			close;
+		}
+		else if (ROG_SK == 3) {
+			mes "[Louis Greg]";
+			mes "Meu irmão mais velho, ^FF0000Thor^000000, deve saber sobre isso melhor!";
+			mes "Por favor entregue a carta por mim.";
+			mes "Ele está próximo a ^FF0000Hermanthorn Jr.^000000 dentro da Guilda de Arruaceiros.";
+			close;
+		}
+		else if (ROG_SK == 4) {
+			mes "[Louis Greg]";
+			mes "Você está procurando por meu irmão, Jay?";
+			mes "Ele é normalmente sai daqui para ir a Antonio Jr. na Guilda de Arruaceiros";
+			close;
+		}
+		else if (ROG_SK == 5) {
+			mes "[Louis Greg]";
+			mes "Se você precisa falar com meu pai.";
+			mes "Provavelmente ele ainda está escondido na sala do pânico dentro da Guilda dos Arruaceiros.";
+			mes "Eu ainda não sei exatamente em que lugar ele pode estar...";
+			close;
+		}
+		else if (ROG_SK == 6) {
+			mes "[Louis Greg]";
+			mes "Você quer aprender a habilidade Secreta dos Arruaceiros?";
+			mes "Ah, provavelmente você deve falar com ^FF0000Thor^000000 sobre isso...";
+			mes "Eu sou muito ruim para explicar as coisas para as pessoas. Muito ruim.";
+			close;
+		}
+		else if (ROG_SK == 7) {
+			mes "[Louis Greg]";
+			mes "Hum? Você está no meio do aprendizado da Habilidade Secreta dos Arruaceiros, não está?";
+			mes "Ah, acredito que você não deveria estar aqui agora.";
+			mes "Por favor volte depois de conversar com ^FF0000Thor^000000 novamente, ok?";
+			close;
+		}
+		else if (ROG_SK == 8) {
+			mes "[Louis Greg]";
+			mes "Impressionante!";
+			mes "Você já terminou o treinamento?";
+			mes "Então, você precisa falar com Thor novamente!";
+			close;
+		}
+		else if (ROG_SK == 9) {
+			mes "[Louis Greg]";
+			mes "Você quer saber mais sobre o Confinamento?";
+			mes "Ugh, então é melhor você falar com meu pai.";
+			mes "Eu aprendi a utilizar a habilidade apenas para uso próprio, você sabe.";
+			close;
+		}
+		else if (ROG_SK == 11) {
+			mes "[Louis Greg]";
+			mes "Ouvi meus irmãos falarem que Chae Takbae desenvolveu o Confinamento.";
+			mes "Como uma forma mais fácil de derrotar seus inimigos.";
+			mes "Mantendo-os presos sem possibilidade de fulga.";
+			mes "Isso é verdade?";
+			close;
+		}
+		mes "[Louis Greg]";
+		mes "Uau, você é realmente bom!";
+		mes "Eu gostaria de ser tão forte como você.";
+		mes "Odeio ser uma criança!";
+		close;
+	}
+	mes "[Louis Greg]";
+	mes "Por que me tornei um Arruaceiro?";
+	mes "Acho que eu só gosto de estar invisível.";
+	mes "Isso, seguindo a moral e cumprindo a lei é simplesmente muito difícil, você sabia?";
+	close;
+}
+
+in_rogue,268,125,2	script	Thor Greg#rogueguild	4_M_04,{
+	if (BaseJob == Job_Rogue || Class == Job_Thief_High) {
+		if (ROG_SK < 1) {
+			mes "[Thor Greg]";
+			mes "Onde meu pai foi?";
+			mes "Espero que aqueles homens estranhos não cheguem até ele.";
+			mes "Com alguma sorte, ele está escondido no quarto do pânico, mas ainda sim...";
+			ROG_SK = 1;
+			close;
+		}
+		else if (ROG_SK == 1) {
+			mes "[Thor Greg]";
+			mes "Hum... Meu pai deve estar escondido na sala secreta do pânico.";
+			mes "Eu nunca fui capaz de encontrá-lo.";
+			mes "Mas Markie disse que a entrada está engenhosamente escondida à sua esquerda. Hum...";
+			close;
+		}
+		else if (ROG_SK == 2) {
+			mes "[Thor Greg]";
+			mes "Você está procurando meu irmão pequeno, ^FF0000Louis^000000?";
+			mes "Ah, ele está sempre próximo a ^FF0000Hollgrehenn Jr.^000000 dentro da Guilda de Arruaceiros.";
+			mes "Você precisa dele para quê?";
+			close;
+		}
+		else if (ROG_SK == 3) {
+			mes "[Thor Greg]";
+			mes "O que é isso que você está me dando?";
+			mes "Uma carta de Louis?";
+			mes "Deixe-me ver...";
+			ROG_SK = 4;
+			next;
+			mes "[Thor Greg]";
+			mes "Deus, meu pai está com um problema sério!";
+			mes "É melhor avisar ao meu irmão mais velho, Jay, imediatamente!";
+			mes "Rápido, encontre ^FF0000Jay^000000 próximo a ^FF0000Antonio Jr.^000000 dentro da guilda!";
+			mes "P-por favor rápido!";
+			close;
+		}
+		else if (ROG_SK == 4) {
+			mes "[Thor Greg]";
+			mes "Você pode encontrar Jay hanging com Antonio Jr. aqui dentro da Guilda de Arruaceiros. ";
+			mes "Por favor, leve a carta eu a escrevi o mais rápido possível! ";
+			close;
+		}
+		else if (ROG_SK == 5) {
+			mes "[Thor Greg]";
+			mes "Esperemos que, pai não tem saído da sala do pânico na Guilda de Arruaceiros.";
+			mes "Lá pode ser o único local realmente seguro...";
+			close;
+		}
+		else if (ROG_SK == 6) {
+			mes "[Thor Greg]";
+			mes "O que é isso?";
+			mes "Meu pai queria que eu lhe ensinar a habilidade secreta dos Arruaceiros?";
+			mes "Certo, eu vou treiná-lo no mesma forma que o pai fez.";
+			mes "Será que você gostaria de uma primeira explicação?";
+			next;
+			mes "[Thor Greg]";
+			mes "Se você não quer uma explicação.";
+			mes "Eu só vou enviar você para o local de treinamento para que possa aprender o ^FF0000Confinamento^000000.";
+			next;
+			if (select("Ouvir a explicação:Ir para o Local de Treinamento") == 1) {
+				mes "[Thor Greg]";
+				mes "Certo, o primeiro passo para aprender o ^FF0000Confinamento^000000 é dominar bloqueando o seu movimento inimigo.";
+				mes "Vou mandar você para um treinamento especial terreno para que possa praticar.";
+				next;
+				mes "[Thor Greg]";
+				mes "Lá, você vai encontrar o nosso companheiro encarrgado pelo treinamento.";
+				mes "Aproxime-se dele e certifique-se de que você pode prever e bloquear os seus movimentos para a esquerda.";
+				mes "Direita e por trás.";
+				mes "Preparem-se, estou lhe enviando agora...";
+				close2;
+				warp "in_rogue",89,114;
+				end;
+			}
+			warp "in_rogue",89,114;
+			end;
+		}
+		else if (ROG_SK == 7) {
+			mes "[Thor Greg]";
+			mes "Tudo bem, eu vou quebrar a quarta parede aqui e assumir você estava desconectado da jogo.";
+			mes "Gostaria de voltar para o campo de treinamento, a fim de aprender o ^FF0000Confinamento^000000?";
+			next;
+			if (select("Sim, por favor.:Não, obrigado.") == 1) {
+				mes "[Thor Greg]";
+				mes "Certo, o primeiro passo para aprender o ^FF0000Confinamento^000000 é dominar bloqueando o seu movimento inimigo.";
+				mes "Vou mandar você para um treinamento especial terreno para que possa praticar.";
+				next;
+				mes "[Thor Greg]";
+				mes "Lá, você vai encontrar o nosso companheiro encarrgado pelo treinamento.";
+				mes "Aproxime-se dele e certifique-se de que você pode prever e bloquear os seus movimentos pela esquerda, direita ou por trás.";
+				mes "Preparem-se, estou lhe enviando agora...";
+				ROG_SK = 6;
+				close2;
+				warp "in_rogue",89,114;
+				end;
+			}
+			mes "[Thor Greg]";
+			mes "Certo, certo.";
+			mes "Quando se sentir pronto para retomar o treino, basta me avisar.";
+			close;
+		}
+		else if (ROG_SK == 8) {
+			mes "[Thor Greg]";
+			mes "Ah, eu soube de Kienna que você completou seu treinamento.";
+			mes "Parabéns!";
+			mes "Agora, por favor fale com meu pai, para que ele possa explicar o Confinamento em detalhes.";
+			ROG_SK = 9;
+			close;
+		}
+		else if (ROG_SK == 9) {
+			mes "[Thor Greg]";
+			mes "Por favor fale com meu pai para que ele possa explicar os detalhes da Habilidade Confinamento para você.";
+			mes "Ele ainda deve estar na sala do pânico da Guilda de Arruaceiros.";
+			close;
+		}
+		else if (ROG_SK == 11) {
+			mes "[Thor Greg]";
+			mes "Você sabe, Chae Takbae diria, eu sou Chae Takbae.";
+			mes "E você é...?";
+			mes "para seus oponentes, e antes que eles respondessem, ele os derrotava.";
+			next;
+			mes "[Thor Greg]";
+			mes "Ele realmente é um herói lendário entre os Arruaceiros...!";
+			close;
+		}
+		mes "[Thor Greg]";
+		mes "Hum...?";
+		mes "Parece que você ainda está muito forte.";
+		mes "Provavelmente não muitas pessoas que tinham mexer com você...";
+		close;
+	}
+	mes "[Thor Greg]";
+	mes "*Suspiro*";
+	mes "É a minha maior falha vergonhosa:";
+	mes "Eu gasto zenys tão rapidamente assim como posso roubá-los.";
+	mes "Isso é irresponsável...";
+	close;
+}
+
+in_rogue,181,114,3	script	Jay Greg#rogueguild	4_M_03,{
+	if (BaseJob == Job_Rogue || Class == Job_Thief_High) {
+		if (ROG_SK < 1) {
+			mes "[Jay Greg]";
+			mes "Meu pai deve ter se escondido na Guilda de Arruaceiros.";
+			mes "Estranhamente, meus irmãos e eu nunca pudemos encontrá-lo e descobrir se ele está seguro...";
+			ROG_SK = 1;
+			next;
+			mes "[Jay Greg]";
+			mes "Recentemente, ele foi perseguido por esses homens estranhos que já vem ameaçando nossa família.";
+			mes "Bem, ele se limitou a nos ensinar uma nova habilidade, então ele pode usar para se proteger...";
+			close;
+		}
+		else if (ROG_SK == 1) {
+			mes "[Jay Greg]";
+			mes "Eu estou supondo que o meu pai se escondeu na sala do pânico dentro da Guilda de Arruaceiros.";
+			mes "Mas supostamente a entrada está escondida próxima a Markie.";
+			close;
+		}
+		else if (ROG_SK == 2) {
+			mes "[Jay Greg]";
+			mes "Você está procurando por Louis, meu irmão pequeno?";
+			mes "Ele está aqui na Guilda de Arruaceiros, por isso não deve ser muito difícil encontrá-lo.";
+			mes "Ele provavelmente deve estar apenas em pé perto de Hollgrehen Jr.";
+			close;
+		}
+		else if (ROG_SK == 3) {
+			mes "[Jay Greg]";
+			mes "Thor? Ele deve estar em algum lugar na Guilda de Arruaceiros.";
+			mes "Você já tentou olhar ao redor de Hermathorn Jr.?";
+			close;
+		}
+		else if (ROG_SK == 4) {
+			mes "[Jay Greg]";
+			mes "Uma carta para mim...?";
+			mes "Ah, é de Thor, portanto acho melhor lê-la imediatamente. Hum...";
+			ROG_SK = 5;
+			next;
+			mes "[Jay Greg]";
+			mes "Entendo...";
+			mes "Eu tenho que informar isto imediatamente a Guilda dos Arruaceiros, e envia uma resposta a meu pai.";
+			mes "Me deixe escrever agora mesmo uma carta.";
+			mes "Espere só um pouco...";
+			next;
+			mes "[Jay Greg]";
+			mes "Por favor entregue isto para meu pai com toda a pressa possível.";
+			mes "Eu sei que é pedir muito, mas eu não consigo encontrar o caminho para a a sala secreta sozinho...";
+			close;
+		}
+		else if (ROG_SK == 5) {
+			mes "[Jay Greg]";
+			mes "Por favor entregue minha resposta ao meu pai assim que você puder.";
+			mes "Ele ainda está escondido na Guilda de Arruaceiros.";
+			mes "Isto é, se os nossos inimigos ainda não o encontraram.";
+			close;
+		}
+		else if (ROG_SK == 6) {
+			mes "[Jay Greg]";
+			mes "Você precisa treinar para conseguir a habilidade Confinamento?";
+			mes "Eu acho que Thor é o único com acesso ao lugar de treinamento, então converse com ele primeiro.";
+			close;
+		}
+		else if (ROG_SK == 7) {
+			mes "[Jay Greg]";
+			mes "Você precisa treinar para conseguir a habilidade Confinamento?";
+			mes "Eu acho que Thor é o único com acesso ao lugar de treinamento, então converse com ele primeiro.";
+			close;
+		}
+		else if (ROG_SK == 8) {
+			mes "[Jay Greg]";
+			mes "Ah, você terminou o treinamento para obter a habilidade Confinamento, não foi?";
+			mes "Excelente, agora vá e fale com meu irmão, Thor.";
+			close;
+		}
+		else if (ROG_SK == 9) {
+			mes "[Jay Greg]";
+			mes "Hum. Você deve provavelmente falar com meu pai para aprender mais sobre a habilidade Confinamento.";
+			mes "Você viu ele na Sala do Pânico?";
+			close;
+		}
+		else if (ROG_SK == 12) {
+			mes "[Jay Greg]";
+			mes "Chae Takbae certeza de que parecia ser um teimoso delinqüente cara.";
+			mes "Mas ele deve têm sido bastante inteligente para inventar algumas de suas próprias habilidades.";
+			close;
+		}
+		mes "[Jay Greg]";
+		mes "Tenho a sensação de que você vai ser um dos melhores Arruaceiros entre todos, se você já não for.";
+		close;
+	}
+	mes "[Jay Greg]";
+	mes "Desde que eu aprendi Confinar, eu consegui a verdadeiro energia, até mesmo a energia por receber ataques.";
+	mes "Digo, se eles te baterem com uma habilidade, você pode atingi-los de volta com ele!";
+	close;
+}
+
+prt_are01,150,150,0	script	#1strecog	-1,10,10,{
+OnTouch:
+	donpcevent "#1st5min::OnEnable";
+	donpcevent "#1stmove::OnEnable";
+	disablenpc "#1strecog";
+	end;
+}
+
+prt_are01,135,135,0	script	#1st5min	-1,{
+OnInit:
+	disablenpc "#1st5min";
+	end;
+
+OnEnable:
+	enablenpc "#1st5min";
+	initnpctimer;
+	end;
+
+OnDisable:
+	stopnpctimer;
+	disablenpc "#1st5min";
+	end;
+
+OnTimer1000:
+	mapannounce "prt_are01","Bem-vindo ao Treinamento para obter a habilidade Confinamento. Você será automaticamente teletransportado para fora em 5 minutos.",bc_map,"0x00ff00";
+	end;
+
+OnTimer290000:
+	mapannounce "prt_are01","Você será teletransportado para fora em 20 segundos.",bc_map,"0x00ff00";
+	end;
+
+OnTimer310000:
+	mapannounce "prt_are01","Você será teletransportado para fora em 5 segundos.",bc_map,"0x00ff00";
+	end;
+
+OnTimer315000:
+	mapannounce "prt_are01","Agora você será teletransportado para fora.",bc_map,"0x00ff00";
+	disablenpc "Kienna#1st";
+	disablenpc "Kienna#2nd";
+	disablenpc "Kienna#3rd";
+	disablenpc "Kienna#4th";
+	disablenpc "Kienna#5th";
+	disablenpc "Kienna#6th";
+	disablenpc "Kienna#7th";
+	disablenpc "Kienna#8th";
+	donpcevent "#1stmove::OnDisable";
+	enablenpc "#1strecog";
+	donpcevent "Sala de Espera#rogue10::OnEnable";
+	stopnpctimer;
+	mapwarp "prt_are01","in_rogue",264,124;
+	end;
+}
+
+prt_are01,135,135,0	script	#1stmove	-1,{
+OnInit:
+	disablenpc "#1stmove";
+	end;
+
+OnEnable:
+	enablenpc "#1stmove";
+	initnpctimer;
+	end;
+
+OnTimer3000:
+	mapannounce "prt_are01","Kienna aparecerá em 1 segundo. Por favor, aproximar-se dela o mais próximo possível.",bc_map,"0x00ff00";
+	end;
+
+OnTimer5000:
+	switch(rand(1,8)) {
+	case 1:
+		enablenpc "Kienna#1st";
+		break;
+	case  2:
+		enablenpc "Kienna#2nd";
+		break;
+	case  3:
+		enablenpc "Kienna#3rd";
+		break;
+	case  4:
+		enablenpc "Kienna#4th";
+		break;
+	case  5:
+		enablenpc "Kienna#5th";
+		break;
+	case  6:
+		enablenpc "Kienna#6th";
+		break;
+	case  7:
+		enablenpc "Kienna#7th";
+		break;
+	case 8:
+		enablenpc "Kienna#8th";
+	}
+	end;
+
+OnTimer8000:
+	disablenpc "Kienna#1st";
+	disablenpc "Kienna#2nd";
+	disablenpc "Kienna#3rd";
+	disablenpc "Kienna#4th";
+	disablenpc "Kienna#5th";
+	disablenpc "Kienna#6th";
+	disablenpc "Kienna#7th";
+	disablenpc "Kienna#8th";
+	end;
+
+OnTimer9000:
+	stopnpctimer;
+	donpcevent "#1stmove::OnEnable";
+	mapwarp "prt_are01","prt_are01",150,150;
+	end;
+
+OnDisable:
+	stopnpctimer;
+	disablenpc "#1stmove";
+	end;
+}
+
+prt_are01,149,162,0	script	Kienna#1st	8_F_GIRL,1,1,{
+	end;
+OnTouch:
+	callfunc "F_Kienna",strnpcinfo(2);
+	end;
+}
+prt_are01,136,150,0	duplicate(Kienna#1st)	Kienna#2nd	8_F_GIRL,1,1
+prt_are01,150,138,0	duplicate(Kienna#1st)	Kienna#3rd	8_F_GIRL,1,1
+prt_are01,163,147,0	duplicate(Kienna#1st)	Kienna#4th	8_F_GIRL,1,1
+prt_are01,134,140,0	duplicate(Kienna#1st)	Kienna#5th	8_F_GIRL,1,1
+prt_are01,161,140,0	duplicate(Kienna#1st)	Kienna#6th	8_F_GIRL,1,1
+prt_are01,161,160,0	duplicate(Kienna#1st)	Kienna#7th	8_F_GIRL,1,1
+prt_are01,138,159,0	duplicate(Kienna#1st)	Kienna#8th	8_F_GIRL,1,1
+
+function	script	F_Kienna	{
+	if (ROG_SK == 6) {
+		donpcevent "#1stmove::OnDisable";
+		mes "[Kienna]";
+		mes "Certo, neste exercício, você irá precisar para prever o caminho que eu sou vai se mover e bloquear me de mover-se.";
+		mes "Essencialmente imobilizando-me.";
+		mes "Prepare-se.";
+		ROG_SK = 7;
+		next;
+		for(.@lim_1 = 0; .@lim_1<10; ++.@lim_1) {
+			.@move_1 = rand(1,3);
+			if (select("Bloquear pela esquerda:Bloquear pela direita:Bloquear por trás") == .@move_1) {
+				mes "[Kienna]";
+				mes "Huh...?";
+				mes "Você me bloqueou!";
+				mes "ótimo trabalho.";
+				specialeffect EF_POTION1;
+				specialeffect2 EF_POTION7;
+				++.@suc_1;
+			}
+			else {
+				mes "[Kienna]";
+				mes "Desculpe, mas eu não estava movendo nessa direção.";
+				mes "Sua tentativa de bloqueio falhou...";
+			}
+			next;
+		}
+		mes "[Kienna]";
+		mes "Certo, estamos a fazer aqui.";
+		switch(.@suc_1) {
+		case 10:
+			mes "Você ganhou um grau de formação de ''^0000FFS^000000.''";
+			mes "Isso é um resultado perfeito!";
+			break;
+		case 9:
+			mes "Você ganhou um apenas mal passado ''^0000FFA^000000.''";
+			mes "Você é realmente bom nisso!";
+			break;
+		case 8:
+			mes "Você ganhou um grau de formação de ''^0000FFB +^000000.''";
+			mes "Isso é muito louvável!";
+			break;
+		case 7:
+			mes "Você ganhou um apenas mal passado ''^0000FFB^000000.''";
+			mes "Isso é um trabalho muito bom.";
+			break;
+		case 6:
+			mes "Você ganhou um grau de formação de ''^0000FFC +^000000.''";
+			mes "Não é tão ruim, mas você apenas mal passado!";
+			break;
+		case 5:
+			mes "Você ganhou um grau de formação de ''^FF0000C^000000.''";
+			break;
+		case 4:
+			mes "Você ganhou um grau de formação de ''^FF0000D+^000000.''";
+			break;
+		case 3:
+			mes "Você ganhou um grau de formação de ''^FF0000D^000000.''";
+			break;
+		case 2:
+			mes "Você ganhou um grau de formação de ''^FF0000F^000000.''";
+			break;
+		case 1:
+			mes "Você ganhou um grau de formação de ''^FF0000F -^000000.''";
+			break;
+		case 0:
+			mes "Na verdade, eu não sou capaz de calcular isso.";
+			mes "O que poderia ter acontecido?!";
+		}
+		next;
+		if (.@suc_1 > 5) {
+			mes "[Kienna]";
+			mes "Estou feliz em dizer que ter concluído o seu treinamento!";
+			mes "Deixe-me enviar você de volta para Thor Greg agora assim que você pode terminar aprendizagem ^FF0000Confinamento^000000.";
+			ROG_SK = 8;
+			disablenpc "Kienna#"+getarg(0);
+			donpcevent "#1st5min::OnDisable";
+			enablenpc "#1strecog";
+			close2;
+			donpcevent "Sala de Espera#rogue10::OnEnable";
+			warp "in_rogue",264,124;
+			end;
+		}
+		else {
+			mes "[Kienna]";
+			mes "Hum. Com esta qualidade.";
+			mes "Eu não acho que você é pronto para terminar aprendizagem Confine Fechar.";
+			mes "Gostaria de experimentar o exercício de treino novamente?";
+			next;
+			if (select("Sim!:Não, obrigado.") == 1) {
+				disablenpc "Kienna#"+getarg(0);
+				donpcevent "#1stmove::OnEnable";
+				ROG_SK = 6;
+				warp "prt_are01",150,150;
+				end;
+			}
+			disablenpc "Kienna#"+getarg(0);
+			donpcevent "#1st5min::OnDisable";
+			enablenpc "#1strecog";
+			ROG_SK = 6;
+			donpcevent "Sala de Espera#rogue10::OnEnable";
+			warp "in_rogue",264,124;
+			end;
+		}
+	}
+	else if (ROG_SK == 7) {
+		mes "[Kienna]";
+		mes "Você deve ter cancelado seu treinamento durante o teste.";
+		mes "Me desculpe, mas você terá que começar o treinamento desde o começo.";
+		ROG_SK = 6;
+		close2;
+		disablenpc "Kienna#"+getarg(0);
+		donpcevent "#1stmove::OnEnable";
+		warp "prt_are01",150,150;
+		end;
+	}
+	else if (ROG_SK == 8) {
+		mes "[Kienna]";
+		mes "Você já completou o exercício de treinamento para a habilidade Confinamento.";
+		mes "Você não precisa ter para o meu assistência.";
+		close2;
+		donpcevent "Sala de Espera#rogue10::OnEnable";
+		warp "in_rogue",264,124;
+		end;
+	}
+	else {
+		mes "[Kienna]";
+		mes "Me desculpe, mas eu não acho que você deva estar aqui.";
+		mes "Deixe-me enviá-lo para a Guilda de Arruaceiros...";
+		close2;
+		donpcevent "Sala de Espera#rogue10::OnEnable";
+		warp "in_rogue",264,124;
+		end;
+	}
+
+OnInit:
+	disablenpc "Kienna#1st";
+	disablenpc "Kienna#2nd";
+	disablenpc "Kienna#3rd";
+	disablenpc "Kienna#4th";
+	disablenpc "Kienna#5th";
+	disablenpc "Kienna#6th";
+	disablenpc "Kienna#7th";
+	disablenpc "Kienna#8th";
+	end;
+}
+
+in_rogue,88,119,3	script	Sala de Espera#rogue10	4_M_ROGUE,{
+OnEnable:
+	enablenpc "Sala de Espera#rogue10";
+	enablewaitingroomevent "Sala de Espera#rogue10";
+	end;
+
+OnInit:
+	waitingroom "Training Ground",10,"Sala de Espera#rogue10::OnStartArena",1;
+	enablewaitingroomevent "Sala de Espera#rogue10";
+	end;
+
+OnStartArena:
+	warpwaitingpc "prt_are01",150,150;
+	disablewaitingroomevent "Sala de Espera#rogue10";
+	end;
+}
+

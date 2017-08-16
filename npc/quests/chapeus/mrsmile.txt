@@ -1,0 +1,102 @@
+//===============================================================\\
+//                _____                                          ||
+//               /  __ \                                         ||
+//               | /  \/_ __ ___  _ __  _   _ ___                ||
+//               | |   | '__/ _ \| '_ \| | | / __|               ||
+//               | \__/\ | | (_) | | | | |_| \__ \               ||
+//                \____/_|  \___/|_| |_|\__,_|___/               ||
+//                     Scripts                                   ||
+//===============================================================||
+// = Nome do NPC:                                                ||
+// - mrsmile.txt                                                 ||
+//===============================================================||
+// = Criação:                                                    ||
+// - eA/Herc/Cronus                                              ||
+//===============================================================||
+// = Versão:                                                     ||
+// - 1.4a                                                        ||
+//===============================================================||
+// = Alterações:                                                 ||
+// - Tradução [Spell Master]                                     ||
+//===============================================================||
+// = Descrição:                                                  ||
+// - Quest da Quest da Máscara Feliz                             ||
+//===============================================================//
+
+-	script	Smile Assistance::SmileHelper	4_F_03,{
+	mes "Oi! Olá!";
+	mes "Eu sou a Dona Risadinha";
+	mes "Como posso te ajudar?";
+	next;
+	switch(select("O que é ^3355FFMáscara Feliz^000000?:Fazer uma ^3355FFMáscara Feliz^000000.:Sair")) {
+		case 1:
+		mes "[Dona Risadinha]";
+		mes "Esse é uma Evento nacional comando pela majestade ^5577FFTristram o terceiro^000000, na itenção de criar uma atmosfera mais agradável na nação do Reino de Rune-Midgart!";
+		mes "Eu sou a \"^3355FFDona Risadinha^000000\"...";
+		mes "Que conduz esse evento nacional alegremente.";
+		next;
+		mes "[Dona Risadinha]";
+		mes "É simples e fácil adquir os itens para fazer uma \"^3355FFMáscara Feliz^000000\".";
+		mes "As exigências são bem particas.";
+		next;
+		mes "[Dona Risadinha]";
+		mes "^3355FF10 Jellopys^000000";
+		mes "^3355FF10 Felpas^000000";
+		mes "^3355FF10 Trevos^000000";
+		next;
+		mes "[Dona Risadinha]";
+		mes "Com este evento todo o mundo vai sorrir contente, onde tentaremos fazer Ragnarok o jogo mais agradável no mundo.";
+		close;
+		case 2:
+		if (countitem(909) > 9 && countitem(914) > 9 && countitem(705) > 9) {
+			mes "[Dona Risadinha]";
+			mes "Parabéns!";
+			mes "Agora por favor pegue sua Máscara Feliz.";
+			next;
+			delitem 909,10; //Jellopy
+			delitem 914,10; //Fluff
+			delitem 705,10; //Clover
+			getitem 2278,1; //Mr_Smile
+			mes "[Dona Risadinha]";
+			mes "A sua majestade Tristram o terceiro prometeu tentar fazer Ragnarok o melhor agradável.";
+			//next; // Não traduzir por achar que não é necessário.
+			//mes "The fact mentioned above was announced by the Public Information Bureau of the Rune-Midgarts Kingom.";
+			close;
+		}
+		else {
+			mes "[Dona Risadinha]";
+			mes "Oh - infelizmente Você não trouxe itens bastante para a Máscara Feliz.";
+			mes "^3355FF10 Jellopys^000000";
+			mes "^3355FF10 Felpas^000000";
+			mes "^3355FF10 Trevos^000000";
+			mes "Por favor verifique os requisitos antes.";
+			close;
+		}
+		case 3:
+		mes "[Dona Risadinha]";
+		mes "Obrigado por me visitar.";
+		mes "Nós ...";
+		mes "Nós do Reino Rune-Midgart sempre tentamos fazer Ragnarok um jogo mais agradável.";
+		next;
+		mes "[Dona Risadinha]";
+		mes "Nós lhe pedimos sinceramente que também coopere.";
+		//mes "The fact mentioned above was announced by the Public Information Bureau of the Rune-Midgarts Kingom.";
+		close;
+	}
+}
+
+// Additional Smile Assistance staff
+alberta,113,53,4	duplicate(SmileHelper)	Dona Risadinha#alb	4_F_03
+aldebaran,136,135,4	duplicate(SmileHelper)	Dona Risadinha#alde	4_F_03
+geffen,119,107,4	duplicate(SmileHelper)	Dona Risadinha#gef	4_F_03
+moc_ruins,59,154,3	duplicate(SmileHelper)	Dona Risadinha#moc	4_F_03
+payon,186,104,5	duplicate(SmileHelper)	Dona Risadinha#pay	4_F_03
+prontera,157,187,4	duplicate(SmileHelper)	Dona Risadinha#prt	4_F_03
+
+//============================================================
+// Old changelog
+//============================================================
+//= Fully working. 1.1 Optimized
+//= 1.2 updated Payon coords [Lupus]
+//= 1.3 fixed exploit [Lupus]
+//============================================================

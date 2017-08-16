@@ -1,0 +1,31 @@
+//===============================================================\\
+//                _____                                          ||
+//               /  __ \                                         ||
+//               | /  \/_ __ ___  _ __  _   _ ___                ||
+//               | |   | '__/ _ \| '_ \| | | / __|               ||
+//               | \__/\ | | (_) | | | | |_| \__ \               ||
+//                \____/_|  \___/|_| |_|\__,_|___/               ||
+//                     Scripts                                   ||
+//===============================================================||
+// = Mapflag: adjust_skill_damage.                               ||
+// = Versão: 1.0                                                 ||
+//===============================================================||
+// = Alterações:                                                 ||
+// - Orientação no cabeçaho [Spell Master]                       ||
+//===============================================================||
+// = Descrição:                                                  ||
+// - Este tipo de definição altera o dano na habilidade para o   ||
+// mapa.                                                         ||
+//                                                               ||
+// * Exemplo:                                                    ||
+// prontera	mapflag	adjust_skill_damage	MG_FIREBOLT	50           ||
+//  Faz com que a habilidade Lanças de Fogo cause somente 50% de ||
+// seu dano original.                                            ||
+//                                                               ||
+// * Exemplo 2:                                                  ||
+// prontera	mapflag	adjust_skill_damage	MG_FIREBOLT	200          ||
+//  Faz com que a habilidade Lanças de Fogo cause o dobro de seu ||
+// dano original.                                                ||
+//                                                               ||
+// * Nota o dano de uma habilidade é sempre definida como 100.   ||
+//===============================================================//

@@ -1,0 +1,147 @@
+//===============================================================\\
+//                _____                                          ||
+//               /  __ \                                         ||
+//               | /  \/_ __ ___  _ __  _   _ ___                ||
+//               | |   | '__/ _ \| '_ \| | | / __|               ||
+//               | \__/\ | | (_) | | | | |_| \__ \               ||
+//                \____/_|  \___/|_| |_|\__,_|___/               ||
+//                     Scripts                                   ||
+//===============================================================||
+// = Criação:                                                    ||
+// - eA/Herc/Cronus                                              ||
+//===============================================================||
+// = Versão:                                                     ||
+// - 1.4                                                         ||
+//===============================================================||
+// = Alterações:                                                 ||
+// - Cabeçalho [SlexFire], [Spell Master]                        ||
+// - Tradução [Spell Master]                                     ||
+// - Revisão em busca de erros [Spell Master]                    ||
+//===============================================================||
+// = Descrição:                                                  ||
+// -  Scripts referentes ao 2º Castelo de Payon                  ||
+//===============================================================||
+// = Observações:                                                ||
+// - Arquivo revisado, não foram encontrados erros               ||
+//===============================================================//
+
+//===============================================================
+// Bandeiras (Porta dos Castelos)
+//===============================================================
+-	script	Scarlet Palace#1::OutsideFlagsPA2	GUILD_FLAG,{
+
+	.@GID = getcastledata("payg_cas02",1);
+
+	if (.@GID == 0) {
+		mes "[Decreto de Rune-Midgard ]";
+		mes " ";
+		mes "1. Pela ordenança do Divino Reino de Rune-Midgad, declaramos que não há nenhum mestre formal deste castelo.";
+		mes " ";
+		mes "2. Para quem puder superar todas provações e destruír o Emperium.";
+		mes "O rei vai reconhecer esse como proprietário do castelo.";
+		close;
+	}
+	if (getcharid(2) == .@GID) {
+		mes "[ Voz Sussurrando ]";
+		mes "Aos bravos...";
+		mes "Deseja retornar ao seu palácio de honra?";
+		next;
+		if(select("Retornar ao Castelo.:Sair.") == 1) {
+			close2;
+			if (getcharid(2) == getcastledata("payg_cas02",1)) {
+					warp "payg_cas02",278,251;
+				end;
+			}
+			end;
+		}
+		close;
+	}
+	mes "[Decreto de Rune-Midgard ]";
+	mes " ";
+	mes "1. Pela ordenança do Divino Reino de Rune-Midgard que este lugar é de posse privada do Clã:";
+	mes "^ff0000"+getguildname(.@GID)+"^000000.";
+	mes " ";
+	mes "2. O mestre deste castelo ^ff0000"+getguildname(.@GID)+"^000000 é ^ff0000"+getguildmaster(.@GID)+"^000000.";
+	mes "Se há alguém que se opõe a isso.";
+	mes "Prove sua força e honra com uma lâmina de aço em sua mão.";
+	close;
+
+OnRecvCastlePy02:
+	flagemblem getcastledata("payg_cas02",1);
+	end;
+}
+
+pay_gld,292,112,6	duplicate(OutsideFlagsPA2)	Scarlet Palace#1-2	GUILD_FLAG
+pay_gld,292,120,6	duplicate(OutsideFlagsPA2)	Scarlet Palace#2	GUILD_FLAG
+pay_gld,291,135,6	duplicate(OutsideFlagsPA2)	Scarlet Palace#3	GUILD_FLAG
+pay_gld,271,163,0	duplicate(OutsideFlagsPA2)	Scarlet Palace#4	GUILD_FLAG
+
+//===============================================================
+// Bandeiras (Dentro dos Castelos)
+//===============================================================
+-	script	Scarlet Palace#5::InsideFlagsPA2	GUILD_FLAG,{
+	end;
+
+OnRecvCastlePy02:
+	flagemblem getcastledata("payg_cas02",1);
+	end;
+}
+
+payg_cas02,254,40,6	duplicate(InsideFlagsPA2)	Scarlet Palace#5-2	GUILD_FLAG
+payg_cas02,254,48,6	duplicate(InsideFlagsPA2)	Scarlet Palace#6	GUILD_FLAG
+payg_cas02,202,49,0	duplicate(InsideFlagsPA2)	Scarlet Palace#7	GUILD_FLAG
+payg_cas02,209,49,0	duplicate(InsideFlagsPA2)	Scarlet Palace#8	GUILD_FLAG
+payg_cas02,59,282,4	duplicate(InsideFlagsPA2)	Scarlet Palace#9	GUILD_FLAG
+payg_cas02,70,282,4	duplicate(InsideFlagsPA2)	Scarlet Palace#10	GUILD_FLAG
+
+//===============================================================
+// Bandeiras (Cidades)
+//===============================================================
+payon,97,322,4	duplicate(InsideFlagsPA2)	Scarlet Palace#11	GUILD_FLAG
+payon,166,173,3	duplicate(InsideFlagsPA2)	Scarlet Palace#12	GUILD_FLAG
+
+//===============================================================
+// Funcionária Kafra
+//===============================================================
+payg_cas02,22,275,5	duplicate(guildkafra)	Funcionária Kafra#payg_cas02	4_F_KAFRA1
+
+//===============================================================
+// Gerente
+//===============================================================
+payg_cas02,22,260,7	duplicate(cm)	Cherieos#payg_cas02	1_M_JOBTESTER
+
+//===============================================================
+// Saída da Sala do Tesouro
+//===============================================================
+payg_cas02,149,149,0	script	#lever_PA02	HIDDEN_NPC,{
+
+	mes " ";
+	mes "Há uma alavanca pequena. Puxar isto?";
+	next;
+	if(select("Puxar.:Não Puxar.") == 1) {
+		close2;
+		warp "payg_cas02",22,261;
+		end;
+	}
+	close;
+}
+
+//===============================================================
+// Entrada para o Calabouço
+//===============================================================
+payg_cas02,278,247,0	duplicate(gdlever)	#payg_cas02	HIDDEN_NPC
+
+//===============================================================
+// Sala do Tesouro
+//===============================================================
+payg_cas02,145,144,0	duplicate(Gld_Trea_Spawn)	Treasure#payg_cas02	-1
+
+//===============================================================
+// Gerenciamento
+//===============================================================
+payg_cas02,39,25,0	duplicate(Gld_Agit_Manager)	Agit#payg_cas02	-1
+
+//===============================================================
+// Guardiões
+//===============================================================
+payg_cas02,22,260,7	duplicate(Gld_Guard_Template)	Guardião#payg_cas02	-1

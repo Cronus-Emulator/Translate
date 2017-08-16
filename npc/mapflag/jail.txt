@@ -1,0 +1,41 @@
+//===============================================================\\
+//                _____                                          ||
+//               /  __ \                                         ||
+//               | /  \/_ __ ___  _ __  _   _ ___                ||
+//               | |   | '__/ _ \| '_ \| | | / __|               ||
+//               | \__/\ | | (_) | | | | |_| \__ \               ||
+//                \____/_|  \___/|_| |_|\__,_|___/               ||
+//                     Scripts                                   ||
+//===============================================================||
+// = Versão: 1.0                                                 ||
+//===============================================================||
+// = Alterações:                                                 ||
+// - Orientação no cabeçaho [Spell Master]                       ||
+//===============================================================||
+// = Descrição:                                                  ||
+// - Flags para sec_pri (Prisão).                                ||
+//===============================================================//
+
+// No Memory =============================
+sec_pri	mapflag	nomemo
+
+// No Save ===============================
+sec_pri	mapflag	nosave	SavePoint
+
+// No Teleport ===========================
+sec_pri	mapflag	noteleport
+
+// No Warp ===============================
+sec_pri	mapflag	nowarp
+
+// No Return, Stop people from being pulled out of jail (warpparty/guild)
+sec_pri	mapflag	noreturn
+
+// PvP ===================================
+sec_pri	mapflag	pvp
+
+// No Party ==============================
+sec_pri	mapflag	pvp_noparty
+
+//Nightmare Equipment Drops PVP ==========
+sec_pri	mapflag	pvp_nightmaredrop	random,equip,300

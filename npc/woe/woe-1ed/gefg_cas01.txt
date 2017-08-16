@@ -1,0 +1,146 @@
+//===============================================================\\
+//                _____                                          ||
+//               /  __ \                                         ||
+//               | /  \/_ __ ___  _ __  _   _ ___                ||
+//               | |   | '__/ _ \| '_ \| | | / __|               ||
+//               | \__/\ | | (_) | | | | |_| \__ \               ||
+//                \____/_|  \___/|_| |_|\__,_|___/               ||
+//                     Scripts                                   ||
+//===============================================================||
+// = Criação:                                                    ||
+// - eA/Herc/Cronus                                              ||
+//===============================================================||
+// = Versão:                                                     ||
+// - 1.2                                                         ||
+//===============================================================||
+// = Alterações:                                                 ||
+// - Cabeçalho [SlexFire], [Spell Master]                        ||
+// - Tradução [Spell Master]                                     ||
+// - Revisão em busca de erros [Spell Master]                    ||
+//===============================================================||
+// = Descrição:                                                  ||
+// -  Scripts referentes ao 1º Castelo de Geffen                 ||
+//===============================================================||
+// = Observações:                                                ||
+// - Arquivo revisado, não foram encontrados erros               ||
+//===============================================================//
+
+//===============================================================
+// Bandeiras (Porta dos Castelos)
+//===============================================================
+-	script	Repherion#1::OutsideFlagsG1	GUILD_FLAG,{
+
+	.@GID = getcastledata("gefg_cas01",1);
+
+	if (.@GID == 0) {
+		mes "[Decreto de Rune-Midgard ]";
+		mes " ";
+		mes "1. Pela ordenança do Divino Reino de Rune-Midgad, declaramos que não há nenhum mestre formal deste castelo.";
+		mes " ";
+		mes "2. Para quem puder superar todas provações e destruír o Emperium.";
+		mes "O rei vai reconhecer esse como proprietário do castelo.";
+		close;
+	}
+	if (getcharid(2) == .@GID) {
+		mes "[ Voz Sussurrando ]";
+		mes "Aos bravos...";
+		mes "Deseja retornar ao seu palácio de honra?";
+		next;
+		if(select("Retornar ao Castelo.:Sair.") == 1) {
+			close2;
+			if (getcharid(2) == getcastledata("gefg_cas01",1)) {
+				warp "gefg_cas01",197,36;
+				end;
+			}
+			end;
+		}
+		close;
+	}
+	mes "[Decreto de Rune-Midgard ]";
+	mes " ";
+	mes "1. Pela ordenança do Divino Reino de Rune-Midgard que este lugar é de posse privada do Clã:";
+	mes "^ff0000"+getguildname(.@GID)+"^000000.";
+	mes " ";
+	mes "2. O mestre deste castelo ^ff0000"+getguildname(.@GID)+"^000000 é ^ff0000"+getguildmaster(.@GID)+"^000000.";
+	mes "Se há alguém que se opõe a isso.";
+	mes "Prove sua força e honra com uma lâmina de aço em sua mão.";
+	close;
+
+OnRecvCastleG01:
+	flagemblem getcastledata("gefg_cas01",1);
+	end;
+}
+
+gef_fild13,148,51,5	duplicate(OutsideFlagsG1)	Repherion#1-2	GUILD_FLAG
+gef_fild13,155,54,5	duplicate(OutsideFlagsG1)	Repherion#2	GUILD_FLAG
+gef_fild13,212,79,6	duplicate(OutsideFlagsG1)	Repherion#3	GUILD_FLAG
+gef_fild13,211,71,6	duplicate(OutsideFlagsG1)	Repherion#4	GUILD_FLAG
+
+//===============================================================
+// Bandeiras (Dentro dos Castelos)
+//===============================================================
+-	script	Repherion#5::InsideFlagsG1	GUILD_FLAG,{
+	end;
+
+OnRecvCastleG01:
+	flagemblem getcastledata("gefg_cas01",1);
+	end;
+}
+
+gefg_cas01,28,157,4	duplicate(InsideFlagsG1)	Repherion#5-2	GUILD_FLAG
+gefg_cas01,22,156,5	duplicate(InsideFlagsG1)	Repherion#6	GUILD_FLAG
+gefg_cas01,68,185,3	duplicate(InsideFlagsG1)	Repherion#7	GUILD_FLAG
+gefg_cas01,17,171,5	duplicate(InsideFlagsG1)	Repherion#8	GUILD_FLAG
+gefg_cas01,59,16,4	duplicate(InsideFlagsG1)	Repherion#9	GUILD_FLAG
+gefg_cas01,64,16,4	duplicate(InsideFlagsG1)	Repherion#10	GUILD_FLAG
+
+//===============================================================
+// Bandeiras (Cidades)
+//===============================================================
+geffen,109,123,2	duplicate(InsideFlagsG1)	Repherion#11	GUILD_FLAG
+
+//===============================================================
+// Funcionária Kafra
+//===============================================================
+gefg_cas01,83,47,3	duplicate(guildkafra)	Funcionária Kafra#gefg_cas01	4_F_KAFRA1
+
+//===============================================================
+// Gerente
+//===============================================================
+gefg_cas01,40,48,5	duplicate(cm)	Gnahcher#gefg_cas01	1_M_JOBTESTER
+
+//===============================================================
+// Saída da Sala do Tesouro
+//===============================================================
+gefg_cas01,152,117,0	script	#lever_G01	HIDDEN_NPC,{
+
+	mes " ";
+	mes "Há uma alavanca pequena. Puxar isto?";
+	next;
+	if(select("Puxar.:Não Puxar.") == 1) {
+		close2;
+		warp "gefg_cas01",40,49;
+		end;
+	}
+	close;
+}
+
+//===============================================================
+// Entrada para o Calabouço
+//===============================================================
+gefg_cas01,78,84,0	duplicate(gdlever)	#gefg_cas01	HIDDEN_NPC
+
+//===============================================================
+// Sala do Tesouro
+//===============================================================
+gefg_cas01,154,112,0	duplicate(Gld_Trea_Spawn)	Treasure#gefg_cas01	-1
+
+//===============================================================
+// Gerenciamento
+//===============================================================
+gefg_cas01,198,182,0	duplicate(Gld_Agit_Manager)	Agit#gefg_cas01	-1
+
+//===============================================================
+// Guardiões
+//===============================================================
+gefg_cas01,40,48,5	duplicate(Gld_Guard_Template)	Guardião#gefg_cas01	-1

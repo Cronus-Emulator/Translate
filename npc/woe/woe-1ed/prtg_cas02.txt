@@ -1,0 +1,152 @@
+//===============================================================\\
+//                _____                                          ||
+//               /  __ \                                         ||
+//               | /  \/_ __ ___  _ __  _   _ ___                ||
+//               | |   | '__/ _ \| '_ \| | | / __|               ||
+//               | \__/\ | | (_) | | | | |_| \__ \               ||
+//                \____/_|  \___/|_| |_|\__,_|___/               ||
+//                     Scripts                                   ||
+//===============================================================||
+// = Criação:                                                    ||
+// - eA/Herc/Cronus                                              ||
+//===============================================================||
+// = Versão:                                                     ||
+// - 1.4                                                         ||
+//===============================================================||
+// = Alterações:                                                 ||
+// - Cabeçalho [SlexFire], [Spell Master]                        ||
+// - Tradução [Spell Master]                                     ||
+// - Revisão em busca de erros [Spell Master]                    ||
+//===============================================================||
+// = Descrição:                                                  ||
+// -  Scripts referentes ao 2º Castelo de Prontera               ||
+//===============================================================||
+// = Observações:                                                ||
+// - Arquivo revisado, não foram encontrados erros               ||
+//===============================================================//
+
+//===============================================================
+// Bandeiras (Porta dos Castelos)
+//===============================================================
+-	script	Swanhild#1::OutsideFlagsPR2	GUILD_FLAG,{
+
+	.@GID = getcastledata("prtg_cas02",1);
+
+	if (.@GID == 0) {
+		mes "[Decreto de Rune-Midgard ]";
+		mes " ";
+		mes "1. Pela ordenança do Divino Reino de Rune-Midgad, declaramos que não há nenhum mestre formal deste castelo.";
+		mes " ";
+		mes "2. Para quem puder superar todas provações e destruír o Emperium.";
+		mes "O rei vai reconhecer esse como proprietário do castelo.";
+		close;
+	}
+	if (getcharid(2) == .@GID) {
+		mes "[ Voz Sussurrando ]";
+		mes "Aos bravos...";
+		mes "Deseja retornar ao seu palácio de honra?";
+		next;
+		if(select("Retornar ao Castelo.:Sair.") == 1) {
+			close2;
+			if (getcharid(2) == getcastledata("prtg_cas02",1)) {
+				warp "prtg_cas02",169,55;
+				end;
+			}
+			end;
+		}
+		close;
+	}
+	mes "[Decreto de Rune-Midgard ]";
+	mes " ";
+	mes "1. Pela ordenança do Divino Reino de Rune-Midgard que este lugar é de posse privada do Clã:";
+	mes "^ff0000"+getguildname(.@GID)+"^000000.";
+	mes " ";
+	mes "2. O mestre deste castelo ^ff0000"+getguildname(.@GID)+"^000000 é ^ff0000"+getguildmaster(.@GID)+"^000000.";
+	mes "Se há alguém que se opõe a isso.";
+	mes "Prove sua força e honra com uma lâmina de aço em sua mão.";
+	close;
+
+OnRecvCastlePt02:
+	flagemblem getcastledata("prtg_cas02",1);
+	end;
+}
+
+prt_gld,244,126,0	duplicate(OutsideFlagsPR2)	Swanhild#1-2	GUILD_FLAG
+prt_gld,244,128,0	duplicate(OutsideFlagsPR2)	Swanhild#2	GUILD_FLAG
+prt_gld,236,126,0	duplicate(OutsideFlagsPR2)	Swanhild#3	GUILD_FLAG
+prt_gld,236,128,0	duplicate(OutsideFlagsPR2)	Swanhild#4	GUILD_FLAG
+
+//===============================================================
+// Bandeiras (Dentro dos Castelos)
+//===============================================================
+-	script	Swanhild#5::InsideFlagsPR2	GUILD_FLAG,{
+	end;
+
+OnRecvCastlePt02:
+	flagemblem getcastledata("prtg_cas02",1);
+	end;
+}
+
+prtg_cas02,40,227,4	duplicate(InsideFlagsPR2)	Swanhild#5-2	GUILD_FLAG
+prtg_cas02,46,227,4	duplicate(InsideFlagsPR2)	Swanhild#6	GUILD_FLAG
+prtg_cas02,11,219,4	duplicate(InsideFlagsPR2)	Swanhild#7	GUILD_FLAG
+prtg_cas02,11,214,4	duplicate(InsideFlagsPR2)	Swanhild#8	GUILD_FLAG
+prtg_cas02,20,219,4	duplicate(InsideFlagsPR2)	Swanhild#9	GUILD_FLAG
+prtg_cas02,20,214,4	duplicate(InsideFlagsPR2)	Swanhild#10	GUILD_FLAG
+prtg_cas02,79,227,0	duplicate(InsideFlagsPR2)	Swanhild#11	GUILD_FLAG
+prtg_cas02,70,227,0	duplicate(InsideFlagsPR2)	Swanhild#12	GUILD_FLAG
+prtg_cas02,38,189,0	duplicate(InsideFlagsPR2)	Swanhild#13	GUILD_FLAG
+prtg_cas02,34,189,0	duplicate(InsideFlagsPR2)	Swanhild#14	GUILD_FLAG
+prtg_cas02,153,161,4	duplicate(InsideFlagsPR2)	Swanhild#15	GUILD_FLAG
+prtg_cas02,162,161,4	duplicate(InsideFlagsPR2)	Swanhild#16	GUILD_FLAG
+
+//===============================================================
+// Bandeiras (Cidades)
+//===============================================================
+prontera,146,194,3	duplicate(InsideFlagsPR2)	Swanhild#17	GUILD_FLAG
+
+//===============================================================
+// Funcionária Kafra
+//===============================================================
+prtg_cas02,71,36,4	duplicate(guildkafra)	Funcionária Kafra#prtg_cas02	4_F_KAFRA1
+
+//===============================================================
+// Gerente
+//===============================================================
+prtg_cas02,94,61,4	duplicate(cm)	Roy#prtg_cas02	1_M_JOBTESTER
+
+//===============================================================
+// Saída da Sala do Tesouro
+//===============================================================
+prtg_cas02,207,228,0	script	#Lever_PR02	HIDDEN_NPC,{
+
+	mes " ";
+	mes "Há uma alavanca pequena. Puxar isto?";
+	next;
+	if(select("Puxar.:Não Puxar.") == 1) {
+		close2;
+		warp "prtg_cas02",94,62;
+		end;
+	}
+	close;
+}
+
+//===============================================================
+// Entrada para o Calabouço
+//===============================================================
+prtg_cas02,84,72,0	duplicate(gdlever)	#prtg_cas02	HIDDEN_NPC
+
+//===============================================================
+// Sala do Tesouro
+//===============================================================
+prtg_cas02,202,228,0	duplicate(Gld_Trea_Spawn)	Treasure#prtg_cas02	-1
+
+//===============================================================
+// Gerenciamento
+//===============================================================
+prtg_cas02,158,174,0	duplicate(Gld_Agit_Manager)	Agit#prtg_cas02	-1
+
+//===============================================================
+// Guardiões
+//===============================================================
+prtg_cas02,94,61,4	duplicate(Gld_Guard_Template)	Guardião#prtg_cas02	-1

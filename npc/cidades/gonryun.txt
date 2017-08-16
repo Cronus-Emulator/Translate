@@ -1,0 +1,245 @@
+//===============================================================\\
+//                _____                                          ||
+//               /  __ \                                         ||
+//               | /  \/_ __ ___  _ __  _   _ ___                ||
+//               | |   | '__/ _ \| '_ \| | | / __|               ||
+//               | \__/\ | | (_) | | | | |_| \__ \               ||
+//                \____/_|  \___/|_| |_|\__,_|___/               ||
+//                     Scripts                                   ||
+//===============================================================||
+// = Nome do NPC:                                                ||
+// - gonryun.txt                                                 ||
+//===============================================================||
+// = Criação:                                                    ||
+// - eA/Herc/Cronus                                              ||
+//===============================================================||
+// = Versão:                                                     ||
+// - 1.0                                                         ||
+//===============================================================||
+// = Alterações:                                                 ||
+// - Tradução [Revisões Cronus] / [SlexFire]                     ||
+//===============================================================||
+// = Descrição:                                                  ||
+// - NPCs referentes a cidade de Kunlun                          ||
+//===============================================================//
+
+// Kulun NPC de teletransporte
+//============================================================
+-	script	::Kunlun_Envoy_gonryun	-1,{
+	mes "[Wabakho]";
+	mes "Saudações. Eu gostaria de convidar todos vocês a Kunlun. Eu tenho a honra de ser o encarregado de transportar os cidadãos de Rune Midgard a um país completamente novo, Kunlun!";
+	next;
+	switch(select("Saber mais sobre Kunlun...:Ir para Kunlun.:Cancelar.")) {
+	case 1:
+		mes "[Wabakho]";
+		mes "Kunlun é o melhor lugar para realizar as fantasias de pessoas de toda Midgard. Você irá passar pela casa em miniatura na Vila dos Pigmeus e entrar em Kunlun através de um pilar feito de uma luz encantadora.";
+		next;
+		mes "[Wabakho]";
+		mes "Eu ouvi dizer que os sábios daqui construíram uma cidade voadora...";
+		mes "É um feito impressionante, porém Kunlun sempre flutuou no céu naturalmente! Kunlun possui a mais bela vista do mundo!";
+		next;
+		mes "[Wabakho]";
+		mes "Nossas especialidades locais são pão doce de passas e pêssego, são suculentos e deliciosos. Como era de se esperar, um novo calabouço repleto de novos perigos o espera em Kunlun, então esteja bem preparado quando resolver ir lá!";
+		next;
+		mes "[Wabakho]";
+		mes "Quando você desejar partir, por favor me informe. É um grande prazer servir pessoas, como você, do continente de Midgard.";
+		close;
+	case 2:
+		mes "[Wabakho]";
+		mes "Bem, tudo pronto para a viagem?";
+		mes "Nós cobramos ^0000FF10,000^000000z por uma passagem para Kunlun. A passagem é apenas válida para uma ida, mas você pode voltar quando desejar sem custo algum.";
+		next;
+		mes "[Wabakho]";
+		mes "Você quer embarcar agora?";
+		next;
+		if (select("Só se for agora!:Hmm, talvez outra hora.") == 1) {
+			if (Zeny > 9999) {
+				mes "[Wabakho]";
+				mes "Tripulação, preparem-se para a partida.";
+				close2;
+				Zeny -= 10000;
+				warp "gon_fild01",258,82;
+				end;
+			}
+			mes "[Wabakho]";
+			mes "Eu sinto muito, mas você precisa trazer ^0000FF10,000^000000z para comprar sua passagem. Por favor, tenha certeza de que você tem dinheiro suficiente. Obrigado.";
+			close;
+		}
+		mes "[Wabakho]";
+		mes "Por favor, me avise se desejar visitar Kunlun. É um grande prazer servir pessoas, como você, do continente de Midgard.";
+		close;
+	case 3:
+		mes "[Wabakho]";
+		mes "Por favor, me avise se desejar visitar Kunlun. É um grande prazer servir pessoas, como você, do continente de Midgard.";
+		close;
+	}
+}
+
+gon_fild01,255,79,7	script	Anunciante de Kunlun#gon2	4_M_TWMIDMAN,{
+	mes "[Wabakho]";
+	mes "E então ilustre visitante, o que achou de Kunlun? Podemos partir para o continente quando quiser, basta dar as ordens.";
+	next;
+	if (select("Quero voltar para Alberta.:Cancelar") == 1) {
+		mes "[Wabakho]";
+		mes "Espero que tenha gostado de Kunlun e que volte a nos visitar no futuro. Tripulação, prepare-se para a partida!";
+		close2;
+		if (RENEWAL)
+			warp "alberta",244,60;
+		else
+			warp "alberta",243,67;
+		end;
+	}
+	mes "[Wabakho]";
+	mes "Demore o tempo que quiser aqui, amigo. Existem muitos lugares misteriosos em Kunlun pra você visitar.";
+	close;
+}
+
+gon_fild01,187,239,7	script	Anunciante de Kunlun#gon3	4_M_TWMIDMAN,{
+	mes "[Jangchungryong]";
+	mes "Por favor, vá para o andar de cima. Eu espero que você tenha várias memórias boas de Kunlun quando voltar para a sua terra natal.";
+	close;
+}
+
+gonryun,153,64,7	script	Anunciante de Kunlun#gon4	4_M_TWMIDMAN,{
+	mes "[Jangchungryong]";
+	mes "Tenha um belo dia em Kunlun. Quando desejar terminar sua visita, Eu irei leva-lo para o porto.";
+	next;
+	if (select("Retornar ao porto.:Cancelar.") == 1) {
+		mes "[Jangchungryong]";
+		mes "Eu espero que você tenha se divertido conosco. Vamos indo então?";
+		close2;
+		warp "gon_fild01",258,82;
+		end;
+	}
+	mes "[Jangchungryong]";
+	mes "Demore o tempo que quiser aqui, amigo. Existem muitos lugares misteriosos em Kunlun pra você visitar.";
+	close;
+}
+
+// Kunlun NPCs
+//============================================================
+gonryun,200,82,3	script	SungSon Gam#gon	4_M_TWBOY,{
+	mes "[SungSon Gam]";
+	mes "Festas são sempre divertidas. É por isso que eu amo essa cidade. Essa cidade me faz sentir como se eu vivesse em uma grande festa.";
+	close;
+}
+
+gonryun,268,88,3	script	JoonPo Lyang#gon	4_M_TWMIDMAN,{
+	mes "[JoonPo Lyang]";
+	mes "Somos uma nação independente e orgulhosa. Sempre lutamos bravamente contra os invasores que tentaram tomar essa terra abençoada. E vencemos todas as batalhas por nossa terra até hoje.";
+	next;
+	mes "[JoonPo Lyang]";
+	mes "Nós acreditamos na canção da Vitória Triunfal! Ela representa o espírito de nossa nação!";
+	close;
+}
+
+gonryun,118,111,5	script	WonSuk Chen#gon	4_M_ORIENT02,{
+	mes "[WonSuk Chen]";
+	mes "O governador dessa cidade é um homem de grande coração. Mas já ouvi falar de alguns que não confiam em seu caráter. Estranho...";
+	next;
+	mes "[Wonsuk Chen]";
+	mes "Bom, eu gosto de nossa cidade. Os esforços de nosso governador fazem daqui um bom lugar. Eu realmente espero que alguns ingratos não atrapalhem seu bom trabalho.";
+	close;
+}
+
+gonryun,181,161,3	script	MoonJin Chung#gon	4_F_TWMIDWOMAN,{
+	mes "[MoonJin Chung]";
+	mes "Os homens daqui são chamados de KunLuns, e são homens bravos e enérgicos. Mas há uma dificuldade muita grande para se casarem atualmente...";
+	next;
+	mes "[MoonJin Chung]";
+	mes "Isso porque existem hoje muito mais homens que mulheres. Nem certeza se meu filho conseguirá se casar eu tenho. Hmm...";
+	close;
+}
+
+gonryun,113,135,6	script	Guardião#gon	8_M_TWSOLDIER,{
+	mes "[Guardião]";
+	mes "Bem vindo! Sou um humilde servidor de SaYumMoon, o governador dessa cidade.";
+	next;
+	mes "[Guardião]";
+	mes "Acredito que não vá acontecer mas, se você agir de maneira suspeita, serei obrigado a te prender.";
+	next;
+	mes "[Guardião]";
+	mes "Mas não se preocupe. Não acredito que isso vá acontecer. Aproveite sua estada!";
+	close;
+}
+
+gonryun,113,127,6	script	Guardião#gon2	8_M_TWSOLDIER,{
+	mes "[Guardião]";
+	mes "Bem vindo! Sou um humilde servidor de SaYumMoon, o governador dessa cidade.";
+	next;
+	mes "[Guardião]";
+	mes "Acredito que não vá acontecer mas, se você agir de maneira suspeita, serei obrigado a te prender.";
+	next;
+	mes "[Guardião]";
+	mes "Mas não se preocupe. Não acredito que isso vá acontecer. Aproveite sua estada!";
+	close;
+}
+
+gon_in,73,82,5	script	SungChul Ki#gon	4_M_TWTEAMAN,{
+	if (nakha >= 0 && nakha <= 2) {
+		mes "[SungChul Ki]";
+		mes "............";
+		next;
+		mes "[SungChul Ki]";
+		mes "Hmmm... Isto é algo preocupante, com certeza.";
+		close;
+	}
+	if (nakha == 3) {
+		cha = 1;
+		mes "Meu nome é SungChul Ki. Meu trabalho é fazer chá. Eu me dedico, dia e noite, em fazer o melhor chá de toda a cidade.";
+		next;
+		mes "[SungChul Ki]";
+		mes "Hmm, mas ultimamente, tem sido difícil atingir a perfeição do chá. eu preciso de alguns ingredientes especiais...";
+		next;
+		mes "[SungChul Ki]";
+		mes "Eu ouvi rumores que, com uma certa serpente, é possível conseguir um ingrediente que faria o chá mais saboroso já feito. Mas onde eu acho e como eu capturo uma dessas? Eu não sei...";
+		close;
+	}
+}
+
+gon_in,173,27,3	script	KuHa Woo#gon	4_M_TWBOY,{
+	mes "[KuHa Woo]";
+	mes "É claro que ninguém vende bebidas alcoólicas para uma criança como eu. Mas os adultos parecem gostar. Como será o gosto?";
+	next;
+	mes "[KuHa Woo]";
+	mes "Mas isso é bobagem! Crianças não devem beber álcool. O que eu gosto mesmo é do delicioso chá que é produzido aqui na minha cidade. Só de pensar eu já fico com água na boca.";
+	close;
+}
+
+gonryun,166,196,3	script	Soldado#gon	8_M_TWSOLDIER,{
+	if (b_sword < 7) {
+		mes "[WaGuo]";
+		mes "Você sabia que esse local foi um santuário? Há muito tempo atrás, depois que foi abandonado pelos monges que buscavam o reino dos céus, ele se tornou a morada de vários monstros.";
+		close;
+	}
+	else if ((b_sword > 6) && (b_sword < 10)) {
+		mes "A noite de ontem foi barulhenta, não? Foi por causa de um ladrão. mais barulhenta que a época de festas. Eu mal consegui dormir...";
+		next;
+		mes "[WaGuo]";
+		mes "Ahh!";
+		mes "Na noite passada, durante meu turno, eu vi de relance, algo estranho correndo na direção do templo.";
+		next;
+		mes "[WaGuo]";
+		mes "Se movia tão rápido que eu nem consegui pensar em seguir. Eu acho que era uma criatura poderosa. Mas parecia humano. O que será que era?";
+		close;
+	}
+	mes "[WaGuo]";
+	mes "Você sabia que esse local foi um santuário? Há muito tempo atrás, depois que foi abandonado pelos monges que buscavam o reino dos céus, ele se tornou a morada de vários monstros.";
+	next;
+	mes "[WaGuo]";
+	mes "A cidade está se preparando para o festival, mas esses preparativos estão tomando muito tempo... Isso nunca aconteceu antes.";
+	close;
+}
+
+gonryun,169,71,3	script	Guia#gon	4_F_TWGIRL,{
+	mes "[LeeHee Min]";
+	mes "Bem vindo!";
+	mes "Você gostou da paisagem no seu caminho para cá? O que achou daquelas pequenas construções no caminho?";
+	next;
+	mes "[LeeHee Min]";
+	mes "São miniaturas das cidades do reino de Rune-Midgard. Você pode olhar para todas as cidades de uma só vez. Foi um trabalho muito difícil. Mas não é uma obra de arte?";
+	next;
+	mes "[LeeHee Min]";
+	mes "Se você souber apreciar, você verá muitas paisagens bonitas pela cidade.";
+	close;
+}
